@@ -1,0 +1,6 @@
+// Config options: https://github.com/rocker-org/devcontainer-templates/tree/main/src/r-ver
+{
+  "name": "R Package Dev (rocker/r-ver base)",
+  // A prebuilt image for R package development, maintained outside this repository.
+  "image": "ghcr.io/coatless-devcontainer/r-pkg:latest"
+}

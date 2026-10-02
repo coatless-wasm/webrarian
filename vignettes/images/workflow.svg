@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="webrarian-workflow" viewBox="0 0 634 346" role="img" aria-labelledby="t d">
+  <title id="t">The five-step webrarian workflow</title>
+  <desc id="d">Five numbered notes sit beside the lines of a short R script run inside a project folder, each joined to its line by a short arrow. One, catalog() starts a collection and writes _webrarian.yml. Two, acquire_package() and acquire_file() add WebAssembly packages and your files. Three, bind() builds the site into _site/. Four, reading_room() previews it on a local server. Five, circulate_via_github() writes a GitHub Pages workflow.</desc>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}</style>
+  <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C8503C"/></marker></defs>
+  <rect x="0.5" y="0.5" width="633" height="345" rx="14" fill="#FBF7EE" stroke="#E6DCC6"/>
+
+  <!-- the script -->
+  <rect x="260" y="22" width="358" height="302" rx="10" fill="#2A2620"/>
+  <text class="m" y="56" font-size="13" xml:space="preserve"><tspan x="290" textLength="54.6" fill="#8B8477">library</tspan><tspan x="344.6" textLength="85.8" fill="#F8F1E0">(webrarian)</tspan></text>
+  <text class="m" y="94" font-size="13" xml:space="preserve"><tspan x="290" textLength="54.6" fill="#E9C46A">catalog</tspan><tspan x="344.6" textLength="15.6" fill="#F8F1E0">()</tspan></text>
+  <text class="m" y="133" font-size="13" xml:space="preserve"><tspan x="290" textLength="117" fill="#E9C46A">acquire_package</tspan><tspan x="407" textLength="23.4" fill="#F8F1E0">(c(</tspan><tspan x="430.4" textLength="54.6" fill="#A8D5BA">"dplyr"</tspan><tspan x="485" textLength="15.6" fill="#F8F1E0">, </tspan><tspan x="500.6" textLength="70.2" fill="#A8D5BA">"ggplot2"</tspan><tspan x="570.8" textLength="15.6" fill="#F8F1E0">))</tspan></text>
+  <text class="m" y="155" font-size="13" xml:space="preserve"><tspan x="290" textLength="93.6" fill="#E9C46A">acquire_file</tspan><tspan x="383.6" textLength="23.4" fill="#F8F1E0">(c(</tspan><tspan x="407" textLength="54.6" fill="#A8D5BA">"data/"</tspan><tspan x="461.6" textLength="15.6" fill="#F8F1E0">, </tspan><tspan x="477.2" textLength="101.4" fill="#A8D5BA">"scripts/*.R"</tspan><tspan x="578.6" textLength="15.6" fill="#F8F1E0">))</tspan></text>
+  <text class="m" y="194" font-size="13" xml:space="preserve"><tspan x="290" textLength="31.2" fill="#E9C46A">bind</tspan><tspan x="321.2" textLength="15.6" fill="#F8F1E0">()</tspan></text>
+  <text class="m" y="244" font-size="13" xml:space="preserve"><tspan x="290" textLength="93.6" fill="#E9C46A">reading_room</tspan><tspan x="383.6" textLength="15.6" fill="#F8F1E0">()</tspan></text>
+  <text class="m" y="294" font-size="13" xml:space="preserve"><tspan x="290" textLength="156" fill="#E9C46A">circulate_via_github</tspan><tspan x="446" textLength="15.6" fill="#F8F1E0">()</tspan></text>
+  <path d="M281,119 h-3 V160 h3" fill="none" stroke="#E9C46A" stroke-width="1.4"/>
+
+  <!-- notes, set right against the script so each sits next to its line -->
+  <text class="s" x="204" y="76.5" font-size="14" fill="#2A2620" font-weight="600" text-anchor="end">Start a collection</text>
+  <text class="s" x="204" y="94.5" font-size="12.5" fill="#6E6656" text-anchor="end">_webrarian.yml in this folder</text>
+  <text class="s" x="204" y="126.5" font-size="14" fill="#2A2620" font-weight="600" text-anchor="end">Add packages and files</text>
+  <text class="s" x="204" y="144.5" font-size="12.5" fill="#6E6656" text-anchor="end">WebAssembly builds, your files</text>
+  <text class="s" x="204" y="176.5" font-size="14" fill="#2A2620" font-weight="600" text-anchor="end">Build the site</text>
+  <text class="s" x="204" y="194.5" font-size="12.5" fill="#6E6656" text-anchor="end">everything lands in _site/</text>
+  <text class="s" x="204" y="226.5" font-size="14" fill="#2A2620" font-weight="600" text-anchor="end">Preview it</text>
+  <text class="s" x="204" y="244.5" font-size="12.5" fill="#6E6656" text-anchor="end">a local server. Ctrl+C stops it</text>
+  <text class="s" x="204" y="276.5" font-size="14" fill="#2A2620" font-weight="600" text-anchor="end">Publish it</text>
+  <text class="s" x="204" y="294.5" font-size="12.5" fill="#6E6656" text-anchor="end">a GitHub Pages workflow</text>
+
+  <!-- leaders: one bend column, one drop, ending at the code -->
+  <path d="M222,71.5 L236,71.5 Q242,71.5 242,77.5 L242,83.5 Q242,89.5 248,89.5 L283,89.5" fill="none" stroke="#C8503C" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#a)"/>
+  <circle cx="222" cy="71.5" r="10" fill="#B84130"/>
+  <text class="s" x="222" y="75.5" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+  <path d="M222,121.5 L236,121.5 Q242,121.5 242,127.5 L242,133.5 Q242,139.5 248,139.5 L274,139.5" fill="none" stroke="#C8503C" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#a)"/>
+  <circle cx="222" cy="121.5" r="10" fill="#B84130"/>
+  <text class="s" x="222" y="125.5" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+  <path d="M222,171.5 L236,171.5 Q242,171.5 242,177.5 L242,183.5 Q242,189.5 248,189.5 L283,189.5" fill="none" stroke="#C8503C" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#a)"/>
+  <circle cx="222" cy="171.5" r="10" fill="#B84130"/>
+  <text class="s" x="222" y="175.5" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">3</text>
+  <path d="M222,221.5 L236,221.5 Q242,221.5 242,227.5 L242,233.5 Q242,239.5 248,239.5 L283,239.5" fill="none" stroke="#C8503C" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#a)"/>
+  <circle cx="222" cy="221.5" r="10" fill="#B84130"/>
+  <text class="s" x="222" y="225.5" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">4</text>
+  <path d="M222,271.5 L236,271.5 Q242,271.5 242,277.5 L242,283.5 Q242,289.5 248,289.5 L283,289.5" fill="none" stroke="#C8503C" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#a)"/>
+  <circle cx="222" cy="271.5" r="10" fill="#B84130"/>
+  <text class="s" x="222" y="275.5" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">5</text>
+</svg>

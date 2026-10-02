@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="webrarian-deployment-options" viewBox="0 0 720 356" role="img" aria-labelledby="t d">
+  <title id="t">One built site, any static host</title>
+  <desc id="d">The _site folder, uploaded whole, works on any static host, and hosts fall into three groups. Ready as built: Netlify and Cloudflare Pages read the _headers file that bind() writes, so they send the isolation headers and the cache rules, and circulate_via_netlify() adds a Netlify workflow. Ready once configured: Vercel, nginx, Apache and S3 with CloudFront send both after you copy the headers into their configuration. Works, with limits: GitHub Pages sends neither, so Ctrl+C cannot stop R there, and circulate_via_github() adds the Pages workflow.</desc>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}</style>
+  <rect x="0.5" y="0.5" width="719" height="355" rx="14" fill="#FBF7EE" stroke="#E6DCC6"/>
+
+  <!-- the folder -->
+  <rect x="16" y="16" width="150" height="316" rx="12" fill="#F8F1E0" stroke="#E6DCC6" stroke-width="1"/>
+  <path d="M38,142 v-56 h27.7 l10.1,11.2 h35.1 v44.8 z" fill="#D9A441"/>
+  <rect x="38" y="104" width="72.8" height="38" fill="#E9C46A"/>
+  <text class="m" x="36" y="182" font-size="16" fill="#2A2620" font-weight="700" textLength="57.6">_site/</text>
+  <text class="s" x="36" y="204" font-size="12.5" fill="#6E6656">One static folder.</text>
+  <text class="s" x="36" y="222" font-size="12.5" fill="#6E6656">Upload all of it,</text>
+  <text class="s" x="36" y="240" font-size="12.5" fill="#6E6656">dot files included.</text>
+
+  <!-- to any static host -->
+  <circle cx="190" cy="174" r="15" fill="#B84130"/>
+  <path d="M183.5,174.0 h12 m-5,-5.5 l5.5,5.5 l-5.5,5.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Ready as built -->
+  <rect x="216" y="16" width="488" height="107" rx="10" fill="#FFFFFF" stroke="#E6DCC6" stroke-width="1"/>
+  <path d="M226,16.5 H221 a4.5,4.5 0 0 0 -4.5,4.5 V118 a4.5,4.5 0 0 0 4.5,4.5 H226 Z" fill="#4A6B5A"/>
+  <rect x="222" y="16.5" width="4.5" height="106" fill="#FFFFFF"/>
+  <text class="s" x="238" y="42" font-size="14.5" fill="#2A2620" font-weight="700">Ready as built</text>
+  <rect x="238" y="53" width="52.7" height="22" rx="11" fill="#FBF7EE" stroke="#E6DCC6" stroke-width="1"/>
+  <text class="s" x="264.3" y="68" font-size="11.5" fill="#2A2620" font-weight="600" text-anchor="middle">Netlify</text>
+  <rect x="296.7" y="53" width="117.3" height="22" rx="11" fill="#FBF7EE" stroke="#E6DCC6" stroke-width="1"/>
+  <text class="s" x="355.3" y="68" font-size="11.5" fill="#2A2620" font-weight="600" text-anchor="middle">Cloudflare Pages</text>
+  <text class="s" x="238" y="94" font-size="12" fill="#6E6656">They read the _headers file that bind() writes.</text>
+  <text class="m" x="238" y="111" font-size="11.5" fill="#62291F" textLength="158.7">circulate_via_netlify()</text>
+  <text class="s" x="397.7" y="111" font-size="12" fill="#6E6656" xml:space="preserve"> adds a Netlify workflow.</text>
+  <circle cx="577" cy="34" r="8" fill="#E4EDE7"/>
+  <path d="M573.4,34.2 l2.6,2.8 l5,-5.6" fill="none" stroke="#4A6B5A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="s" x="593" y="38" font-size="12" fill="#2A2620">isolation headers</text>
+  <circle cx="577" cy="58" r="8" fill="#E4EDE7"/>
+  <path d="M573.4,58.2 l2.6,2.8 l5,-5.6" fill="none" stroke="#4A6B5A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="s" x="593" y="62" font-size="12" fill="#2A2620">cache rules</text>
+
+  <!-- Ready once configured -->
+  <rect x="216" y="133" width="488" height="90" rx="10" fill="#FFFFFF" stroke="#E6DCC6" stroke-width="1"/>
+  <path d="M226,133.5 H221 a4.5,4.5 0 0 0 -4.5,4.5 V218 a4.5,4.5 0 0 0 4.5,4.5 H226 Z" fill="#C9922E"/>
+  <rect x="222" y="133.5" width="4.5" height="89" fill="#FFFFFF"/>
+  <text class="s" x="238" y="159" font-size="14.5" fill="#2A2620" font-weight="700">Ready once configured</text>
+  <rect x="238" y="170" width="51.3" height="22" rx="11" fill="#FBF7EE" stroke="#E6DCC6" stroke-width="1"/>
+  <text class="s" x="263.6" y="185" font-size="11.5" fill="#2A2620" font-weight="600" text-anchor="middle">Vercel</text>
+  <rect x="295.3" y="170" width="47.7" height="22" rx="11" fill="#FBF7EE" stroke="#E6DCC6" stroke-width="1"/>
+  <text class="s" x="319.1" y="185" font-size="11.5" fill="#2A2620" font-weight="600" text-anchor="middle">nginx</text>
+  <rect x="349" y="170" width="59.7" height="22" rx="11" fill="#FBF7EE" stroke="#E6DCC6" stroke-width="1"/>
+  <text class="s" x="378.9" y="185" font-size="11.5" fill="#2A2620" font-weight="600" text-anchor="middle">Apache</text>
+  <rect x="414.7" y="170" width="129.9" height="22" rx="11" fill="#FBF7EE" stroke="#E6DCC6" stroke-width="1"/>
+  <text class="s" x="479.7" y="185" font-size="11.5" fill="#2A2620" font-weight="600" text-anchor="middle">S3 with CloudFront</text>
+  <text class="s" x="238" y="211" font-size="12" fill="#6E6656">Copy the headers into the host's configuration.</text>
+  <circle cx="577" cy="151" r="8" fill="#E4EDE7"/>
+  <path d="M573.4,151.2 l2.6,2.8 l5,-5.6" fill="none" stroke="#4A6B5A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="s" x="593" y="155" font-size="12" fill="#2A2620">isolation headers</text>
+  <circle cx="577" cy="175" r="8" fill="#E4EDE7"/>
+  <path d="M573.4,175.2 l2.6,2.8 l5,-5.6" fill="none" stroke="#4A6B5A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="s" x="593" y="179" font-size="12" fill="#2A2620">cache rules</text>
+
+  <!-- Works, with limits -->
+  <rect x="216" y="233" width="488" height="107" rx="10" fill="#FFFFFF" stroke="#E6DCC6" stroke-width="1"/>
+  <path d="M226,233.5 H221 a4.5,4.5 0 0 0 -4.5,4.5 V335 a4.5,4.5 0 0 0 4.5,4.5 H226 Z" fill="#B84130"/>
+  <rect x="222" y="233.5" width="4.5" height="106" fill="#FFFFFF"/>
+  <text class="s" x="238" y="259" font-size="14.5" fill="#2A2620" font-weight="700">Works, with limits</text>
+  <rect x="238" y="270" width="96.9" height="22" rx="11" fill="#FBF7EE" stroke="#E6DCC6" stroke-width="1"/>
+  <text class="s" x="286.5" y="285" font-size="11.5" fill="#2A2620" font-weight="600" text-anchor="middle">GitHub Pages</text>
+  <text class="s" x="238" y="311" font-size="12" fill="#6E6656">It cannot send them, so Ctrl+C cannot stop R.</text>
+  <text class="m" x="238" y="328" font-size="11.5" fill="#62291F" textLength="151.8">circulate_via_github()</text>
+  <text class="s" x="390.8" y="328" font-size="12" fill="#6E6656" xml:space="preserve"> adds the Pages workflow.</text>
+  <circle cx="577" cy="251" r="8" fill="#F3E3DE"/>
+  <path d="M574,248 l6,6 m0,-6 l-6,6" fill="none" stroke="#B84130" stroke-width="1.9" stroke-linecap="round"/>
+  <text class="s" x="593" y="255" font-size="12" fill="#2A2620">isolation headers</text>
+  <circle cx="577" cy="275" r="8" fill="#F3E3DE"/>
+  <path d="M574,272 l6,6 m0,-6 l-6,6" fill="none" stroke="#B84130" stroke-width="1.9" stroke-linecap="round"/>
+  <text class="s" x="593" y="279" font-size="12" fill="#2A2620">cache rules</text>
+</svg>

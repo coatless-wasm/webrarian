@@ -1,0 +1,246 @@
+name: viewer
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# A newer push to the same branch or pull request cancels the older run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Rebuilds the exlibris-r viewer bundle from a pinned exlibris commit and
+  # asserts the vendored copies under inst/ still match it exactly. exlibris'
+  # dist/ output is gitignored upstream (not committed), so we can't just
+  # clone-and-diff a prebuilt bundle: we check out exlibris at the pinned
+  # ref, build it ourselves, then re-run the same vendoring script a
+  # maintainer would run locally.
+  #
+  # Node comes from the .nvmrc of the exlibris commit being rebuilt, the
+  # version exlibris's own CI builds with. esbuild is pinned by exlibris's
+  # lockfile, so the bytes do not depend on the Node release.
+  #
+  # coatless-wasm/exlibris is private for now, so the checkout needs
+  # EXLIBRIS_TOKEN, a read-only token for that repository. With it, a vendored
+  # bundle the pinned commit does not reproduce fails the run. Without it (a
+  # fork's pull request, or a repository not given the secret) every step after
+  # the check is skipped, the job passes and its summary says so; the provenance
+  # job below still gates the vendored bytes on every run.
+  vendor-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      # Secrets cannot appear in an `if:`, so this step turns the secret's
+      # presence into an output every later step checks.
+      - name: Check for EXLIBRIS_TOKEN
+        id: exlibris-token
+        env:
+          EXLIBRIS_TOKEN: ${{ secrets.EXLIBRIS_TOKEN }}
+        run: |
+          if [ -n "$EXLIBRIS_TOKEN" ]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            {
+              echo "### vendor-check skipped"
+              echo
+              echo "The EXLIBRIS_TOKEN secret is not set, so the private exlibris"
+              echo "repository cannot be checked out and the rebuild of the vendored"
+              echo "viewer bundle was skipped. The provenance job still checks the"
+              echo "vendored bytes against inst/viewer/PROVENANCE.json."
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::notice::EXLIBRIS_TOKEN is not set: skipping the exlibris rebuild (the provenance job still runs)"
+          fi
+
+      # The commit and ref come from the pin, so this job follows every
+      # re-vendor without an edit.
+      - name: Read the exlibris pin from inst/viewer/PROVENANCE.json
+        if: steps.exlibris-token.outputs.available == 'true'
+        id: pin
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          with open("inst/viewer/PROVENANCE.json") as handle:
+              pin = json.load(handle)
+          print("commit=" + pin["exlibrisCommit"])
+          print("ref=" + pin["exlibrisRef"])
+          PY
+
+      - name: Checkout pinned exlibris
+        if: steps.exlibris-token.outputs.available == 'true'
+        uses: actions/checkout@v7
+        with:
+          repository: coatless-wasm/exlibris
+          ref: ${{ steps.pin.outputs.commit }}
+          path: exlibris
+          token: ${{ secrets.EXLIBRIS_TOKEN }}
+          # npm ci below runs dependencies' scripts: keep the token out of .git/config.
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        if: steps.exlibris-token.outputs.available == 'true'
+        with:
+          node-version-file: exlibris/.nvmrc
+
+      # tools/vendor-exlibris.sh compares exlibris's LICENSE with R's AGPL-3 text.
+      - uses: r-lib/actions/setup-r@v2
+        if: steps.exlibris-token.outputs.available == 'true'
+
+      - name: Build exlibris viewer bundle
+        if: steps.exlibris-token.outputs.available == 'true'
+        working-directory: exlibris
+        run: |
+          npm ci
+          npm run build
+
+      # The rendered notices name the ref, so vendor with the pinned one (a
+      # detached checkout would otherwise record the short commit).
+      # --from-dist vendors the dist/ built above; it means the same in
+      # pyodidarian's script, whose bare form builds a pinned ref instead.
+      - name: Vendor exlibris dist into inst/viewer
+        if: steps.exlibris-token.outputs.available == 'true'
+        env:
+          VENDOR_EXLIBRIS_REF: ${{ steps.pin.outputs.ref }}
+        run: tools/vendor-exlibris.sh --from-dist exlibris
+
+      # PROVENANCE.json is excluded: its vendoredAt timestamp changes on every
+      # run. The provenance job below checks its hashes against the real bytes.
+      - name: Assert the vendored viewer, notices and schema match the pin
+        if: steps.exlibris-token.outputs.available == 'true'
+        run: |
+          if ! git diff --exit-code -- inst/viewer ':(exclude)inst/viewer/PROVENANCE.json' inst/viewer-config.schema.json LICENSE.note; then
+            echo "::error::inst/viewer, LICENSE.note or inst/viewer-config.schema.json drifted from the exlibris commit inst/viewer/PROVENANCE.json pins (${{ steps.pin.outputs.commit }}). Re-run tools/vendor-exlibris.sh against a checkout of that commit and commit the result."
+            exit 1
+          fi
+
+  # Hard integrity gate on the vendored exlibris artifacts.
+  #
+  # vendor-check (above) rebuilds exlibris from the pinned commit and diffs the
+  # result. This job needs no other repository and no network: it proves the
+  # bytes committed under inst/ are still the exact bytes
+  # inst/viewer/PROVENANCE.json says were vendored, so any stray or unexplained
+  # edit to the viewer bundle, its notices or the ViewerConfig schema is caught.
+  #
+  # No job in this workflow is continue-on-error. Do not add one.
+  provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Verify vendored viewer bytes against inst/viewer/PROVENANCE.json
+        run: |
+          set -euo pipefail
+
+          if [ ! -f inst/viewer/PROVENANCE.json ]; then
+            echo "::notice::no inst/viewer/PROVENANCE.json yet - skipping vendored-artifact integrity check"
+            exit 0
+          fi
+
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import pathlib
+          import re
+          import sys
+
+          TARGETS = [
+              "inst/viewer/exlibris-r.js",
+              "inst/viewer/exlibris-r.css",
+              "inst/viewer/EXCEPTION.md",
+              "inst/viewer/THIRD-PARTY.md",
+              "inst/viewer/LICENSE.webR.md",
+              "inst/viewer-config.schema.json",
+          ]
+
+          HEX64 = re.compile(r"\A[0-9a-f]{64}\Z")
+          PATH_KEYS = ("path", "file", "filename", "name", "target")
+          HASH_KEYS = ("sha256", "sha-256", "sha_256", "hash", "digest", "checksum", "integrity")
+
+          recorded = {}
+
+
+          def clean_digest(value):
+              digest = value.strip().lower()
+              for prefix in ("sha256:", "sha256-", "sha-256:", "0x"):
+                  if digest.startswith(prefix):
+                      digest = digest[len(prefix):]
+              return digest if HEX64.match(digest) else None
+
+
+          def record(path, digest):
+              if not isinstance(path, str) or not isinstance(digest, str):
+                  return
+              cleaned = clean_digest(digest)
+              if cleaned is None:
+                  return
+              basename = path.replace("\\", "/").rstrip("/").split("/")[-1].lower()
+              recorded.setdefault(basename, set()).add(cleaned)
+
+
+          def walk(node, key_hint=None):
+              """Collect basename -> sha256 pairs out of any plausible JSON shape."""
+              if isinstance(node, dict):
+                  path = next(
+                      (node[k] for k in PATH_KEYS if isinstance(node.get(k), str)), key_hint
+                  )
+                  digest = next(
+                      (node[k] for k in HASH_KEYS if isinstance(node.get(k), str)), None
+                  )
+                  record(path, digest)
+                  for key, value in node.items():
+                      if isinstance(value, str):
+                          record(key, value)
+                      else:
+                          walk(value, key)
+              elif isinstance(node, list):
+                  for item in node:
+                      walk(item, key_hint)
+
+
+          with open("inst/viewer/PROVENANCE.json", "rb") as handle:
+              walk(json.load(handle))
+
+          print("provenance entries found for: %s" % (", ".join(sorted(recorded)) or "(none)"))
+
+          failures = []
+          for target in TARGETS:
+              path = pathlib.Path(target)
+              if not path.is_file():
+                  failures.append("%s: covered by the provenance contract but missing from the tree" % target)
+                  continue
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              expected = recorded.get(path.name.lower())
+              if not expected:
+                  failures.append(
+                      "%s: no sha256 recorded in inst/viewer/PROVENANCE.json - either the file "
+                      "is not covered by it, or PROVENANCE.json uses a shape this checker does "
+                      "not understand. Actual sha256 is %s" % (target, actual)
+                  )
+              elif actual in expected:
+                  print("ok  %s  %s" % (target, actual))
+              else:
+                  failures.append(
+                      "%s: sha256 MISMATCH\n    recorded: %s\n    actual:   %s"
+                      % (target, " / ".join(sorted(expected)), actual)
+                  )
+
+          if failures:
+              for failure in failures:
+                  print("::error::vendored-artifact provenance: %s" % failure.replace("\n", "%0A"))
+              print(
+                  "Re-vendor with tools/vendor-exlibris.sh and refresh "
+                  "inst/viewer/PROVENANCE.json, or revert the unintended edit."
+              )
+              sys.exit(1)
+
+          print("all vendored viewer artifacts match inst/viewer/PROVENANCE.json")
+          PY

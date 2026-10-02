@@ -1,0 +1,129 @@
+# _webrarian.yml: every setting webrarian reads, with its default.
+# Generated from config_spec() by tools/config-reference.R, and described in
+# vignette("config-reference", package = "webrarian").
+# Keys are lowercase with hyphens. settings_set(), acquire_*() and
+# withdraw_*() rewrite the file, so comments in it are not kept.
+
+project:
+  # Page title and the project name the viewer shows. Defaults to the
+  # collection's directory name.
+  name: null
+  # Description for the page's meta tags.
+  description: ""
+
+webr:
+  # webR engine version, one of the versions tested with this webrarian.
+  # Defaults to WEBRARIAN_WEBR_VERSION, else the newest tested version.
+  version: null
+
+packages:
+  # WebAssembly packages the page installs. They are bundled into the site's
+  # repo/ (build.bundle-engine or build.offline), and otherwise installed
+  # from the repositories when the page opens.
+  prebuilt: []
+  # Extra WebAssembly package repositories, searched after repo.r-wasm.org
+  # when the site is built and, unless build.offline is true, by the page.
+  repos: []
+  # GitHub packages (owner/repo[/subdir][@ref]), compiled to WebAssembly with
+  # Docker.
+  github: []
+  # Local package directories, compiled to WebAssembly with Docker.
+  local: []
+  # Also bundle the packages' dependencies.
+  dependencies: true
+
+files:
+  # Files to bundle, as paths, directories (data/) or globs (**/*.R,
+  # *.{csv,rds}).
+  include: []
+  # Patterns to leave out, gitignore style (*.log, data/raw/).
+  exclude: ["**/*.Rhistory", "**/.DS_Store"]
+  # Directory in the browser's file system that holds the bundled files.
+  mount-point: "/home/web_user"
+
+repl:
+  # Script run once after the files are in place. It is part of the
+  # environment, so it also runs when a share link is opened. A shared file
+  # at the same path is written next to it as <stem>-shared<ext>.
+  startup-script: null
+  # Files opened in the editor. When unset, the first bundled R file other
+  # than the startup script opens, and [] opens none.
+  auto-open: null
+  # Files run, in order, once the environment is ready.
+  auto-run: []
+  # What a share link may do, which is "open" (add files and packages),
+  # "fixed" (add files only) or "off" (ignored, with no Share button). off
+  # may be written with or without quotes.
+  share-links: "open"
+  # Keep each visitor's edits to the files open in the editor in their own
+  # browser, and restore them on their next visit. The viewer's Reset files
+  # button puts the site's files back. Any code that runs on the site's
+  # address can read the stored edits, including code a share link brings.
+  # With false, every visit starts from the site's files.
+  persist-edits: true
+  panels:
+    # Show the editor.
+    editor: true
+    # Show the R console.
+    terminal: true
+    # Show the file browser.
+    files: true
+    # Show the plot panel.
+    plot: true
+    # Show the environment panel.
+    environment: true
+
+ui:
+  loading:
+    # Text on the loading screen.
+    message: "Loading webR..."
+    # HTML that replaces the loading screen's contents. The screen and its
+    # status line, where a load failure and the Reload button appear, stay.
+    custom-html: null
+  # A CSS file, relative to the collection, to include in the page.
+  custom-css: null
+  meta:
+    # Page title. Defaults to the project name.
+    title: null
+    # Meta description. Defaults to the project description.
+    description: null
+    # Image for link previews, relative to the collection. Needs
+    # ui.meta.site-url.
+    og-image: null
+    # Open Graph type.
+    og-type: "website"
+    # Twitter card style, summary or summary_large_image.
+    twitter-card: "summary"
+    # The site's public URL, used to make link-preview URLs absolute.
+    site-url: null
+
+# A path to a brand.yml file, or an inline brand.yml mapping. Defaults to
+# _brand.yml in the collection, if present.
+brand: null
+
+build:
+  # Output directory, inside the collection. bind() deletes and rewrites it.
+  output-dir: "_site"
+  # With true, the site makes no request to another origin. It carries the
+  # webR engine and its packages, and visitors (share links, the Packages
+  # tab, install.packages()) can add only bundled packages. With false, the
+  # page may also install packages from repo.r-wasm.org and packages.repos.
+  offline: false
+  # Copy the webR engine and the prebuilt packages into the site. With false,
+  # the page loads the engine from the webR CDN and installs the packages
+  # when it opens, which makes a smaller site that needs the network. Setting
+  # build.offline to true always bundles both.
+  bundle-engine: true
+  # Replace the whole previous site. false keeps files you added to it (a
+  # CNAME, say), never an old copy of a file the build writes. Either way the
+  # site is built in a staging directory and replaces the old one only when
+  # the build succeeds.
+  clean: true
+  # Emit a service worker that caches the engine in visitors' browsers (for
+  # hosts that cannot set cache headers).
+  service-worker: false
+  # When the site bundles packages in repo/, also ship them installed, as one
+  # library image the page mounts at start-up instead of installing each
+  # package on every visit. The packages stay in repo/ too. No image is
+  # written when a bundled package needs one the site does not bundle.
+  library-image: true

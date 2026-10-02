@@ -1,0 +1,32 @@
+/* Custom styles for DataViz Pro */
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4A90D9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a7bc8;
+}
+
+/* Custom selection color */
+::selection {
+  background: #4A90D9;
+  color: white;
+}
+
+/* Style the terminal output */
+.xterm-viewport {
+  scrollbar-width: thin;
+  scrollbar-color: #4A90D9 #f1f1f1;
+}

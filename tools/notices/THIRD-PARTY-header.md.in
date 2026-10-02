@@ -1,0 +1,17 @@
+# Third-party notices for webrarian's viewer bundle
+
+`inst/viewer/exlibris-r.js` and `inst/viewer/exlibris-r.css` (named
+`exlibris-r.<hash>.js` and `exlibris-r.<hash>.css` in a generated site) are the
+prebuilt, minified build of the exlibris runtime at @EXLIBRIS_REF@, commit
+`@EXLIBRIS_COMMIT@` (exlibris @EXLIBRIS_VERSION@), vendored by
+`tools/vendor-exlibris.sh`. Their source is
+<https://github.com/coatless-wasm/exlibris/tree/@EXLIBRIS_COMMIT@>.
+
+    exlibris-r.js   sha256 @JS_SHA256@
+    exlibris-r.css  sha256 @CSS_SHA256@
+
+These are the digests `inst/viewer/PROVENANCE.json` records for that commit.
+exlibris is licensed AGPL-3.0-only with the exlibris runtime exception
+(`EXCEPTION.md`). Below, verbatim, is exlibris's own `THIRD-PARTY-r.md` for
+that commit, which its build generates from esbuild's metafile. It ends with
+the code nested inside bundled packages, which the metafile cannot see.

@@ -1,0 +1,105 @@
+project:
+  name: "DataViz Pro"
+  description: ""
+
+webr:
+  version: "0.6.0"
+
+packages:
+  prebuilt: []
+  github: []
+  local: []
+  dependencies: true
+
+files:
+  include:
+    - "*.R"
+  exclude:
+    - "**/*.Rhistory"
+    - "**/.DS_Store"
+  mount-point: "/home/web_user"
+
+repl:
+  startup-script: null
+  auto-run:
+    - "setup.R"
+  share-links: open
+  panels:
+    editor: true
+    terminal: true
+    files: true
+    plot: true
+    environment: true
+
+# Webrarian-specific UI customization (loading message, custom CSS, meta)
+ui:
+  loading:
+    message: "Initializing DataViz Pro..."
+  custom-css: "assets/custom.css"
+  meta:
+    title: "DataViz Pro - Interactive R Visualizations"
+    description: "Create stunning data visualizations in your browser with R and webR"
+    twitter-card: "summary_large_image"
+
+# Brand configuration (follows brand.yml standard)
+# See: https://posit-dev.github.io/brand-yml/brand/
+brand:
+  meta:
+    name: DataViz Pro
+    link: https://example.com/dataviz-pro
+
+  logo:
+    images:
+      icon: assets/favicon.svg
+      wide: assets/logo.svg
+    small: icon
+    medium: wide
+    large: wide
+
+  color:
+    palette:
+      blue: "#4A90D9"
+      purple: "#7B68EE"
+      dark: "#1a1a2e"
+      light: "#eaeaea"
+      white: "#ffffff"
+      gray: "#666666"
+
+    # Theme colors (reference palette names)
+    primary: blue
+    secondary: purple
+    foreground: light
+    background: dark
+    success: "#28a745"
+    warning: "#ffc107"
+    danger: "#dc3545"
+
+  typography:
+    fonts:
+      - family: "Fira Code"
+        source: google
+        weight: [400, 500, 600, 700]
+
+      - family: "Inter"
+        source: google
+        weight: [400, 500, 600, 700]
+
+    base:
+      family: "Inter"
+      size: "16px"
+      line-height: 1.6
+
+    headings:
+      family: "Inter"
+      weight: 600
+
+    monospace:
+      family: "Fira Code"
+      size: "14px"
+
+    link:
+      color: blue
+
+build:
+  output-dir: "_site"
+  clean: true

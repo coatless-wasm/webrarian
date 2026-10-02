@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="webrarian-error-categories" viewBox="0 0 720 386" role="img" aria-labelledby="t d">
+  <title id="t">Where errors happen, and how to fix them</title>
+  <desc id="d">A ledger of four common problems, each row pairing where it happens and the message you see with what to do. Building, in your R session: bind() could not obtain requested package rJava because it is not in the index of repo.r-wasm.org, so check the name with check_inventory() or add a repository; and bind() says Docker is installed but not running, so start Docker Desktop or use only prebuilt packages. Previewing: reading_room() could not start the preview server on 127.0.0.1:8123, so leave port unset or run reading_room_close() first. After deploying, in the published page: the console says Ctrl+C cannot stop a busy loop, because the host sends no isolation headers, and Restart R stops a runaway loop.</desc>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}</style>
+  <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#B84130"/></marker></defs>
+  <rect x="0.5" y="0.5" width="719" height="385" rx="14" fill="#FBF7EE" stroke="#E6DCC6"/>
+
+  <!-- column heads -->
+  <text class="s" x="24" y="36" font-size="12.5" fill="#6E6656" font-weight="600">Where</text>
+  <text class="s" x="150" y="36" font-size="12.5" fill="#6E6656" font-weight="600">You see</text>
+  <text class="s" x="502" y="36" font-size="12.5" fill="#6E6656" font-weight="600">Do this</text>
+  <path d="M24,46 H696" fill="none" stroke="#DED8CA" stroke-width="1"/>
+
+  <!-- No WebAssembly build -->
+  <text class="s" x="24" y="82" font-size="14" fill="#2A2620" font-weight="700">Building</text>
+  <text class="s" x="24" y="100" font-size="12" fill="#6E6656">in your R session</text>
+  <rect x="150" y="58" width="316" height="66" rx="8" fill="#2A2620"/>
+  <text class="m" x="164" y="79.5" font-size="10" fill="#8B8477" textLength="48">&gt; bind()</text>
+  <text class="m" x="164" y="94.5" font-size="10" fill="#F2A08F" textLength="264">! Could not obtain requested package: rJava.</text>
+  <text class="m" x="164" y="109.5" font-size="10" fill="#BFB6A5" textLength="288" xml:space="preserve">  Not in the index of repo.r-wasm.org for R 4.6.</text>
+  <path d="M474,91.0 H492" fill="none" stroke="#B84130" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <text class="s" x="502" y="79" font-size="13" fill="#2A2620" font-weight="600">No WebAssembly build</text>
+  <text class="s" x="502" y="96" font-size="12" fill="#6E6656">Check it with check_inventory(),</text>
+  <text class="s" x="502" y="112" font-size="12" fill="#6E6656">or add a repository</text>
+
+  <!-- Docker is stopped -->
+  <rect x="150" y="134" width="316" height="66" rx="8" fill="#2A2620"/>
+  <text class="m" x="164" y="163" font-size="10" fill="#8B8477" textLength="48">&gt; bind()</text>
+  <text class="m" x="164" y="178" font-size="10" fill="#F2A08F" textLength="228">! Docker is installed but not running.</text>
+  <path d="M474,167.0 H492" fill="none" stroke="#B84130" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <text class="s" x="502" y="155" font-size="13" fill="#2A2620" font-weight="600">Docker is stopped</text>
+  <text class="s" x="502" y="172" font-size="12" fill="#6E6656">Start Docker Desktop, or use</text>
+  <text class="s" x="502" y="188" font-size="12" fill="#6E6656">only prebuilt packages</text>
+
+  <!-- The port is taken -->
+  <text class="s" x="24" y="242" font-size="14" fill="#2A2620" font-weight="700">Previewing</text>
+  <text class="s" x="24" y="260" font-size="12" fill="#6E6656">in your R session</text>
+  <rect x="150" y="218" width="316" height="66" rx="8" fill="#2A2620"/>
+  <text class="m" x="164" y="239.5" font-size="10" fill="#8B8477" textLength="162">&gt; reading_room(port = 8123)</text>
+  <text class="m" x="164" y="254.5" font-size="10" fill="#F2A08F" textLength="216">! Could not start the preview server</text>
+  <text class="m" x="164" y="269.5" font-size="10" fill="#F2A08F" textLength="120" xml:space="preserve">  on 127.0.0.1:8123.</text>
+  <path d="M474,251.0 H492" fill="none" stroke="#B84130" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <text class="s" x="502" y="239" font-size="13" fill="#2A2620" font-weight="600">The port is taken</text>
+  <text class="s" x="502" y="256" font-size="12" fill="#6E6656">Leave port unset, or run</text>
+  <text class="s" x="502" y="272" font-size="12" fill="#6E6656">reading_room_close() first</text>
+
+  <!-- No isolation headers -->
+  <text class="s" x="24" y="326" font-size="14" fill="#2A2620" font-weight="700">After deploying</text>
+  <text class="s" x="24" y="344" font-size="12" fill="#6E6656">in the browser</text>
+  <rect x="150" y="302" width="316" height="66" rx="8" fill="#FFFFFF" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="m" x="164" y="331" font-size="10" fill="#111111" textLength="264">Ctrl+C cannot stop a busy loop on this page;</text>
+  <text class="m" x="164" y="346" font-size="10" fill="#111111" textLength="264">press Restart above the console to stop one.</text>
+  <path d="M474,335.0 H492" fill="none" stroke="#B84130" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a)"/>
+  <text class="s" x="502" y="323" font-size="13" fill="#2A2620" font-weight="600">No isolation headers</text>
+  <text class="s" x="502" y="340" font-size="12" fill="#6E6656">GitHub Pages cannot send them.</text>
+  <text class="s" x="502" y="356" font-size="12" fill="#6E6656">Restart R stops a runaway loop.</text>
+
+  <!-- the two building rows share one heading -->
+  <path d="M140,62 V196" fill="none" stroke="#DED8CA" stroke-width="2" stroke-linecap="round"/>
+</svg>

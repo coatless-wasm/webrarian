@@ -1,0 +1,49 @@
+project:
+  name: "Package Demo"
+  description: ""
+
+webr:
+  version: "0.6.0"
+
+packages:
+  prebuilt:
+    - dplyr
+    - ggplot2
+    - scales
+  github: []
+  local: []
+  dependencies: true
+
+files:
+  include:
+    - "*.R"
+    - "data/"
+  exclude:
+    - "**/*.Rhistory"
+    - "**/.DS_Store"
+  mount-point: "/home/web_user"
+
+repl:
+  startup-script: null
+  # Scripts run, in order, once the environment is ready
+  auto-run:
+    - "01-data-munging.R"
+    - "02-visualization.R"
+  share-links: open
+  panels:
+    editor: true
+    terminal: true
+    files: true
+    plot: true
+    environment: true
+
+ui:
+  loading:
+    message: "Loading..."
+  meta:
+    title: "Package Demo"
+    description: ""
+
+build:
+  output-dir: "_site"
+  clean: true

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="webrarian-package-sources" viewBox="0 0 720 384" role="img" aria-labelledby="t d">
+  <title id="t">Three package sources feed one webrarian site, and only GitHub and local packages need Docker</title>
+  <desc id="d">Prebuilt packages come off a shelf of WebAssembly binaries at repo.r-wasm.org or an r-universe and go straight to the site, with no Docker. Packages from GitHub (owner/repo) or a local directory (../mypackage) first go through Docker, which compiles them in the webR container. Every package ends up on the same shelf, the site's repo/, and is installed when the page opens.</desc>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}</style>
+  <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#B84130"/></marker></defs>
+  <rect x="0.5" y="0.5" width="719" height="383" rx="14" fill="#FBF7EE" stroke="#E6DCC6"/>
+
+  <!-- prebuilt: a long shelf of WebAssembly binaries -->
+  <polygon points="220.4,86 350.3,161 350.3,171 220.4,96" fill="#DFD2B6"/>
+  <polygon points="350.3,161 384.9,141 384.9,151 350.3,171" fill="#CDBE9E"/>
+  <polygon points="255,66 384.9,141 350.3,161 220.4,86" fill="#F1E8D4"/>
+  <polygon points="229,57 236.8,61.5 236.8,91.5 229,87" fill="#B84130"/>
+  <polygon points="236.8,61.5 264.5,45.5 264.5,75.5 236.8,91.5" fill="#8F3222"/>
+  <polygon points="256.7,41 264.5,45.5 236.8,61.5 229,57" fill="#E3A08F"/>
+  <polygon points="237.7,66 245.5,70.5 245.5,96.5 237.7,92" fill="#62291F"/>
+  <polygon points="245.5,70.5 273.2,54.5 273.2,80.5 245.5,96.5" fill="#4A1F17"/>
+  <polygon points="265.4,50 273.2,54.5 245.5,70.5 237.7,66" fill="#A86A5C"/>
+  <polygon points="246.3,63 254.1,67.5 254.1,101.5 246.3,97" fill="#D9A441"/>
+  <polygon points="254.1,67.5 281.8,51.5 281.8,85.5 254.1,101.5" fill="#B8862F"/>
+  <polygon points="274.1,47 281.8,51.5 254.1,67.5 246.3,63" fill="#F3DC9E"/>
+  <polygon points="255,74 262.8,78.5 262.8,106.5 255,102" fill="#B84130"/>
+  <polygon points="262.8,78.5 290.5,62.5 290.5,90.5 262.8,106.5" fill="#8F3222"/>
+  <polygon points="282.7,58 290.5,62.5 262.8,78.5 255,74" fill="#E3A08F"/>
+  <polygon points="263.7,83 271.5,87.5 271.5,111.5 263.7,107" fill="#62291F"/>
+  <polygon points="271.5,87.5 299.2,71.5 299.2,95.5 271.5,111.5" fill="#4A1F17"/>
+  <polygon points="291.4,67 299.2,71.5 271.5,87.5 263.7,83" fill="#A86A5C"/>
+  <polygon points="272.3,80 280.1,84.5 280.1,116.5 272.3,112" fill="#D9A441"/>
+  <polygon points="280.1,84.5 307.8,68.5 307.8,100.5 280.1,116.5" fill="#B8862F"/>
+  <polygon points="300,64 307.8,68.5 280.1,84.5 272.3,80" fill="#F3DC9E"/>
+  <polygon points="281,90 288.8,94.5 288.8,121.5 281,117" fill="#B84130"/>
+  <polygon points="288.8,94.5 316.5,78.5 316.5,105.5 288.8,121.5" fill="#8F3222"/>
+  <polygon points="308.7,74 316.5,78.5 288.8,94.5 281,90" fill="#E3A08F"/>
+  <polygon points="289.6,92 297.4,96.5 297.4,126.5 289.6,122" fill="#62291F"/>
+  <polygon points="297.4,96.5 325.1,80.5 325.1,110.5 297.4,126.5" fill="#4A1F17"/>
+  <polygon points="317.4,76 325.1,80.5 297.4,96.5 289.6,92" fill="#A86A5C"/>
+  <polygon points="298.3,102 306.1,106.5 306.1,131.5 298.3,127" fill="#D9A441"/>
+  <polygon points="306.1,106.5 333.8,90.5 333.8,115.5 306.1,131.5" fill="#B8862F"/>
+  <polygon points="326,86 333.8,90.5 306.1,106.5 298.3,102" fill="#F3DC9E"/>
+  <polygon points="307,99 314.8,103.5 314.8,136.5 307,132" fill="#B84130"/>
+  <polygon points="314.8,103.5 342.5,87.5 342.5,120.5 314.8,136.5" fill="#8F3222"/>
+  <polygon points="334.7,83 342.5,87.5 314.8,103.5 307,99" fill="#E3A08F"/>
+  <polygon points="315.6,108 323.4,112.5 323.4,141.5 315.6,137" fill="#62291F"/>
+  <polygon points="323.4,112.5 351.1,96.5 351.1,125.5 323.4,141.5" fill="#4A1F17"/>
+  <polygon points="343.3,92 351.1,96.5 323.4,112.5 315.6,108" fill="#A86A5C"/>
+  <polygon points="324.3,116 332.1,120.5 332.1,146.5 324.3,142" fill="#D9A441"/>
+  <polygon points="332.1,120.5 359.8,104.5 359.8,130.5 332.1,146.5" fill="#B8862F"/>
+  <polygon points="352,100 359.8,104.5 332.1,120.5 324.3,116" fill="#F3DC9E"/>
+  <polygon points="332.9,116 340.7,120.5 340.7,151.5 332.9,147" fill="#B84130"/>
+  <polygon points="340.7,120.5 368.4,104.5 368.4,135.5 340.7,151.5" fill="#8F3222"/>
+  <polygon points="360.7,100 368.4,104.5 340.7,120.5 332.9,116" fill="#E3A08F"/>
+
+  <!-- GitHub and local sources -->
+  <polygon points="232.4,208 267,228 267,262 232.4,242" fill="#6E6656"/>
+  <polygon points="267,228 301.6,208 301.6,242 267,262" fill="#575042"/>
+  <polygon points="267,188 301.6,208 267,228 232.4,208" fill="#A39A89"/>
+  <polygon points="232.4,290 270.5,312 270.5,340 232.4,318" fill="#D9A441"/>
+  <polygon points="270.5,312 305.1,292 305.1,320 270.5,340" fill="#B8862F"/>
+  <polygon points="267,270 305.1,292 270.5,312 232.4,290" fill="#F0D58C"/>
+  <polygon points="263.5,276 277.4,284 277.4,279 263.5,271" fill="#D9A441"/>
+
+  <!-- Docker: the webR container compiles them -->
+  <polygon points="371.9,233 444.6,275 444.6,319 371.9,277" fill="#3E5C76"/>
+  <polygon points="444.6,275 482.7,253 482.7,297 444.6,319" fill="#2E4659"/>
+  <polygon points="410,211 482.7,253 444.6,275 371.9,233" fill="#9DB8D2"/>
+  <line x1="477.3" y1="295.1" x2="477.3" y2="261.1" stroke="#56779A" stroke-width="1.2"/>
+  <line x1="471.9" y1="298.3" x2="471.9" y2="264.3" stroke="#56779A" stroke-width="1.2"/>
+  <line x1="466.4" y1="301.4" x2="466.4" y2="267.4" stroke="#56779A" stroke-width="1.2"/>
+  <line x1="461.0" y1="304.6" x2="461.0" y2="270.6" stroke="#56779A" stroke-width="1.2"/>
+  <line x1="455.5" y1="307.7" x2="455.5" y2="273.7" stroke="#56779A" stroke-width="1.2"/>
+  <line x1="450.1" y1="310.9" x2="450.1" y2="276.9" stroke="#56779A" stroke-width="1.2"/>
+
+  <!-- the site's repo/: every package on one shelf, compiled ones included -->
+  <polygon points="548.5,200 643.8,255 643.8,265 548.5,210" fill="#B9CDBF"/>
+  <polygon points="643.8,255 692.3,227 692.3,237 643.8,265" fill="#9DB5A5"/>
+  <polygon points="597,172 692.3,227 643.8,255 548.5,200" fill="#E4EDE7"/>
+  <polygon points="557.2,171 565,175.5 565,205.5 557.2,201" fill="#B84130"/>
+  <polygon points="565,175.5 606.5,151.5 606.5,181.5 565,205.5" fill="#8F3222"/>
+  <polygon points="598.7,147 606.5,151.5 565,175.5 557.2,171" fill="#E3A08F"/>
+  <polygon points="565.8,180 573.6,184.5 573.6,210.5 565.8,206" fill="#62291F"/>
+  <polygon points="573.6,184.5 615.2,160.5 615.2,186.5 573.6,210.5" fill="#4A1F17"/>
+  <polygon points="607.4,156 615.2,160.5 573.6,184.5 565.8,180" fill="#A86A5C"/>
+  <polygon points="574.5,177 582.3,181.5 582.3,215.5 574.5,211" fill="#D9A441"/>
+  <polygon points="582.3,181.5 623.8,157.5 623.8,191.5 582.3,215.5" fill="#B8862F"/>
+  <polygon points="616.1,153 623.8,157.5 582.3,181.5 574.5,177" fill="#F3DC9E"/>
+  <polygon points="583.1,188 590.9,192.5 590.9,220.5 583.1,216" fill="#3E5C76"/>
+  <polygon points="590.9,192.5 632.5,168.5 632.5,196.5 590.9,220.5" fill="#2E4659"/>
+  <polygon points="624.7,164 632.5,168.5 590.9,192.5 583.1,188" fill="#A9BFD4"/>
+  <polygon points="591.8,189 599.6,193.5 599.6,225.5 591.8,221" fill="#B84130"/>
+  <polygon points="599.6,193.5 641.2,169.5 641.2,201.5 599.6,225.5" fill="#8F3222"/>
+  <polygon points="633.4,165 641.2,169.5 599.6,193.5 591.8,189" fill="#E3A08F"/>
+  <polygon points="600.5,199 608.3,203.5 608.3,230.5 600.5,226" fill="#62291F"/>
+  <polygon points="608.3,203.5 649.8,179.5 649.8,206.5 608.3,230.5" fill="#4A1F17"/>
+  <polygon points="642,175 649.8,179.5 608.3,203.5 600.5,199" fill="#A86A5C"/>
+  <polygon points="609.1,198 616.9,202.5 616.9,235.5 609.1,231" fill="#D9A441"/>
+  <polygon points="616.9,202.5 658.5,178.5 658.5,211.5 616.9,235.5" fill="#B8862F"/>
+  <polygon points="650.7,174 658.5,178.5 616.9,202.5 609.1,198" fill="#F3DC9E"/>
+  <polygon points="617.8,207 625.6,211.5 625.6,240.5 617.8,236" fill="#3E5C76"/>
+  <polygon points="625.6,211.5 667.1,187.5 667.1,216.5 625.6,240.5" fill="#2E4659"/>
+  <polygon points="659.4,183 667.1,187.5 625.6,211.5 617.8,207" fill="#A9BFD4"/>
+  <polygon points="626.4,215 634.2,219.5 634.2,245.5 626.4,241" fill="#B84130"/>
+  <polygon points="634.2,219.5 675.8,195.5 675.8,221.5 634.2,245.5" fill="#8F3222"/>
+  <polygon points="668,191 675.8,195.5 634.2,219.5 626.4,215" fill="#E3A08F"/>
+
+  <!-- arrows: sources into Docker, then both streams join on one line into the site -->
+  <path d="M301.6,225 L330,225 Q338,225 338,233 L338,238.2 Q338,246.2 346,246.2 L370.9,246.2" fill="none" stroke="#B84130" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#a)"/>
+  <path d="M305.1,306 L330,306 Q338,306 338,298 L338,271.8 Q338,263.8 346,263.8 L370.9,263.8" fill="none" stroke="#B84130" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#a)"/>
+  <path d="M384.9,146 L506,146 Q516,146 516,156 L516,195 Q516,205 526,205 L547.5,205" fill="none" stroke="#B84130" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#a)"/>
+  <path d="M482.7,277.2 L506,277.2 Q516,277.2 516,267.2 L516,215 Q516,205 526,205 L536.5,205" fill="none" stroke="#B84130" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="301.6" cy="225" r="2.6" fill="#B84130"/>
+  <circle cx="305.1" cy="306" r="2.6" fill="#B84130"/>
+  <circle cx="384.9" cy="146" r="2.6" fill="#B84130"/>
+  <circle cx="482.7" cy="277.2" r="2.6" fill="#B84130"/>
+
+  <!-- labels, left-aligned -->
+  <text class="s" x="24" y="76" font-size="15" fill="#2A2620" font-weight="700">Prebuilt</text>
+  <text class="m" x="24" y="96" font-size="12.5" fill="#6E6656">repo.r-wasm.org</text>
+  <text class="m" x="24" y="114" font-size="12.5" fill="#6E6656">myname.r-universe.dev</text>
+  <text class="s" x="24" y="132" font-size="12.5" fill="#4A6B5A" font-weight="600">no Docker needed</text>
+  <text class="s" x="24" y="222" font-size="15" fill="#2A2620" font-weight="700">GitHub</text>
+  <text class="m" x="24" y="242" font-size="12.5" fill="#6E6656">owner/repo</text>
+  <text class="s" x="24" y="302" font-size="15" fill="#2A2620" font-weight="700">Local</text>
+  <text class="m" x="24" y="322" font-size="12.5" fill="#6E6656">../mypackage</text>
+  <text class="s" x="371.9" y="345" font-size="15" fill="#2A2620" font-weight="700">Docker</text>
+  <text class="s" x="371.9" y="365" font-size="12.5" fill="#6E6656">compiles them in the webR container</text>
+  <text class="s" x="548.5" y="291" font-size="15" fill="#2A2620" font-weight="700">The site's repo/</text>
+  <text class="s" x="548.5" y="311" font-size="12.5" fill="#6E6656">installed when</text>
+  <text class="s" x="548.5" y="329" font-size="12.5" fill="#6E6656">the page opens</text>
+</svg>

@@ -1,0 +1,56 @@
+Licensing note for the webrarian package
+========================================
+
+webrarian is licensed under the GNU Affero General Public License, version 3
+(AGPL-3), as the License field of DESCRIPTION says. That covers the R code in
+R/, the tests, the documentation, the templates in inst/templates/ and the
+example projects in inst/examples/. R ships the license text
+(share/licenses/AGPL-3); it is also at https://www.R-project.org/Licenses/AGPL-3.
+
+Additional permission under GNU AGPL version 3 section 7 (output exception)
+---------------------------------------------------------------------------
+
+The files that webrarian writes into a generated site or mirror — including
+content derived from its templates — are not covered by the GNU AGPL merely
+because webrarian produced them. You may license and distribute that output
+under terms of your choice. Third-party components copied into the output (the
+exlibris runtime, the webR/Pyodide engine, and R or Python packages) remain
+under their own licenses, which the output's `LICENSES/` directory records.
+
+This permission is in addition to the AGPL. Under section 7 of the AGPL anyone
+who conveys webrarian may remove it from their copy, so the License field states
+the AGPL alone: those rights hold whether or not the permission is kept.
+
+The same permission is installed with the package as OUTPUT-EXCEPTION.md
+(inst/OUTPUT-EXCEPTION.md in the sources), and bind() and collection_mirror()
+write it into every site's and mirror's LICENSES/webrarian.md.
+
+Vendored browser bundle in inst/viewer/
+---------------------------------------
+
+inst/viewer/exlibris-r.js and inst/viewer/exlibris-r.css are the prebuilt,
+minified build output of the exlibris runtime
+(https://github.com/coatless-wasm/exlibris) at v0.1.0, commit
+0a57953010c900f50ec6eb27009c2019b026a157 (exlibris 0.1.0). Their source is that commit:
+https://github.com/coatless-wasm/exlibris/tree/0a57953010c900f50ec6eb27009c2019b026a157
+exlibris is licensed AGPL-3.0-only with the exlibris runtime exception
+(inst/viewer/EXCEPTION.md), which lets generated sites carry the unmodified
+bundles under terms of their author's choice.
+
+    exlibris-r.js   sha256 0bd4abebc166c509f5ba603009af332cdffe268be03ce339ae3336bad7a6ac5d
+    exlibris-r.css  sha256 cf312925193dbe1321af34bf2c50cc659f0975baa80b6e8519fb2996826b1039
+
+inst/viewer/PROVENANCE.json records the same commit and digests.
+tools/vendor-exlibris.sh writes this file, inst/viewer/THIRD-PARTY.md and
+inst/viewer/LICENSE.webR.md from it on every re-vendor.
+
+Embedded third-party components
+-------------------------------
+
+The bundle embeds code from npm packages under permissive licenses (MIT, ISC,
+BSD-3-Clause, zlib and Apache-2.0) and CC BY 4.0 icon path data. Their copyright
+holders are credited with the "cph" role in the Authors@R field of DESCRIPTION
+and listed in inst/COPYRIGHTS. inst/viewer/THIRD-PARTY.md lists every package
+with its version and license and reproduces each license text.
+inst/viewer/LICENSE.webR.md covers the webR JavaScript client (webR
+0.6.0, MIT).

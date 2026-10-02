@@ -1,0 +1,407 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="webrarian-startup" viewBox="0 0 720 446" role="img" aria-labelledby="t d">
+  <title id="t">What the page does when it opens, in order</title>
+  <desc id="d">Six close-ups of the workspace, in order, each with a small map of the pane it shows. One, the page shows Loading R while webR starts. Two, the console lists the packages it installs. Three, the Files tab fills with the bundled files. Four, repl.startup-script runs once and its objects appear in the Environment tab. Five, the repl.auto-open files open in the editor. Six, the repl.auto-run files run and their plot appears in the Plots tab.</desc>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}</style>
+  <defs><clipPath id="c0"><rect x="16" y="20" width="216" height="128" rx="7"/></clipPath><clipPath id="c1"><rect x="252" y="20" width="216" height="128" rx="7"/></clipPath><clipPath id="c2"><rect x="488" y="20" width="216" height="128" rx="7"/></clipPath><clipPath id="c3"><rect x="16" y="236" width="216" height="128" rx="7"/></clipPath><clipPath id="c4"><rect x="252" y="236" width="216" height="128" rx="7"/></clipPath><clipPath id="c5"><rect x="488" y="236" width="216" height="128" rx="7"/></clipPath></defs>
+  <rect x="0.5" y="0.5" width="719" height="445" rx="14" fill="#FBF7EE" stroke="#E6DCC6"/>
+
+  <!-- 1. Start webR -->
+  <g clip-path="url(#c0)">
+  <g transform="translate(16,20) scale(1.08)">
+  <rect x="0" y="0" width="200" height="118.5" fill="#FFFFFF"/>
+  <circle cx="100" cy="53.3" r="9" fill="none" stroke="#DDDDDD" stroke-width="2.4"/>
+  <path d="M100,44.3 A9,9 0 0 1 109,53.3" fill="none" stroke="#0066CC" stroke-width="2.4" stroke-linecap="round"/>
+  <text class="s" x="100" y="77.3" font-size="8" fill="#666666" text-anchor="middle">Loading R…</text>
+  <rect x="0.5" y="0.5" width="199" height="117.5" fill="none" stroke="#CFC4AE" stroke-width="1"/>
+  </g>
+  </g>
+  <rect x="16" y="20" width="216" height="128" rx="7" fill="none" stroke="#CFC4AE" stroke-width="1.2"/>
+  <circle cx="26" cy="168" r="10" fill="#B84130"/>
+  <text class="s" x="26" y="172" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+  <text class="s" x="44" y="173" font-size="13" fill="#2A2620" font-weight="600">Start webR</text>
+  <text class="s" x="44" y="191" font-size="12" fill="#6E6656">the engine loads</text>
+  <rect x="202" y="159" width="30" height="18" rx="3" fill="#FFFFFF" stroke="#8B8371" stroke-width="1"/>
+  <rect x="203.5" y="160.5" width="27" height="15" rx="2" fill="#B84130"/>
+  <path d="M217.0,159 V177 M202,168.0 H232" fill="none" stroke="#8B8371" stroke-width="1"/>
+
+  <!-- 2. Install packages -->
+  <g clip-path="url(#c1)">
+  <g transform="translate(252,-108) scale(1.08)">
+  <rect x="0" y="0" width="400" height="237" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="200" height="15" fill="#F5F5F5"/>
+  <text class="s" x="8" y="11" font-size="9" fill="#666666">+</text>
+  <rect x="160.9" y="2.9" width="33.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M168.5,5.3 L165.5,7.5 L168.5,9.7" fill="none" stroke="#111111" stroke-width="0.6"/>
+  <circle cx="168.5" cy="5.3" r="1" fill="#111111"/>
+  <circle cx="165.5" cy="7.5" r="1" fill="#111111"/>
+  <circle cx="168.5" cy="9.7" r="1" fill="#111111"/>
+  <text class="s" x="181" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Share</text>
+  <rect x="119.4" y="2.9" width="37.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M123.6,4.9 h2.4 l1.4,1.4 v3.8 h-3.8 z" fill="#111111"/>
+  <text class="s" x="141.5" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run All</text>
+  <rect x="88.4" y="2.9" width="27.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M92.5,5.2 l3.8,2.3 l-3.8,2.3 z" fill="#111111"/>
+  <text class="s" x="105.2" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run</text>
+  <path d="M84,0 V15" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M0,15 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0" y="15.5" width="15" height="103" fill="#F5F5F5"/>
+  <path d="M15,15 V118.5185185185185" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M0,118.5185185185185 H200" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="0" y="119.1" width="200" height="15" fill="#F5F5F5"/>
+  <text class="s" x="7" y="129.5" font-size="7.5" fill="#111111" font-weight="700">Terminal</text>
+  <text class="m" x="47" y="129.5" font-size="7.5" fill="#666666" textLength="45">~/web_user</text>
+  <rect x="155.4" y="121.9" width="39.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <text class="s" x="175" y="129" font-size="6.5" fill="#111111" text-anchor="middle">Restart R</text>
+  <path d="M0,134.1 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="m" x="7" y="144.5" font-size="8" fill="#111111" textLength="177.6">Installing 2 packages: dplyr, ggplot2</text>
+  <text class="m" x="7" y="154" font-size="8" fill="#111111" textLength="43.2" xml:space="preserve">  ✓ dplyr</text>
+  <text class="m" x="7" y="163.5" font-size="8" fill="#111111" textLength="52.8" xml:space="preserve">  ✓ ggplot2</text>
+  <path d="M200,0 V237" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="0" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="229.3" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Environment</text>
+  <rect x="258.1" y="13" width="30" height="2" fill="#0066CC"/>
+  <text class="s" x="273.1" y="10.5" font-size="7" fill="#111111" text-anchor="middle">Files</text>
+  <text class="s" x="311.6" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Packages</text>
+  <path d="M200,15 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M200,118.5 H400" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="119.1" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="219.6" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Output</text>
+  <rect x="238.6" y="132.1" width="31.5" height="2" fill="#0066CC"/>
+  <text class="s" x="254.3" y="129.6" font-size="7" fill="#111111" text-anchor="middle">Plots</text>
+  <text class="s" x="285.1" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Help</text>
+  <path d="M200,134.1 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0.5" y="0.5" width="399" height="236" fill="none" stroke="#CFC4AE" stroke-width="1"/>
+  </g>
+  </g>
+  <rect x="252" y="20" width="216" height="128" rx="7" fill="none" stroke="#CFC4AE" stroke-width="1.2"/>
+  <circle cx="262" cy="168" r="10" fill="#B84130"/>
+  <text class="s" x="262" y="172" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+  <text class="s" x="280" y="173" font-size="13" fill="#2A2620" font-weight="600">Install packages</text>
+  <text class="s" x="280" y="191" font-size="12" fill="#6E6656">the site's, then a link's</text>
+  <rect x="438" y="159" width="30" height="18" rx="3" fill="#FFFFFF" stroke="#8B8371" stroke-width="1"/>
+  <rect x="439.5" y="169" width="12.5" height="6.5" rx="1.5" fill="#B84130"/>
+  <path d="M453.0,159 V177 M438,168.0 H468" fill="none" stroke="#8B8371" stroke-width="1"/>
+
+  <!-- 3. Place files -->
+  <g clip-path="url(#c2)">
+  <g transform="translate(272,20) scale(1.08)">
+  <rect x="0" y="0" width="400" height="237" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="200" height="15" fill="#F5F5F5"/>
+  <text class="s" x="8" y="11" font-size="9" fill="#666666">+</text>
+  <rect x="160.9" y="2.9" width="33.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M168.5,5.3 L165.5,7.5 L168.5,9.7" fill="none" stroke="#111111" stroke-width="0.6"/>
+  <circle cx="168.5" cy="5.3" r="1" fill="#111111"/>
+  <circle cx="165.5" cy="7.5" r="1" fill="#111111"/>
+  <circle cx="168.5" cy="9.7" r="1" fill="#111111"/>
+  <text class="s" x="181" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Share</text>
+  <rect x="119.4" y="2.9" width="37.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M123.6,4.9 h2.4 l1.4,1.4 v3.8 h-3.8 z" fill="#111111"/>
+  <text class="s" x="141.5" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run All</text>
+  <rect x="88.4" y="2.9" width="27.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M92.5,5.2 l3.8,2.3 l-3.8,2.3 z" fill="#111111"/>
+  <text class="s" x="105.2" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run</text>
+  <path d="M84,0 V15" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M0,15 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0" y="15.5" width="15" height="103" fill="#F5F5F5"/>
+  <path d="M15,15 V118.5185185185185" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M0,118.5185185185185 H200" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="0" y="119.1" width="200" height="15" fill="#F5F5F5"/>
+  <text class="s" x="7" y="129.5" font-size="7.5" fill="#111111" font-weight="700">Terminal</text>
+  <text class="m" x="47" y="129.5" font-size="7.5" fill="#666666" textLength="45">~/web_user</text>
+  <rect x="155.4" y="121.9" width="39.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <text class="s" x="175" y="129" font-size="6.5" fill="#111111" text-anchor="middle">Restart R</text>
+  <path d="M0,134.1 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="m" x="7" y="144.5" font-size="8" fill="#111111" textLength="177.6">Installing 2 packages: dplyr, ggplot2</text>
+  <text class="m" x="7" y="154" font-size="8" fill="#111111" textLength="43.2" xml:space="preserve">  ✓ dplyr</text>
+  <text class="m" x="7" y="163.5" font-size="8" fill="#111111" textLength="52.8" xml:space="preserve">  ✓ ggplot2</text>
+  <path d="M200,0 V237" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="0" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="229.3" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Environment</text>
+  <rect x="258.1" y="13" width="30" height="2" fill="#0066CC"/>
+  <text class="s" x="273.1" y="10.5" font-size="7" fill="#111111" text-anchor="middle">Files</text>
+  <text class="s" x="311.6" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Packages</text>
+  <path d="M200,15 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M210,28.9 v-7 h3.3 l1.1,1.3 h4.5 v1.4 h-5.6 l-2.2,4.3 z M212.4,24.8 h6.7 l-2,4.2 h-7.1 z" fill="#E8A87C"/>
+  <text class="s" x="224.1" y="28" font-size="7.5" fill="#111111">web_user</text>
+  <path d="M221,40.5 v-7 h3.3 l1.1,1.3 h4.5 v1.4 h-5.6 l-2.2,4.3 z M223.4,36.2 h6.7 l-2,4.2 h-7.1 z" fill="#E8A87C"/>
+  <text class="s" x="235.1" y="39.5" font-size="7.5" fill="#111111">data</text>
+  <path d="M233,52.3 v-7.4 h3.7 l2.2,2.2 v5.1 z M236.7,45 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="246.1" y="51" font-size="7.5" fill="#111111">sales.csv</text>
+  <path d="M222,63.8 v-7.4 h3.7 l2.2,2.2 v5.1 z M225.7,56.5 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="235.1" y="62.5" font-size="7.5" fill="#111111">analysis.R</text>
+  <path d="M222,75.3 v-7.4 h3.7 l2.2,2.2 v5.1 z M225.7,68 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="235.1" y="74" font-size="7.5" fill="#111111">setup.R</text>
+  <path d="M200,118.5 H400" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="119.1" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="219.6" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Output</text>
+  <rect x="238.6" y="132.1" width="31.5" height="2" fill="#0066CC"/>
+  <text class="s" x="254.3" y="129.6" font-size="7" fill="#111111" text-anchor="middle">Plots</text>
+  <text class="s" x="285.1" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Help</text>
+  <path d="M200,134.1 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0.5" y="0.5" width="399" height="236" fill="none" stroke="#CFC4AE" stroke-width="1"/>
+  </g>
+  </g>
+  <rect x="488" y="20" width="216" height="128" rx="7" fill="none" stroke="#CFC4AE" stroke-width="1.2"/>
+  <circle cx="498" cy="168" r="10" fill="#B84130"/>
+  <text class="s" x="498" y="172" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">3</text>
+  <text class="s" x="516" y="173" font-size="13" fill="#2A2620" font-weight="600">Place files</text>
+  <text class="s" x="516" y="191" font-size="12" fill="#6E6656">bundled, then a link's</text>
+  <rect x="674" y="159" width="30" height="18" rx="3" fill="#FFFFFF" stroke="#8B8371" stroke-width="1"/>
+  <rect x="690" y="160.5" width="12.5" height="6.5" rx="1.5" fill="#B84130"/>
+  <path d="M689.0,159 V177 M674,168.0 H704" fill="none" stroke="#8B8371" stroke-width="1"/>
+
+  <!-- 4. Run the startup script -->
+  <g clip-path="url(#c3)">
+  <g transform="translate(-200,236) scale(1.08)">
+  <rect x="0" y="0" width="400" height="237" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="200" height="15" fill="#F5F5F5"/>
+  <text class="s" x="8" y="11" font-size="9" fill="#666666">+</text>
+  <rect x="160.9" y="2.9" width="33.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M168.5,5.3 L165.5,7.5 L168.5,9.7" fill="none" stroke="#111111" stroke-width="0.6"/>
+  <circle cx="168.5" cy="5.3" r="1" fill="#111111"/>
+  <circle cx="165.5" cy="7.5" r="1" fill="#111111"/>
+  <circle cx="168.5" cy="9.7" r="1" fill="#111111"/>
+  <text class="s" x="181" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Share</text>
+  <rect x="119.4" y="2.9" width="37.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M123.6,4.9 h2.4 l1.4,1.4 v3.8 h-3.8 z" fill="#111111"/>
+  <text class="s" x="141.5" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run All</text>
+  <rect x="88.4" y="2.9" width="27.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M92.5,5.2 l3.8,2.3 l-3.8,2.3 z" fill="#111111"/>
+  <text class="s" x="105.2" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run</text>
+  <path d="M84,0 V15" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M0,15 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0" y="15.5" width="15" height="103" fill="#F5F5F5"/>
+  <path d="M15,15 V118.5185185185185" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M0,118.5185185185185 H200" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="0" y="119.1" width="200" height="15" fill="#F5F5F5"/>
+  <text class="s" x="7" y="129.5" font-size="7.5" fill="#111111" font-weight="700">Terminal</text>
+  <text class="m" x="47" y="129.5" font-size="7.5" fill="#666666" textLength="45">~/web_user</text>
+  <rect x="155.4" y="121.9" width="39.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <text class="s" x="175" y="129" font-size="6.5" fill="#111111" text-anchor="middle">Restart R</text>
+  <path d="M0,134.1 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="m" x="7" y="144.5" font-size="8" fill="#111111" textLength="177.6">Installing 2 packages: dplyr, ggplot2</text>
+  <text class="m" x="7" y="154" font-size="8" fill="#111111" textLength="43.2" xml:space="preserve">  ✓ dplyr</text>
+  <text class="m" x="7" y="163.5" font-size="8" fill="#111111" textLength="52.8" xml:space="preserve">  ✓ ggplot2</text>
+  <path d="M200,0 V237" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="0" width="199.4" height="15" fill="#F5F5F5"/>
+  <rect x="200.6" y="13" width="57.5" height="2" fill="#0066CC"/>
+  <text class="s" x="229.3" y="10.5" font-size="7" fill="#111111" text-anchor="middle">Environment</text>
+  <text class="s" x="273.1" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Files</text>
+  <text class="s" x="311.6" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Packages</text>
+  <path d="M200,15 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="s" x="209" y="25" font-size="6.5" fill="#666666" font-weight="700">Name</text>
+  <text class="s" x="284" y="25" font-size="6.5" fill="#666666" font-weight="700">Type</text>
+  <text class="s" x="340" y="25" font-size="6.5" fill="#666666" font-weight="700">Value</text>
+  <path d="M200,29 H400" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <text class="m" x="209" y="40" font-size="7" fill="#0066CC" textLength="21">sales</text>
+  <text class="s" x="284" y="40" font-size="6.5" fill="#666666" font-style="italic">data.frame</text>
+  <text class="s" x="340" y="40" font-size="6.5" fill="#111111">region units …</text>
+  <text class="m" x="209" y="51.5" font-size="7" fill="#0066CC" textLength="21">clean</text>
+  <text class="s" x="284" y="51.5" font-size="6.5" fill="#666666" font-style="italic">function</text>
+  <text class="s" x="340" y="51.5" font-size="6.5" fill="#111111">function (x)</text>
+  <path d="M200,118.5 H400" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="119.1" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="219.6" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Output</text>
+  <rect x="238.6" y="132.1" width="31.5" height="2" fill="#0066CC"/>
+  <text class="s" x="254.3" y="129.6" font-size="7" fill="#111111" text-anchor="middle">Plots</text>
+  <text class="s" x="285.1" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Help</text>
+  <path d="M200,134.1 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0.5" y="0.5" width="399" height="236" fill="none" stroke="#CFC4AE" stroke-width="1"/>
+  </g>
+  </g>
+  <rect x="16" y="236" width="216" height="128" rx="7" fill="none" stroke="#CFC4AE" stroke-width="1.2"/>
+  <circle cx="26" cy="384" r="10" fill="#B84130"/>
+  <text class="s" x="26" y="388" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">4</text>
+  <text class="s" x="44" y="389" font-size="13" fill="#2A2620" font-weight="600">Run the startup script</text>
+  <text class="s" x="44" y="407" font-size="12" fill="#6E6656">once, before anything opens</text>
+  <text class="m" x="44" y="424" font-size="11.5" fill="#B84130" textLength="131.1">repl.startup-script</text>
+  <rect x="202" y="375" width="30" height="18" rx="3" fill="#FFFFFF" stroke="#8B8371" stroke-width="1"/>
+  <rect x="218" y="376.5" width="12.5" height="6.5" rx="1.5" fill="#B84130"/>
+  <path d="M217.0,375 V393 M202,384.0 H232" fill="none" stroke="#8B8371" stroke-width="1"/>
+
+  <!-- 5. Open files -->
+  <g clip-path="url(#c4)">
+  <g transform="translate(252,236) scale(1.08)">
+  <rect x="0" y="0" width="400" height="237" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="200" height="15" fill="#F5F5F5"/>
+  <rect x="0" y="0" width="50.6" height="15" fill="#FFFFFF"/>
+  <rect x="0" y="13" width="50.6" height="2" fill="#0066CC"/>
+  <text class="s" x="7" y="10.5" font-size="7.5" fill="#111111">analysis.R</text>
+  <text class="s" x="58.6" y="11" font-size="9" fill="#666666">+</text>
+  <rect x="160.9" y="2.9" width="33.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M168.5,5.3 L165.5,7.5 L168.5,9.7" fill="none" stroke="#111111" stroke-width="0.6"/>
+  <circle cx="168.5" cy="5.3" r="1" fill="#111111"/>
+  <circle cx="165.5" cy="7.5" r="1" fill="#111111"/>
+  <circle cx="168.5" cy="9.7" r="1" fill="#111111"/>
+  <text class="s" x="181" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Share</text>
+  <rect x="119.4" y="2.9" width="37.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M123.6,4.9 h2.4 l1.4,1.4 v3.8 h-3.8 z" fill="#111111"/>
+  <text class="s" x="141.5" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run All</text>
+  <rect x="88.4" y="2.9" width="27.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M92.5,5.2 l3.8,2.3 l-3.8,2.3 z" fill="#111111"/>
+  <text class="s" x="105.2" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run</text>
+  <path d="M84,0 V15" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M0,15 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0" y="15.5" width="15" height="103" fill="#F5F5F5"/>
+  <path d="M15,15 V118.5185185185185" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="m" x="11" y="28" font-size="7" fill="#666666" text-anchor="end">1</text>
+  <text class="m" x="18" y="28" font-size="8" fill="#111111" textLength="67.2">library(dplyr)</text>
+  <text class="m" x="11" y="38.5" font-size="7" fill="#666666" text-anchor="end">2</text>
+  <text class="m" x="18" y="38.5" font-size="8" fill="#111111" textLength="76.8">library(ggplot2)</text>
+  <text class="m" x="11" y="49" font-size="7" fill="#666666" text-anchor="end">3</text>
+  <text class="m" x="18" y="49" font-size="8" fill="#111111" textLength="168">sales &lt;- read.csv("data/sales.csv")</text>
+  <text class="m" x="11" y="59.5" font-size="7" fill="#666666" text-anchor="end">4</text>
+  <text class="m" x="18" y="59.5" font-size="8" fill="#111111" textLength="120">sales |&gt; count(region) |&gt;</text>
+  <text class="m" x="11" y="70" font-size="7" fill="#666666" text-anchor="end">5</text>
+  <text class="m" x="18" y="70" font-size="8" fill="#111111" textLength="124.8" xml:space="preserve">  ggplot(aes(n, region)) +</text>
+  <text class="m" x="11" y="80.5" font-size="7" fill="#666666" text-anchor="end">6</text>
+  <text class="m" x="18" y="80.5" font-size="8" fill="#111111" textLength="134.4" xml:space="preserve">  geom_col(fill = "#B84130")</text>
+  <path d="M0,118.5185185185185 H200" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="0" y="119.1" width="200" height="15" fill="#F5F5F5"/>
+  <text class="s" x="7" y="129.5" font-size="7.5" fill="#111111" font-weight="700">Terminal</text>
+  <text class="m" x="47" y="129.5" font-size="7.5" fill="#666666" textLength="45">~/web_user</text>
+  <rect x="155.4" y="121.9" width="39.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <text class="s" x="175" y="129" font-size="6.5" fill="#111111" text-anchor="middle">Restart R</text>
+  <path d="M0,134.1 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="m" x="7" y="144.5" font-size="8" fill="#111111" textLength="177.6">Installing 2 packages: dplyr, ggplot2</text>
+  <text class="m" x="7" y="154" font-size="8" fill="#111111" textLength="43.2" xml:space="preserve">  ✓ dplyr</text>
+  <text class="m" x="7" y="163.5" font-size="8" fill="#111111" textLength="52.8" xml:space="preserve">  ✓ ggplot2</text>
+  <path d="M200,0 V237" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="0" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="229.3" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Environment</text>
+  <rect x="258.1" y="13" width="30" height="2" fill="#0066CC"/>
+  <text class="s" x="273.1" y="10.5" font-size="7" fill="#111111" text-anchor="middle">Files</text>
+  <text class="s" x="311.6" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Packages</text>
+  <path d="M200,15 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M210,28.9 v-7 h3.3 l1.1,1.3 h4.5 v1.4 h-5.6 l-2.2,4.3 z M212.4,24.8 h6.7 l-2,4.2 h-7.1 z" fill="#E8A87C"/>
+  <text class="s" x="224.1" y="28" font-size="7.5" fill="#111111">web_user</text>
+  <path d="M221,40.5 v-7 h3.3 l1.1,1.3 h4.5 v1.4 h-5.6 l-2.2,4.3 z M223.4,36.2 h6.7 l-2,4.2 h-7.1 z" fill="#E8A87C"/>
+  <text class="s" x="235.1" y="39.5" font-size="7.5" fill="#111111">data</text>
+  <path d="M233,52.3 v-7.4 h3.7 l2.2,2.2 v5.1 z M236.7,45 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="246.1" y="51" font-size="7.5" fill="#111111">sales.csv</text>
+  <path d="M222,63.8 v-7.4 h3.7 l2.2,2.2 v5.1 z M225.7,56.5 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="235.1" y="62.5" font-size="7.5" fill="#111111">analysis.R</text>
+  <path d="M222,75.3 v-7.4 h3.7 l2.2,2.2 v5.1 z M225.7,68 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="235.1" y="74" font-size="7.5" fill="#111111">setup.R</text>
+  <path d="M200,118.5 H400" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="119.1" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="219.6" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Output</text>
+  <rect x="238.6" y="132.1" width="31.5" height="2" fill="#0066CC"/>
+  <text class="s" x="254.3" y="129.6" font-size="7" fill="#111111" text-anchor="middle">Plots</text>
+  <text class="s" x="285.1" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Help</text>
+  <path d="M200,134.1 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0.5" y="0.5" width="399" height="236" fill="none" stroke="#CFC4AE" stroke-width="1"/>
+  </g>
+  </g>
+  <rect x="252" y="236" width="216" height="128" rx="7" fill="none" stroke="#CFC4AE" stroke-width="1.2"/>
+  <circle cx="262" cy="384" r="10" fill="#B84130"/>
+  <text class="s" x="262" y="388" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">5</text>
+  <text class="s" x="280" y="389" font-size="13" fill="#2A2620" font-weight="600">Open files</text>
+  <text class="s" x="280" y="407" font-size="12" fill="#6E6656">in the editor</text>
+  <text class="m" x="280" y="424" font-size="11.5" fill="#B84130" textLength="96.6">repl.auto-open</text>
+  <rect x="438" y="375" width="30" height="18" rx="3" fill="#FFFFFF" stroke="#8B8371" stroke-width="1"/>
+  <rect x="439.5" y="376.5" width="12.5" height="6.5" rx="1.5" fill="#B84130"/>
+  <path d="M453.0,375 V393 M438,384.0 H468" fill="none" stroke="#8B8371" stroke-width="1"/>
+
+  <!-- 6. Run files -->
+  <g clip-path="url(#c5)">
+  <g transform="translate(272,108) scale(1.08)">
+  <rect x="0" y="0" width="400" height="237" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="200" height="15" fill="#F5F5F5"/>
+  <rect x="0" y="0" width="50.6" height="15" fill="#FFFFFF"/>
+  <rect x="0" y="13" width="50.6" height="2" fill="#0066CC"/>
+  <text class="s" x="7" y="10.5" font-size="7.5" fill="#111111">analysis.R</text>
+  <text class="s" x="58.6" y="11" font-size="9" fill="#666666">+</text>
+  <rect x="160.9" y="2.9" width="33.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M168.5,5.3 L165.5,7.5 L168.5,9.7" fill="none" stroke="#111111" stroke-width="0.6"/>
+  <circle cx="168.5" cy="5.3" r="1" fill="#111111"/>
+  <circle cx="165.5" cy="7.5" r="1" fill="#111111"/>
+  <circle cx="168.5" cy="9.7" r="1" fill="#111111"/>
+  <text class="s" x="181" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Share</text>
+  <rect x="119.4" y="2.9" width="37.7" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M123.6,4.9 h2.4 l1.4,1.4 v3.8 h-3.8 z" fill="#111111"/>
+  <text class="s" x="141.5" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run All</text>
+  <rect x="88.4" y="2.9" width="27.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M92.5,5.2 l3.8,2.3 l-3.8,2.3 z" fill="#111111"/>
+  <text class="s" x="105.2" y="10" font-size="6.5" fill="#111111" text-anchor="middle">Run</text>
+  <path d="M84,0 V15" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <path d="M0,15 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="0" y="15.5" width="15" height="103" fill="#F5F5F5"/>
+  <path d="M15,15 V118.5185185185185" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="m" x="11" y="28" font-size="7" fill="#666666" text-anchor="end">1</text>
+  <text class="m" x="18" y="28" font-size="8" fill="#111111" textLength="67.2">library(dplyr)</text>
+  <text class="m" x="11" y="38.5" font-size="7" fill="#666666" text-anchor="end">2</text>
+  <text class="m" x="18" y="38.5" font-size="8" fill="#111111" textLength="76.8">library(ggplot2)</text>
+  <text class="m" x="11" y="49" font-size="7" fill="#666666" text-anchor="end">3</text>
+  <text class="m" x="18" y="49" font-size="8" fill="#111111" textLength="168">sales &lt;- read.csv("data/sales.csv")</text>
+  <text class="m" x="11" y="59.5" font-size="7" fill="#666666" text-anchor="end">4</text>
+  <text class="m" x="18" y="59.5" font-size="8" fill="#111111" textLength="120">sales |&gt; count(region) |&gt;</text>
+  <text class="m" x="11" y="70" font-size="7" fill="#666666" text-anchor="end">5</text>
+  <text class="m" x="18" y="70" font-size="8" fill="#111111" textLength="124.8" xml:space="preserve">  ggplot(aes(n, region)) +</text>
+  <text class="m" x="11" y="80.5" font-size="7" fill="#666666" text-anchor="end">6</text>
+  <text class="m" x="18" y="80.5" font-size="8" fill="#111111" textLength="134.4" xml:space="preserve">  geom_col(fill = "#B84130")</text>
+  <path d="M0,118.5185185185185 H200" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="0" y="119.1" width="200" height="15" fill="#F5F5F5"/>
+  <text class="s" x="7" y="129.5" font-size="7.5" fill="#111111" font-weight="700">Terminal</text>
+  <text class="m" x="47" y="129.5" font-size="7.5" fill="#666666" textLength="45">~/web_user</text>
+  <rect x="155.4" y="121.9" width="39.2" height="9.2" rx="1.8" fill="none" stroke="#DDDDDD" stroke-width="0.8"/>
+  <text class="s" x="175" y="129" font-size="6.5" fill="#111111" text-anchor="middle">Restart R</text>
+  <path d="M0,134.1 H200" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="m" x="7" y="144.5" font-size="8" fill="#111111" textLength="177.6">Installing 2 packages: dplyr, ggplot2</text>
+  <text class="m" x="7" y="154" font-size="8" fill="#111111" textLength="43.2" xml:space="preserve">  ✓ dplyr</text>
+  <text class="m" x="7" y="163.5" font-size="8" fill="#111111" textLength="52.8" xml:space="preserve">  ✓ ggplot2</text>
+  <path d="M200,0 V237" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="0" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="229.3" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Environment</text>
+  <rect x="258.1" y="13" width="30" height="2" fill="#0066CC"/>
+  <text class="s" x="273.1" y="10.5" font-size="7" fill="#111111" text-anchor="middle">Files</text>
+  <text class="s" x="311.6" y="10.5" font-size="7" fill="#666666" text-anchor="middle">Packages</text>
+  <path d="M200,15 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M210,28.9 v-7 h3.3 l1.1,1.3 h4.5 v1.4 h-5.6 l-2.2,4.3 z M212.4,24.8 h6.7 l-2,4.2 h-7.1 z" fill="#E8A87C"/>
+  <text class="s" x="224.1" y="28" font-size="7.5" fill="#111111">web_user</text>
+  <path d="M221,40.5 v-7 h3.3 l1.1,1.3 h4.5 v1.4 h-5.6 l-2.2,4.3 z M223.4,36.2 h6.7 l-2,4.2 h-7.1 z" fill="#E8A87C"/>
+  <text class="s" x="235.1" y="39.5" font-size="7.5" fill="#111111">data</text>
+  <path d="M233,52.3 v-7.4 h3.7 l2.2,2.2 v5.1 z M236.7,45 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="246.1" y="51" font-size="7.5" fill="#111111">sales.csv</text>
+  <path d="M222,63.8 v-7.4 h3.7 l2.2,2.2 v5.1 z M225.7,56.5 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="235.1" y="62.5" font-size="7.5" fill="#111111">analysis.R</text>
+  <path d="M222,75.3 v-7.4 h3.7 l2.2,2.2 v5.1 z M225.7,68 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
+  <text class="s" x="235.1" y="74" font-size="7.5" fill="#111111">setup.R</text>
+  <path d="M200,118.5 H400" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
+  <rect x="200.6" y="119.1" width="199.4" height="15" fill="#F5F5F5"/>
+  <text class="s" x="219.6" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Output</text>
+  <rect x="238.6" y="132.1" width="31.5" height="2" fill="#0066CC"/>
+  <text class="s" x="254.3" y="129.6" font-size="7" fill="#111111" text-anchor="middle">Plots</text>
+  <text class="s" x="285.1" y="129.6" font-size="7" fill="#666666" text-anchor="middle">Help</text>
+  <path d="M200,134.1 H400" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <rect x="236" y="142.1" width="156" height="72.9" fill="#EBEBEB"/>
+  <path d="M266,142.1 V215 M311.7,142.1 V215 M357.5,142.1 V215" fill="none" stroke="#FFFFFF" stroke-width="0.4"/>
+  <path d="M243.1,142.1 V215 M288.8,142.1 V215 M334.6,142.1 V215 M380.3,142.1 V215 M236,152.5 H392 M236,169.9 H392 M236,187.3 H392 M236,204.6 H392" fill="none" stroke="#FFFFFF" stroke-width="0.8"/>
+  <path d="M234,152.5 h2 M234,169.9 h2 M234,187.3 h2 M234,204.6 h2 M243.1,215 v2 M288.8,215 v2 M334.6,215 v2 M380.3,215 v2" fill="none" stroke="#333333" stroke-width="0.5"/>
+  <text class="s" x="232" y="154.6" font-size="6" fill="#666666" text-anchor="end">West</text>
+  <rect x="243.1" y="144.7" width="86.9" height="15.6" fill="#B84130"/>
+  <text class="s" x="232" y="172" font-size="6" fill="#666666" text-anchor="end">South</text>
+  <rect x="243.1" y="162.1" width="128.1" height="15.6" fill="#B84130"/>
+  <text class="s" x="232" y="189.4" font-size="6" fill="#666666" text-anchor="end">North</text>
+  <rect x="243.1" y="179.4" width="109.8" height="15.6" fill="#B84130"/>
+  <text class="s" x="232" y="206.7" font-size="6" fill="#666666" text-anchor="end">East</text>
+  <rect x="243.1" y="196.8" width="141.8" height="15.6" fill="#B84130"/>
+  <text class="s" x="243.1" y="223" font-size="6" fill="#666666" text-anchor="middle">0</text>
+  <text class="s" x="288.8" y="223" font-size="6" fill="#666666" text-anchor="middle">10</text>
+  <text class="s" x="334.6" y="223" font-size="6" fill="#666666" text-anchor="middle">20</text>
+  <text class="s" x="380.3" y="223" font-size="6" fill="#666666" text-anchor="middle">30</text>
+  <text class="s" x="314" y="230" font-size="6.5" fill="#111111" text-anchor="middle">n</text>
+  <text class="s" font-size="6.5" fill="#111111" text-anchor="middle" transform="translate(212,178.6) rotate(-90)">region</text>
+  <rect x="0.5" y="0.5" width="399" height="236" fill="none" stroke="#CFC4AE" stroke-width="1"/>
+  </g>
+  </g>
+  <rect x="488" y="236" width="216" height="128" rx="7" fill="none" stroke="#CFC4AE" stroke-width="1.2"/>
+  <circle cx="498" cy="384" r="10" fill="#B84130"/>
+  <text class="s" x="498" y="388" font-size="11" fill="#FFFFFF" font-weight="700" text-anchor="middle">6</text>
+  <text class="s" x="516" y="389" font-size="13" fill="#2A2620" font-weight="600">Run files</text>
+  <text class="s" x="516" y="407" font-size="12" fill="#6E6656">in order, and plots appear</text>
+  <text class="m" x="516" y="424" font-size="11.5" fill="#B84130" textLength="89.7">repl.auto-run</text>
+  <rect x="674" y="375" width="30" height="18" rx="3" fill="#FFFFFF" stroke="#8B8371" stroke-width="1"/>
+  <rect x="690" y="385" width="12.5" height="6.5" rx="1.5" fill="#B84130"/>
+  <path d="M689.0,375 V393 M674,384.0 H704" fill="none" stroke="#8B8371" stroke-width="1"/>
+</svg>

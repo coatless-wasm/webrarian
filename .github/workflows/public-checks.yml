@@ -1,0 +1,99 @@
+name: public-checks
+
+# Checks that can only pass once the repository is public and the pkgdown
+# site is deployed: the site answers, and CRAN's incoming checks (the
+# new-submission note, every URL the package cites) find nothing else. They
+# run after each successful pkgdown deploy from main, so a push never races
+# its own deploy; weekly, because links rot; and on demand.
+on:
+  workflow_run:
+    workflows: [pkgdown]
+    types: [completed]
+    branches: [main]
+  schedule:
+    - cron: "23 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Every workflow_run and schedule run has github.ref refs/heads/main, so a group
+# keyed on the ref would let a skipped run (a fork's pull request from its own
+# main) or the weekly cron cancel the checks of a real deploy. One group per
+# checked commit, and nothing is ever canceled.
+concurrency:
+  group: public-checks-${{ github.event.workflow_run.head_sha || github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  url-resolves:
+    # workflow_run also follows pkgdown's pull-request runs, a fork's included
+    # (its branch is often called main too), and would run here with this
+    # repository's token and caches: only a successful push or manual run of
+    # pkgdown in this repository, which deployed the site, starts these checks.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event != 'pull_request' &&
+      github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Pages can take a minute to serve a new deploy, hence the retries.
+      - name: The pkgdown site and its ecosystem article resolve
+        run: |
+          for url in \
+            https://coatless-wasm.github.io/webrarian/ \
+            https://coatless-wasm.github.io/webrarian/articles/ecosystem.html; do
+            curl -sSfI --retry 5 --retry-delay 15 --retry-all-errors "$url" > /dev/null
+            echo "ok $url"
+          done
+
+  cran-incoming:
+    # The same condition as url-resolves: never a pull request's code.
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event != 'pull_request' &&
+      github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+      QUARTO_CHROMIUM: /usr/bin/false
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The commit pkgdown deployed; on a schedule or by hand, the branch tip.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck, any::jsonvalidate
+          needs: check
+
+      # check-r-package turns CRAN's incoming checks off unless these are set.
+      - uses: r-lib/actions/check-r-package@v2
+        env:
+          NOT_CRAN: "false"
+          _R_CHECK_CRAN_INCOMING_: "true"
+          _R_CHECK_CRAN_INCOMING_REMOTE_: "true"
+        with:
+          args: 'c("--no-manual", "--as-cran")'
+          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+          check-dir: '"check"'
+
+      # The new-submission note is expected until webrarian is on CRAN; an
+      # invalid URL, DOI or file URI is not, except the URLs of exlibris and
+      # pyodidarian, which answer 404 while those projects are private.
+      - name: CRAN's incoming checks find nothing but a new submission
+        run: Rscript tools/cran-incoming.R check

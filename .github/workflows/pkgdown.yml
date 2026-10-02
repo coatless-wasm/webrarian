@@ -1,0 +1,107 @@
+name: pkgdown
+
+# Builds the pkgdown site for every pull request and push to main, and
+# publishes it to GitHub Pages from main only, through the Pages deployment
+# API (Settings > Pages > Source is "GitHub Actions"). The github-pages
+# environment accepts deployments from main only, so only the deploy job names
+# it, and that job never runs for a pull request. public-checks.yml follows
+# each successful deploy.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Deploys queue one at a time and are never canceled. Each pull request has
+# its own group, so its runs never cancel or wait behind a deploy; a newer
+# push to the pull request cancels its older run.
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && format('pkgdown-{0}', github.ref) || 'pages' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::pkgdown, local::.
+          needs: website
+
+      - name: Build site
+        run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
+        shell: Rscript {0}
+
+      # The webR engine and package binaries the demo build downloads. Keyed
+      # on the example's config, so a new webR version or package list
+      # refills it.
+      - name: Cache webR downloads
+        uses: actions/cache@v6
+        with:
+          path: ${{ runner.temp }}/r-user-cache
+          key: webrarian-demo-${{ runner.os }}-${{ hashFiles('inst/examples/data-analysis/_webrarian.yml') }}
+          restore-keys: webrarian-demo-${{ runner.os }}-
+
+      # A live collection built by webrarian itself, published at demo/. The
+      # default build bundles the engine, so the page needs no cross-origin
+      # isolation headers, which GitHub Pages cannot send. bind() stops with an
+      # error when the build fails, which fails this step and the deploy.
+      - name: Build the demo collection
+        run: |
+          dest <- file.path(Sys.getenv("RUNNER_TEMP"), "webrarian-demo")
+          webrarian::collection_example("data-analysis", dest = dest)
+          site <- webrarian::bind(dest)
+          out <- file.path("docs", "demo")
+          unlink(out, recursive = TRUE)
+          dir.create(out)
+          copied <- file.copy(
+            list.files(site$output, all.files = TRUE, no.. = TRUE, full.names = TRUE),
+            out, recursive = TRUE
+          )
+          stopifnot(all(copied), file.exists(file.path(out, "index.html")))
+        shell: Rscript {0}
+        env:
+          R_USER_CACHE_DIR: ${{ runner.temp }}/r-user-cache
+
+      # include-hidden-files is required from upload-pages-artifact v4 onward:
+      # that major stopped bundling dotfiles by default, and
+      # build_site_github_pages() writes docs/.nojekyll.
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs
+          include-hidden-files: true
+
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

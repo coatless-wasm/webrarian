@@ -1,0 +1,122 @@
+Package: webrarian
+Title: Bundle and Deploy 'webR' Instances
+Version: 0.1.0
+Authors@R: c(
+    person("James", "Balamuta", , "james.balamuta@gmail.com", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0003-2826-8458")),
+    person("webR authors", role = "cph",
+           comment = "webR JavaScript client bundled in inst/viewer; MIT"),
+    person("Meta Platforms, Inc.", role = "cph",
+           comment = "React, ReactDOM, scheduler and prop-types bundled in inst/viewer; MIT, (c) Facebook, Inc. and its affiliates"),
+    person("Marijn", "Haverbeke", role = "cph",
+           comment = "CodeMirror, Lezer, style-mod, w3c-keyname and find-cluster-break bundled in inst/viewer; MIT"),
+    person("The xterm.js authors", role = "cph",
+           comment = "xterm.js and addon-fit bundled in inst/viewer; MIT"),
+    person("SourceLair Private Company", role = "cph",
+           comment = "xterm.js bundled in inst/viewer; MIT"),
+    person("Christopher", "Jeffrey", role = "cph",
+           comment = "term.js code in xterm.js bundled in inst/viewer; MIT"),
+    person("Fabrice", "Bellard", role = "cph",
+           comment = "jslinux vt100 code in xterm.js's stylesheet bundled in inst/viewer; MIT"),
+    person("Stuart", "Knightley", role = "cph",
+           comment = "JSZip bundled in inst/viewer; MIT election"),
+    person("David", "Duponchel", role = "cph",
+           comment = "JSZip bundled in inst/viewer; MIT election"),
+    person("Franz", "Buchinger", role = "cph",
+           comment = "JSZip bundled in inst/viewer; MIT election"),
+    person("António", "Afonso", role = "cph",
+           comment = "JSZip bundled in inst/viewer; MIT election"),
+    person("Calvin", "Metcalf", role = "cph",
+           comment = "lie, inside JSZip, bundled in inst/viewer; MIT"),
+    person("Jordan", "Harband", role = "cph",
+           comment = "lie, inside JSZip, bundled in inst/viewer; MIT"),
+    person("Barnesandnoble.com llc", role = "cph",
+           comment = "immediate and setimmediate, inside JSZip, bundled in inst/viewer; MIT"),
+    person("Donavon", "West", role = "cph",
+           comment = "immediate and setimmediate, inside JSZip, bundled in inst/viewer; MIT"),
+    person("Domenic", "Denicola", role = "cph",
+           comment = "immediate and setimmediate, inside JSZip, bundled in inst/viewer; MIT"),
+    person("Brian", "Cavalier", role = "cph",
+           comment = "immediate, inside JSZip, bundled in inst/viewer; MIT"),
+    person("Vitaly", "Puzrin", role = "cph",
+           comment = "pako (2.x, and 1.x inside JSZip) bundled in inst/viewer; MIT"),
+    person("Andrei", "Tuputcyn", role = "cph",
+           comment = "pako (2.x, and 1.x inside JSZip) bundled in inst/viewer; MIT"),
+    person("Jean-loup", "Gailly", role = "cph",
+           comment = "zlib code ported by pako and bundled in inst/viewer; Zlib license"),
+    person("Mark", "Adler", role = "cph",
+           comment = "zlib code ported by pako and bundled in inst/viewer; Zlib license"),
+    person("Adazzle", role = "cph",
+           comment = "react-data-grid bundled in inst/viewer; MIT"),
+    person("Prometheus Research", role = "cph",
+           comment = "original react-data-grid work bundled in inst/viewer; MIT"),
+    person("Pablo", "Morán", role = "cph",
+           comment = "react-accessible-treeview bundled in inst/viewer; MIT"),
+    person("Cure53", role = "cph",
+           comment = "DOMPurify bundled in inst/viewer; Apache-2.0 election"),
+    person("Brian", "Vaughn", role = "cph",
+           comment = "react-resizable-panels bundled in inst/viewer; MIT"),
+    person("The MessagePack Community", role = "cph",
+           comment = "msgpack-javascript bundled in inst/viewer; ISC"),
+    person("Erik", "Bremen", role = "cph",
+           comment = "xterm-readline bundled in inst/viewer; MIT"),
+    person("Travis", "Harrison", role = "cph",
+           comment = "lezer-r and codemirror-lang-r bundled in inst/viewer; MIT"),
+    person("Mathias", "Bynens", role = "cph",
+           comment = "emoji-regex bundled in inst/viewer; MIT"),
+    person("Fonticons, Inc.", role = "cph",
+           comment = "Font Awesome 5 icon path data bundled in inst/viewer via react-icons; CC BY 4.0"),
+    person("kamijin_fanta", role = "cph",
+           comment = "react-icons bundled in inst/viewer; MIT"),
+    person("Sindre", "Sorhus", role = "cph",
+           comment = "string-width, strip-ansi, ansi-regex and is-fullwidth-code-point bundled in inst/viewer; MIT"),
+    person("Jed", "Watson", role = "cph",
+           comment = "classnames bundled in inst/viewer; MIT"),
+    person("Luke", "Edwards", role = "cph",
+           comment = "clsx bundled in inst/viewer; MIT"))
+Copyright: See the file inst/COPYRIGHTS, and inst/viewer/THIRD-PARTY.md
+    for the bundled code's licenses.
+Description: The 'webR' (<https://docs.r-wasm.org/webr/>) project runs R in a
+    web browser through 'WebAssembly'. This package turns a folder of R
+    scripts, data files and package names into a static web site that opens an
+    in-browser workspace (editor, console, files, plots and environment) with
+    those packages and files already in place, and previews it locally. Sites
+    deploy to 'GitHub Pages', 'Netlify' or any static host and can be built to
+    run fully offline; collection_mirror() builds a self-contained 'webR' site
+    and package repository for networks without internet access. Local and
+    'GitHub' packages are compiled to 'WebAssembly' with 'Docker'.
+License: AGPL-3
+URL: https://coatless-wasm.github.io/webrarian/,
+    https://github.com/coatless-wasm/webrarian
+BugReports: https://github.com/coatless-wasm/webrarian/issues
+Depends:
+    R (>= 4.4)
+SystemRequirements: Quarto command line tool (<https://quarto.org>), to build
+    the vignettes; Docker (<https://www.docker.com>), optional, to compile local
+    or GitHub packages to WebAssembly
+Imports:
+    cli (>= 3.0.0),
+    fs (>= 1.5.0),
+    httr2 (>= 1.0.0),
+    jsonlite,
+    rlang (>= 1.0.0),
+    yaml
+Suggests:
+    callr,
+    chromote,
+    curl,
+    httpuv (>= 1.6.0),
+    jsonvalidate,
+    knitr,
+    quarto,
+    renv,
+    rmarkdown,
+    spelling,
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+Roxygen: list(markdown = TRUE)
+VignetteBuilder: quarto
+Config/roxygen2/version: 8.0.0

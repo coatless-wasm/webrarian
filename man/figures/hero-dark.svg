@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 350" role="img" aria-labelledby="t d">
+  <title id="t">Bundle an R project into a static site that runs R in the browser</title>
+  <desc id="d">You write a folder with R files, data and a list of packages. bind() builds it into _site/, one static folder with the page, the workspace, the webR engine, the packages and your files. Readers open it from any static host and get a live R workspace in their browser, with an editor, a console, your files and plots, and nothing to install.</desc>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}.card{fill:#23211D}.ink{fill:#E8E3D8}.muted{fill:#9A9382}.faint{fill:#7E7768}.code{fill:#2E2B25}.key{fill:#E3A08F}.str{fill:#8FBFA3}.com{fill:#9A9382}.accent{fill:#E0735D}.p3{fill:#F3ECDC}.p3ink{fill:#2A2620}.p3muted{fill:#6E6656}.folder{fill:#D9A441}.win{fill:#FFFFFF}.tool{fill:#E4DAC5}.addr{fill:#FFFFFF}.hdr{fill:#F5F5F5}.tabon{fill:#FFFFFF}.tabline{fill:#0066CC}.wink{fill:#111111}.wmut{fill:#666666}.wfolder{fill:#E8A87C}.bar{fill:#B84130}.dot{fill:#C8BA9C}.gpanel{fill:#EBEBEB}.edge-s{stroke:#3A362F;fill:none}.rail-s{stroke:#5A544A;fill:none}.file-s{stroke:#9A9382;fill:none}.onaccent-s{stroke:#17150F;fill:none}.winedge-s{stroke:#CFC4AE;fill:none}.addredge-s{stroke:#D8CEB8;fill:none}.wline-s{stroke:#DDDDDD;fill:none}.btn-s{stroke:#DDDDDD;fill:none}.wfile-s{stroke:#666666;fill:none}.wglyph-s{stroke:#111111;fill:none}.ggrid-s{stroke:#FFFFFF;fill:none}.gtick-s{stroke:#333333;fill:none}</style>
+
+  <!-- 1. the folder you write -->
+  <rect class="card" x="16" y="16" width="200" height="318" rx="14"/>
+  <rect class="edge-s" x="16.5" y="16.5" width="199" height="317" rx="14"/>
+  <text class="s ink" x="34" y="48" font-size="18" font-weight="700">You write</text>
+  <text class="s muted" x="34" y="68" font-size="12.5">R files, data and packages</text>
+  <path class="folder" d="M34,99 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z"/>
+  <text class="m ink" x="51.4" y="98" font-size="11">my-analysis/</text>
+  <path class="file-s" d="M49,117.5 v-10 h5 l3,3 v7 z M54,107.5 v3 h3" stroke-width="1"/>
+  <text class="m ink" x="65.3" y="116" font-size="11">_webrarian.yml</text>
+  <path class="file-s" d="M49,135.5 v-10 h5 l3,3 v7 z M54,125.5 v3 h3" stroke-width="1"/>
+  <text class="m ink" x="65.3" y="134" font-size="11">analysis.R</text>
+  <path class="folder" d="M48,153 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z"/>
+  <text class="m ink" x="65.3" y="152" font-size="11">data/</text>
+  <path class="file-s" d="M63,171.5 v-10 h5 l3,3 v7 z M68,161.5 v3 h3" stroke-width="1"/>
+  <text class="m ink" x="79.3" y="170" font-size="11">sales.csv</text>
+  <path class="rail-s" d="M38.3,101 V148.3 M38.3,112.3 H45 M38.3,130.3 H45 M38.3,148.3 H45" stroke-width="1.1"/>
+  <path class="rail-s" d="M52.3,155 V166.3 M52.3,166.3 H59" stroke-width="1.1"/>
+  <rect class="code" x="32" y="184" width="168" height="138" rx="8"/>
+  <text class="m" x="44" y="204" font-size="11" xml:space="preserve"><tspan class="com"># _webrarian.yml</tspan></text>
+  <text class="m" x="44" y="217.5" font-size="11" xml:space="preserve"><tspan class="key">packages:</tspan></text>
+  <text class="m" x="44" y="231" font-size="11" xml:space="preserve"><tspan class="key">  prebuilt:</tspan></text>
+  <text class="m" x="44" y="244.5" font-size="11" xml:space="preserve"><tspan class="muted">    - </tspan><tspan class="str">dplyr</tspan></text>
+  <text class="m" x="44" y="258" font-size="11" xml:space="preserve"><tspan class="muted">    - </tspan><tspan class="str">ggplot2</tspan></text>
+  <text class="m" x="44" y="271.5" font-size="11" xml:space="preserve"><tspan class="key">files:</tspan></text>
+  <text class="m" x="44" y="285" font-size="11" xml:space="preserve"><tspan class="key">  include:</tspan></text>
+  <text class="m" x="44" y="298.5" font-size="11" xml:space="preserve"><tspan class="muted">    - </tspan><tspan class="str">"*.R"</tspan></text>
+  <text class="m" x="44" y="312" font-size="11" xml:space="preserve"><tspan class="muted">    - </tspan><tspan class="str">data/</tspan></text>
+
+  <!-- bind() -->
+  <circle class="accent" cx="248" cy="169" r="17"/>
+  <path class="onaccent-s" d="M241,169 h13 m-5,-5.5 l5.5,5.5 l-5.5,5.5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="m accent" x="248" y="206" font-size="12.5" font-weight="600" text-anchor="middle">bind()</text>
+
+  <!-- 2. the static folder bind() writes -->
+  <rect class="card" x="280" y="16" width="204" height="318" rx="14"/>
+  <rect class="edge-s" x="280.5" y="16.5" width="203" height="317" rx="14"/>
+  <text class="s ink" x="298" y="48" font-size="18" font-weight="700">bind() builds</text>
+  <text class="s muted" x="298" y="68" font-size="12.5">one static folder</text>
+  <path class="folder" d="M298,99 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z"/>
+  <text class="m ink" x="315.4" y="98" font-size="11">_site/</text>
+  <path class="file-s" d="M313,117.5 v-10 h5 l3,3 v7 z M318,107.5 v3 h3" stroke-width="1"/>
+  <text class="m ink" x="329.4" y="116" font-size="11">index.html</text>
+  <path class="file-s" d="M313,135.5 v-10 h5 l3,3 v7 z M318,125.5 v3 h3" stroke-width="1"/>
+  <text class="m ink" x="329.4" y="134" font-size="11">exlibris-r.&lt;hash&gt;.js</text>
+  <path class="file-s" d="M313,153.5 v-10 h5 l3,3 v7 z M318,143.5 v3 h3" stroke-width="1"/>
+  <text class="m ink" x="329.4" y="152" font-size="11">exlibris-r.&lt;hash&gt;.css</text>
+  <path class="folder" d="M312,171 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z"/>
+  <text class="m ink" x="329.4" y="170" font-size="11">webr/v0.6.0/</text>
+  <path class="folder" d="M312,189 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z"/>
+  <text class="m ink" x="329.4" y="188" font-size="11">repo/</text>
+  <path class="folder" d="M312,207 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z"/>
+  <text class="m ink" x="329.4" y="206" font-size="11">library/</text>
+  <path class="folder" d="M312,225 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z"/>
+  <text class="m ink" x="329.4" y="224" font-size="11">vfs-files/</text>
+  <path class="file-s" d="M327,243.5 v-10 h5 l3,3 v7 z M332,233.5 v3 h3" stroke-width="1"/>
+  <text class="m ink" x="343.4" y="242" font-size="11">analysis.R</text>
+  <path class="folder" d="M326,261 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z"/>
+  <text class="m ink" x="343.4" y="260" font-size="11">data/</text>
+  <path class="file-s" d="M341,279.5 v-10 h5 l3,3 v7 z M346,269.5 v3 h3" stroke-width="1"/>
+  <text class="m ink" x="357.4" y="278" font-size="11">sales.csv</text>
+  <text class="m faint" x="312" y="293" font-size="11">…</text>
+  <path class="rail-s" d="M302.3,101 V292.3 M302.3,112.3 H309 M302.3,130.3 H309 M302.3,148.3 H309 M302.3,166.3 H309 M302.3,184.3 H309 M302.3,202.3 H309 M302.3,220.3 H309 M302.3,292.3 H309" stroke-width="1.1"/>
+  <path class="rail-s" d="M316.3,227 V256.3 M316.3,238.3 H323 M316.3,256.3 H323" stroke-width="1.1"/>
+  <path class="rail-s" d="M330.3,263 V274.3 M330.3,274.3 H337" stroke-width="1.1"/>
+
+  <!-- any static host -->
+  <circle class="accent" cx="516" cy="169" r="17"/>
+  <path class="onaccent-s" d="M509,169 h13 m-5,-5.5 l5.5,5.5 l-5.5,5.5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text class="s accent" x="516" y="206" font-size="12.5" font-weight="600" text-anchor="middle">any host</text>
+
+  <!-- 3. what readers get: the real workspace, in a browser -->
+  <rect class="p3" x="548" y="16" width="396" height="318" rx="14"/>
+  <text class="s p3ink" x="566" y="48" font-size="18" font-weight="700">Readers get</text>
+  <text class="s p3muted" x="566" y="68" font-size="12.5">live R in their browser</text>
+  <rect class="win" x="564" y="84" width="364" height="212" rx="8"/>
+  <path class="tool" d="M564,92 a8,8 0 0 1 8,-8 H920 a8,8 0 0 1 8,8 V110 H564 Z"/>
+  <circle class="dot" cx="577" cy="97" r="3.2"/>
+  <circle class="dot" cx="587" cy="97" r="3.2"/>
+  <circle class="dot" cx="597" cy="97" r="3.2"/>
+  <rect class="addr" x="612" y="89" width="304" height="16" rx="8"/>
+  <rect class="addredge-s" x="612.5" y="89.5" width="303" height="15" rx="7.5"/>
+  <path class="wfile-s" d="M622,101 v-4.5 h6 v4.5 z M623.2,96.5 v-1.6 a1.8,1.8 0 0 1 3.6,0 v1.6" stroke-width="1"/>
+  <text class="s wmut" x="634" y="100.5" font-size="8.5">you.github.io/my-analysis/</text>
+  <path class="addredge-s" d="M564,110 H928" stroke-width="1"/>
+
+  <!-- editor: file tab, Run, Run All, Share -->
+  <rect class="hdr" x="564" y="110" width="204" height="15"/>
+  <rect class="tabon" x="564" y="110" width="50" height="15"/>
+  <rect class="tabline" x="564" y="123" width="50" height="2"/>
+  <text class="s wink" x="571" y="120.5" font-size="7.5">analysis.R</text>
+  <text class="s wmut" x="622" y="121" font-size="9">+</text>
+  <rect class="btn-s" x="728.9" y="112.9" width="33.7" height="9.2" rx="1.8" stroke-width="0.8"/>
+  <path class="wglyph-s" d="M736.5,115.3 L733.5,117.5 L736.5,119.7" stroke-width="0.6"/>
+  <circle class="wink" cx="736.5" cy="115.3" r="1"/>
+  <circle class="wink" cx="733.5" cy="117.5" r="1"/>
+  <circle class="wink" cx="736.5" cy="119.7" r="1"/>
+  <text class="s wink" x="749" y="120" font-size="6.5" text-anchor="middle">Share</text>
+  <rect class="btn-s" x="687.4" y="112.9" width="37.7" height="9.2" rx="1.8" stroke-width="0.8"/>
+  <path class="wink" d="M691.6,114.9 h2.4 l1.4,1.4 v3.8 h-3.8 z"/>
+  <text class="s wink" x="709.5" y="120" font-size="6.5" text-anchor="middle">Run All</text>
+  <rect class="btn-s" x="656.4" y="112.9" width="27.2" height="9.2" rx="1.8" stroke-width="0.8"/>
+  <path class="wink" d="M660.5,115.2 l3.8,2.3 l-3.8,2.3 z"/>
+  <text class="s wink" x="673.2" y="120" font-size="6.5" text-anchor="middle">Run</text>
+  <path class="wline-s" d="M652,110 V125" stroke-width="0.8"/>
+  <path class="wline-s" d="M564,125 H768" stroke-width="1"/>
+  <rect class="hdr" x="564" y="125.5" width="15" height="70.5"/>
+  <path class="wline-s" d="M579,125 V196" stroke-width="1"/>
+  <text class="m wmut" x="575" y="138" font-size="7" text-anchor="end">1</text>
+  <text class="m wink" x="582" y="138" font-size="8">library(dplyr)</text>
+  <text class="m wmut" x="575" y="148.5" font-size="7" text-anchor="end">2</text>
+  <text class="m wink" x="582" y="148.5" font-size="8">library(ggplot2)</text>
+  <text class="m wmut" x="575" y="159" font-size="7" text-anchor="end">3</text>
+  <text class="m wink" x="582" y="159" font-size="8">sales &lt;- read.csv("data/sales.csv")</text>
+  <text class="m wmut" x="575" y="169.5" font-size="7" text-anchor="end">4</text>
+  <text class="m wink" x="582" y="169.5" font-size="8">sales |&gt; count(region) |&gt;</text>
+  <text class="m wmut" x="575" y="180" font-size="7" text-anchor="end">5</text>
+  <text class="m wink" x="582" y="180" font-size="8" xml:space="preserve">  ggplot(aes(n, region)) +</text>
+  <text class="m wmut" x="575" y="190.5" font-size="7" text-anchor="end">6</text>
+  <text class="m wink" x="582" y="190.5" font-size="8" xml:space="preserve">  geom_col(fill = "#B84130")</text>
+
+  <!-- console: Terminal, ~/web_user, Restart R -->
+  <path class="wline-s" d="M564,196 H768" stroke-width="1.2"/>
+  <rect class="hdr" x="564" y="196.6" width="204" height="15"/>
+  <text class="s wink" x="571" y="207" font-size="7.5" font-weight="700">Terminal</text>
+  <text class="m wmut" x="611" y="207" font-size="7.5">~/web_user</text>
+  <rect class="btn-s" x="723.4" y="199.4" width="39.2" height="9.2" rx="1.8" stroke-width="0.8"/>
+  <text class="s wink" x="743" y="206.5" font-size="6.5" text-anchor="middle">Restart R</text>
+  <path class="wline-s" d="M564,211.6 H768" stroke-width="1"/>
+  <text class="m" x="571" y="222" font-size="8" xml:space="preserve"><tspan class="wink">&gt; library(dplyr)</tspan></text>
+  <text class="m" x="571" y="231.5" font-size="8" xml:space="preserve"><tspan class="wink">+ library(ggplot2)</tspan></text>
+  <text class="m" x="571" y="241" font-size="8" xml:space="preserve"><tspan class="wink">+ sales &lt;- read.csv("data/sales.csv")</tspan></text>
+  <text class="m" x="571" y="250.5" font-size="8" xml:space="preserve"><tspan class="wink">+ sales |&gt; count(region) |&gt;</tspan></text>
+  <text class="m" x="571" y="260" font-size="8" xml:space="preserve"><tspan class="wink">+   ggplot(aes(n, region)) +</tspan></text>
+  <text class="m" x="571" y="269.5" font-size="8" xml:space="preserve"><tspan class="wink">+   geom_col(fill = "#B84130")</tspan></text>
+  <text class="m" x="571" y="279" font-size="8" xml:space="preserve"><tspan class="wink">&gt; </tspan></text>
+
+  <!-- Environment, Files, Packages -->
+  <path class="wline-s" d="M768,110 V284" stroke-width="1.2"/>
+  <rect class="hdr" x="768.6" y="110" width="159.4" height="15"/>
+  <text class="s wmut" x="797.4" y="120.5" font-size="7" text-anchor="middle">Environment</text>
+  <rect class="tabline" x="826.1" y="123" width="30" height="2"/>
+  <text class="s wink" x="841.1" y="120.5" font-size="7" text-anchor="middle">Files</text>
+  <text class="s wmut" x="879.6" y="120.5" font-size="7" text-anchor="middle">Packages</text>
+  <path class="wline-s" d="M768,125 H928" stroke-width="1"/>
+  <path class="wfolder" d="M778,138.9 v-7 h3.3 l1.1,1.3 h4.5 v1.4 h-5.6 l-2.2,4.3 z M780.4,134.8 h6.7 l-2,4.2 h-7.1 z"/>
+  <text class="s wink" x="792.1" y="138" font-size="7.5">web_user</text>
+  <path class="wfolder" d="M789,150.4 v-7 h3.3 l1.1,1.3 h4.5 v1.4 h-5.6 l-2.2,4.3 z M791.4,146.2 h6.7 l-2,4.2 h-7.1 z"/>
+  <text class="s wink" x="803.1" y="149.5" font-size="7.5">data</text>
+  <path class="wfile-s" d="M801,162.3 v-7.4 h3.7 l2.2,2.2 v5.1 z M804.7,154.9 v2.2 h2.2" stroke-width="0.9"/>
+  <text class="s wink" x="814.1" y="161" font-size="7.5">sales.csv</text>
+  <path class="wfile-s" d="M790,173.8 v-7.4 h3.7 l2.2,2.2 v5.1 z M793.7,166.4 v2.2 h2.2" stroke-width="0.9"/>
+  <text class="s wink" x="803.1" y="172.5" font-size="7.5">analysis.R</text>
+
+  <!-- Output, Plots, Help -->
+  <path class="wline-s" d="M768,180.4 H928" stroke-width="1.2"/>
+  <rect class="hdr" x="768.6" y="181" width="159.4" height="15"/>
+  <text class="s wmut" x="787.6" y="191.5" font-size="7" text-anchor="middle">Output</text>
+  <rect class="tabline" x="806.6" y="194" width="31.5" height="2"/>
+  <text class="s wink" x="822.4" y="191.5" font-size="7" text-anchor="middle">Plots</text>
+  <text class="s wmut" x="853.1" y="191.5" font-size="7" text-anchor="middle">Help</text>
+  <path class="wline-s" d="M768,196 H928" stroke-width="1"/>
+  <rect class="gpanel" x="806" y="203.4" width="114" height="58"/>
+  <path class="ggrid-s" d="M827.9,203.4 V261.4 M861.3,203.4 V261.4 M894.8,203.4 V261.4" stroke-width="0.4"/>
+  <path class="ggrid-s" d="M811.2,203.4 V261.4 M844.6,203.4 V261.4 M878,203.4 V261.4 M911.5,203.4 V261.4 M806,211.7 H920 M806,225.5 H920 M806,239.3 H920 M806,253.1 H920" stroke-width="0.8"/>
+  <path class="gtick-s" d="M804,211.7 h2 M804,225.5 h2 M804,239.3 h2 M804,253.1 h2 M811.2,261.4 v2 M844.6,261.4 v2 M878,261.4 v2 M911.5,261.4 v2" stroke-width="0.5"/>
+  <text class="s wmut" x="802" y="213.8" font-size="6" text-anchor="end">West</text>
+  <rect class="bar" x="811.2" y="205.5" width="63.5" height="12.4"/>
+  <text class="s wmut" x="802" y="227.6" font-size="6" text-anchor="end">South</text>
+  <rect class="bar" x="811.2" y="219.3" width="93.6" height="12.4"/>
+  <text class="s wmut" x="802" y="241.4" font-size="6" text-anchor="end">North</text>
+  <rect class="bar" x="811.2" y="233.1" width="80.2" height="12.4"/>
+  <text class="s wmut" x="802" y="255.2" font-size="6" text-anchor="end">East</text>
+  <rect class="bar" x="811.2" y="246.9" width="103.6" height="12.4"/>
+  <text class="s wmut" x="811.2" y="269.4" font-size="6" text-anchor="middle">0</text>
+  <text class="s wmut" x="844.6" y="269.4" font-size="6" text-anchor="middle">10</text>
+  <text class="s wmut" x="878" y="269.4" font-size="6" text-anchor="middle">20</text>
+  <text class="s wmut" x="911.5" y="269.4" font-size="6" text-anchor="middle">30</text>
+  <text class="s wink" x="863" y="276.4" font-size="6.5" text-anchor="middle">n</text>
+  <text class="s wink" x="0" y="0" font-size="6.5" text-anchor="middle" transform="translate(776,232.4) rotate(-90)">region</text>
+
+  <!-- footer -->
+  <path class="hdr" d="M564,284 H928 V288 a8,8 0 0 1 -8,8 H572 a8,8 0 0 1 -8,-8 Z"/>
+  <path class="wline-s" d="M564,284 H928" stroke-width="1"/>
+  <text class="s wmut" x="920" y="292.5" font-size="6" text-anchor="end">Your edits are kept in this browser.<tspan class="wink" dx="9" text-decoration="underline">Reset files</tspan><tspan class="wink" dx="9" text-decoration="underline">Licenses</tspan></text>
+  <rect class="winedge-s" x="564.5" y="84.5" width="363" height="211" rx="7.5"/>
+  <text class="s p3ink" x="566" y="318" font-size="12.5">No R server, and nothing to install.</text>
+</svg>

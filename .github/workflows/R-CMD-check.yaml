@@ -1,0 +1,107 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/v2/examples
+# Need help debugging build failures? Start at
+# https://github.com/r-lib/actions#where-to-find-help
+name: R-CMD-check.yaml
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer push to the same branch or pull request cancels the older run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # CRAN-shaped checks. webrarian's heavy paths need Docker + Chrome + network
+  # and are skip_on_cran() anyway (see NOT_CRAN below). integration.yml runs
+  # them: its browser job runs the built sites in Chrome, and its docker job
+  # compiles packages with real Docker. The matrix covers the three platforms
+  # CRAN checks on; r-devel, because CRAN gates first submissions on it; the
+  # previous release line; and the oldest R that DESCRIPTION's Depends allows,
+  # named literally (not as oldrel-2, which moves on at every R release) so
+  # that floor is tested rather than assumed.
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+    timeout-minutes: 30
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: ubuntu-latest, r: 'release'}
+          - {os: ubuntu-latest, r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest, r: 'oldrel-1'}
+          - {os: ubuntu-latest, r: '4.4'}
+          - {os: macos-latest, r: 'release'}
+          - {os: windows-latest, r: 'release'}
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+      # Vignettes must build without a browser: CRAN's and
+      # r-universe's builders have Quarto but no Chrome Quarto can find. A
+      # browser that cannot start makes any browser-rendered diagram (a
+      # {mermaid} or {dot} block, mermaid-format) fail here instead.
+      QUARTO_CHROMIUM: /usr/bin/false
+
+    steps:
+      # Must precede the checkout. Git for Windows defaults to
+      # core.autocrlf=true, which would rewrite the vendored
+      # inst/viewer/exlibris-r.{js,css} (plain ASCII, so git treats them as
+      # text) to CRLF on the way out of the object store. That changes their
+      # bytes, and tests/testthat/test-vendor.R re-hashes those exact files
+      # against the sha256 pins in inst/viewer/PROVENANCE.json - so the whole
+      # Windows leg would fail on a checkout artifact rather than on anything
+      # in the package. Keep the working tree byte-identical to what ships.
+      - name: Check out vendored bundle bytes verbatim
+        if: runner.os == 'Windows'
+        shell: bash
+        run: git config --global core.autocrlf false
+
+      - uses: actions/checkout@v7
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      # DESCRIPTION declares `VignetteBuilder: quarto` and every vignette under
+      # vignettes/ is a .qmd, so R CMD check cannot build the vignettes (and
+      # will fail) without the Quarto CLI on PATH.
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          http-user-agent: ${{ matrix.config.http-user-agent }}
+          use-public-rspm: true
+
+      # jsonvalidate is only a Suggests, but tests/testthat/test-config-contract.R
+      # opens with skip_if_not_installed("jsonvalidate"). Without it installed the
+      # ViewerConfig contract guard silently skips and this job would go green
+      # having checked nothing - so it is pinned into the check environment here
+      # on purpose.
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck, any::jsonvalidate
+          needs: check
+
+      - uses: r-lib/actions/check-r-package@v2
+        env:
+          # Keep the CRAN posture: NOT_CRAN must not be "true" or the
+          # skip_on_cran() tests (Docker builds, network downloads, headless
+          # Chrome boots) would all try to run here. Set at step level so it
+          # wins over anything an earlier action exported via $GITHUB_ENV.
+          NOT_CRAN: "false"
+        with:
+          upload-snapshots: true
+          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
+          # error-on is left at its default ("warning"). check-r-package turns
+          # CRAN's incoming checks (URLs, the new-submission note) off;
+          # public-checks.yml runs them once the site is deployed.

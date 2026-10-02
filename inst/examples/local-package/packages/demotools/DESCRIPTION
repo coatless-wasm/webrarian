@@ -1,0 +1,13 @@
+Package: demotools
+Title: Demo Tools for Webrarian
+Version: 0.1.0
+Authors@R:
+    person("Demo", "Author", email = "demo@example.com", role = c("aut", "cre"))
+Description: A simple demo package to test local package compilation with webrarian.
+    Contains utility functions for data analysis and formatting.
+License: AGPL-3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.0
+Imports:
+    stats

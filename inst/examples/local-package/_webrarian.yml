@@ -1,0 +1,51 @@
+project:
+  name: "Custom Package Demo"
+  description: ""
+
+webr:
+  version: "0.6.0"
+
+packages:
+  # Pre-built packages from webR repo
+  prebuilt:
+    - dplyr
+    - ggplot2
+  # GitHub packages (format: "user/repo")
+  github: []
+  # Local packages - these will be compiled to WebAssembly
+  local:
+    - packages/demotools
+  dependencies: true
+
+files:
+  include:
+    - "*.R"
+    - "data/"
+  exclude:
+    - "**/*.Rhistory"
+    - "**/.DS_Store"
+    - "packages/"
+  mount-point: "/home/web_user"
+
+repl:
+  startup-script: null
+  auto-run:
+    - "demo.R"
+  share-links: open
+  panels:
+    editor: true
+    terminal: true
+    files: true
+    plot: true
+    environment: true
+
+ui:
+  loading:
+    message: "Loading packages..."
+  meta:
+    title: "Custom Package Demo - Webrarian"
+    description: "Demo of custom R package compilation with webrarian"
+
+build:
+  output-dir: "_site"
+  clean: true

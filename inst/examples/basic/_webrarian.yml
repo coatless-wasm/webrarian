@@ -1,0 +1,35 @@
+project:
+  name: "Basic example"
+  description: "Two R scripts and a small data file, with no packages"
+
+webr:
+  version: "0.6.0"
+
+packages:
+  prebuilt: []
+  github: []
+  local: []
+  dependencies: true
+
+files:
+  include:
+    - "*.R"
+    - data/
+  exclude:
+    - '**/*.Rhistory'
+    - '**/.DS_Store'
+  mount-point: /home/web_user
+
+repl:
+  startup-script: null
+  share-links: open
+  panels:
+    editor: true
+    terminal: true
+    files: true
+    plot: true
+    environment: true
+
+build:
+  output-dir: _site
+  clean: true

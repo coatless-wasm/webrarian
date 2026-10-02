@@ -1,0 +1,65 @@
+Copyright holders of the code in webrarian
+==========================================
+
+webrarian (the R code, tests, documentation, templates and examples):
+  Copyright (C) 2025-2026 James Balamuta. AGPL-3.
+
+exlibris runtime (inst/viewer/exlibris-r.js, inst/viewer/exlibris-r.css):
+  Copyright (C) 2025-2026 James Balamuta. AGPL-3.0-only with the exlibris
+  runtime exception (inst/viewer/EXCEPTION.md).
+
+The exlibris bundle embeds the code below. Versions and full license texts
+are in inst/viewer/THIRD-PARTY.md. Each line is: package | holders credited
+with the "cph" role in DESCRIPTION | the notice as the package states it.
+
+BEGIN BUNDLED
+@codemirror/autocomplete | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
+@codemirror/commands | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
+@codemirror/language | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
+@codemirror/state | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
+@codemirror/theme-one-dark | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
+@codemirror/view | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
+@lezer/common | Marijn Haverbeke | Copyright (C) 2018 Marijn Haverbeke and others
+@lezer/highlight | Marijn Haverbeke | Copyright (C) 2018 Marijn Haverbeke and others
+@lezer/lr | Marijn Haverbeke | Copyright (C) 2018 Marijn Haverbeke and others
+@marijn/find-cluster-break | Marijn Haverbeke | Copyright (C) 2024 Marijn Haverbeke
+@msgpack/msgpack | The MessagePack Community | Copyright (C) 2019 The MessagePack Community
+@xterm/addon-fit | The xterm.js authors | Copyright (C) 2019 The xterm.js authors
+@xterm/xterm | The xterm.js authors; SourceLair Private Company; Christopher Jeffrey | Copyright (C) 2017-2019 The xterm.js authors; (C) 2014-2016 SourceLair Private Company; (C) 2012-2013 Christopher Jeffrey
+ansi-regex | Sindre Sorhus | Copyright (C) Sindre Sorhus
+classnames | Jed Watson | Copyright (C) 2018 Jed Watson
+clsx | Luke Edwards | Copyright (C) Luke Edwards
+codemirror-lang-r | Travis Harrison | Copyright (C) 2022 Travis Harrison and others
+dompurify | Cure53 | Copyright (C) Cure53 and other contributors
+emoji-regex | Mathias Bynens | Copyright (C) Mathias Bynens
+is-fullwidth-code-point | Sindre Sorhus | Copyright (C) Sindre Sorhus
+jszip | Stuart Knightley; David Duponchel; Franz Buchinger; António Afonso | Copyright (C) 2009-2016 Stuart Knightley, David Duponchel, Franz Buchinger, António Afonso
+lezer-r | Travis Harrison | Copyright (C) 2022 Travis Harrison
+pako | Vitaly Puzrin; Andrei Tuputcyn; Jean-loup Gailly; Mark Adler | Copyright (C) 2014-2017 Vitaly Puzrin and Andrei Tuputcyn; zlib parts (C) 1995-2013 Jean-loup Gailly and Mark Adler
+prop-types | Meta Platforms, Inc. | Copyright (C) 2013-present Facebook, Inc.
+react | Meta Platforms, Inc. | Copyright (C) Facebook, Inc. and its affiliates
+react-accessible-treeview | Pablo Morán | Copyright (C) 2019 Pablo Morán
+react-data-grid | Adazzle; Prometheus Research | original work Copyright (C) 2014 Prometheus Research; modified work Copyright (C) 2015 Adazzle
+react-dom | Meta Platforms, Inc. | Copyright (C) Facebook, Inc. and its affiliates
+react-icons | kamijin_fanta; Fonticons, Inc. | Copyright (C) 2018 kamijin_fanta; Font Awesome 5 icon path data Copyright (C) Fonticons, Inc. (CC BY 4.0)
+react-resizable-panels | Brian Vaughn | Copyright (C) 2023 Brian Vaughn
+scheduler | Meta Platforms, Inc. | Copyright (C) Facebook, Inc. and its affiliates
+string-width | Sindre Sorhus | Copyright (C) Sindre Sorhus
+strip-ansi | Sindre Sorhus | Copyright (C) Sindre Sorhus
+style-mod | Marijn Haverbeke | Copyright (C) 2018 Marijn Haverbeke and others
+w3c-keyname | Marijn Haverbeke | Copyright (C) 2016 Marijn Haverbeke and others
+webr | webR authors | Copyright (C) 2023 webR authors
+xterm-readline | Erik Bremen | Copyright (C) 2021 Erik Bremen
+END BUNDLED
+
+Code nested inside bundled packages (jszip's own bundle, and the terminal
+xterm.js was forked from); their notices are in inst/viewer/THIRD-PARTY.md
+under "Code nested inside bundled packages":
+
+BEGIN NESTED
+lie | Calvin Metcalf; Jordan Harband | Copyright (c) 2014-2018 Calvin Metcalf, Jordan Harband
+immediate | Barnesandnoble.com llc; Donavon West; Domenic Denicola; Brian Cavalier | Copyright (c) 2012 Barnesandnoble.com, llc, Donavon West, Domenic Denicola, Brian Cavalier
+setimmediate | Barnesandnoble.com llc; Donavon West; Domenic Denicola | Copyright (c) 2012 Barnesandnoble.com, llc, Donavon West, and Domenic Denicola
+pako | Vitaly Puzrin; Andrei Tuputcyn | Copyright (C) 2014-2017 by Vitaly Puzrin and Andrei Tuputcyn
+jslinux vt100 (via term.js) | Fabrice Bellard | Copyright (c) 2011 Fabrice Bellard
+END NESTED

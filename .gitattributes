@@ -1,0 +1,7 @@
+# Files whose sha256 inst/viewer/PROVENANCE.json records, and the templates
+# the notices are rendered from: check them out byte for byte on every
+# platform. Without this, a Windows checkout (core.autocrlf = true) turns LF
+# into CRLF and the re-hash in tests/testthat/test-vendor.R fails.
+inst/viewer/** -text
+inst/viewer-config.schema.json -text
+tools/notices/* -text

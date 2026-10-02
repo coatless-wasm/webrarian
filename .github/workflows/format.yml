@@ -1,0 +1,31 @@
+name: format
+
+# The R code is formatted with air (https://posit-dev.github.io/air/), using
+# the settings in air.toml. Run `air format .` locally to fix a failure here.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer push to the same branch or pull request cancels the older run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  air:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: posit-dev/setup-air@v1
+
+      - name: Check formatting
+        run: air format . --check

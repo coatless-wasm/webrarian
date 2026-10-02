@@ -1,0 +1,130 @@
+url: https://coatless-wasm.github.io/webrarian/
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  light-switch: true
+  bslib:
+    # Sampled from the hex logo: brick red spines, deep umber shelving,
+    # parchment pages.
+    primary: "#B84130"
+    secondary: "#62291F"
+    # Flatly's default link color is teal, which fights the logo. Dark mode
+    # already derives a lighter brick tint from `primary`.
+    link-color: "#A03425"
+
+home:
+  title: webrarian
+  description: Build websites where R runs in the browser, with your packages and files in place
+  links:
+    - text: webR Documentation
+      href: https://docs.r-wasm.org/webr/latest/
+    - text: Report Issues
+      href: https://github.com/coatless-wasm/webrarian/issues
+
+navbar:
+  structure:
+    left: [intro, reference, articles, demo, news]
+    right: [search, github, lightswitch]
+  components:
+    demo:
+      text: Demo
+      href: demo/
+    articles:
+      text: Articles
+      menu:
+        - text: Guides
+        - text: Getting started
+          href: articles/getting-started.html
+        - text: Managing packages
+          href: articles/packages.html
+        - text: Bundling files
+          href: articles/files.html
+        - text: Customization
+          href: articles/customization.html
+        - text: Deployment
+          href: articles/deployment.html
+        - text: Enterprise mirror
+          href: articles/enterprise.html
+        - text: "---"
+        - text: Reference
+        - text: Configuration reference
+          href: articles/config-reference.html
+        - text: Troubleshooting
+          href: articles/troubleshooting.html
+        - text: "---"
+        - text: Background
+        - text: Choosing webrarian
+          href: articles/when-to-use.html
+        - text: The webrarian ecosystem
+          href: articles/ecosystem.html
+
+reference:
+  - title: Collection Management
+    desc: Start, find and copy collections
+    contents:
+      - catalog
+      - is_collection
+      - collection_root
+      - collection_example
+
+  - title: Build & Preview
+    desc: Build the site and preview it locally
+    contents:
+      - bind
+      - reading_room
+      - reading_room_close
+      - clean_shelves
+
+  - title: Packages
+    desc: Add, remove, list and check R packages
+    contents:
+      - acquire_package
+      - withdraw_package
+      - collection_packages
+      - check_inventory
+
+  - title: Files
+    desc: Add, remove and list files
+    contents:
+      - acquire_file
+      - withdraw_file
+      - collection_files
+
+  - title: Settings
+    desc: Read and change collection settings
+    contents:
+      - collection_settings
+      - settings_get
+      - settings_set
+
+  - title: Deployment
+    desc: Deploy to GitHub Pages, Netlify and other static hosts
+    contents:
+      - circulate_via_github
+      - circulate_via_netlify
+
+  - title: Mirrors
+    desc: Self-contained webR sites for air-gapped networks
+    contents:
+      - collection_mirror
+
+  - title: Diagnostics and cache
+    desc: Check a collection and manage webrarian's download cache
+    contents:
+      - diagnose_collection
+      - webr_cache_info
+      - webr_cache_clear
+
+  - title: internal
+    contents:
+      - starts_with("print.")
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with
+
+authors:
+  James Balamuta:
+    href: https://thecoatlessprofessor.com

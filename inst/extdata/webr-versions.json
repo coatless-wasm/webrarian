@@ -1,0 +1,17 @@
+{
+  "verified_with_client": "0.6.0",
+  "versions": [
+    {
+      "version": "0.6.0",
+      "release_date": "2026-05-19",
+      "r_version": "4.6.0",
+      "status": "stable",
+      "default": true,
+      "tarball_sha256": "04c56d16c3ad29265a2c4ffcb800ee0b72ab6dd64dd678c9c8fec81a832cb8cc",
+      "tarball_md5": "9dba33e82e01713dce03193f8333768e"
+    }
+  ],
+  "cdn_base": "https://webr.r-wasm.org",
+  "github_repo": "r-wasm/webr",
+  "release_base": "https://github.com/r-wasm/webr/releases/download"
+}

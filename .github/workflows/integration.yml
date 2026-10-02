@@ -1,0 +1,96 @@
+name: integration
+
+# The suites R CMD check skips (skip_on_cran()): real builds and downloads,
+# the browser, and real Docker. R-CMD-check.yaml keeps the CRAN posture.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A newer push to the same branch or pull request cancels the older run.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests-not-cran:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      NOT_CRAN: "true"
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::devtools, any::jsonvalidate, any::curl, any::httpuv, any::callr
+          needs: check
+      - name: Run everything but the browser and real-Docker suites
+        run: |
+          export R_USER_CACHE_DIR="$RUNNER_TEMP/webrarian-cache"
+          Rscript tools/ci-test.R --exclude 'browser|docker-real'
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      NOT_CRAN: "true"
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::devtools, any::chromote, any::httpuv, any::callr, any::curl, any::jsonvalidate
+          needs: check
+      # setup-chrome installs Chrome for Testing, whose binary chromote does
+      # not find on its own: CHROMOTE_CHROME points at it.
+      - name: Install Chrome
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v2
+      - name: Run the browser and example suites, failing on any skip
+        env:
+          CHROMOTE_CHROME: ${{ steps.setup-chrome.outputs.chrome-path }}
+        run: |
+          export R_USER_CACHE_DIR="$RUNNER_TEMP/webrarian-cache"
+          Rscript tools/ci-test.R --filter 'browser|examples' --no-skips
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      NOT_CRAN: "true"
+      WEBRARIAN_TEST_DOCKER: "true"
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::devtools, any::chromote, any::httpuv, any::curl
+          needs: check
+      - name: Install Chrome
+        id: setup-chrome
+        uses: browser-actions/setup-chrome@v2
+      - name: Pull the webR build image for the default webR version
+        run: |
+          version="$(jq -r '.versions[] | select(.default == true) | .version' inst/extdata/webr-versions.json)"
+          docker pull --platform linux/amd64 "ghcr.io/r-wasm/webr:v${version}"
+      - name: Compile the local-package example with real Docker, failing on any skip
+        env:
+          CHROMOTE_CHROME: ${{ steps.setup-chrome.outputs.chrome-path }}
+        run: |
+          export R_USER_CACHE_DIR="$RUNNER_TEMP/webrarian-cache"
+          Rscript tools/ci-test.R --filter docker-real --no-skips

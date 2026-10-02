@@ -1,0 +1,44 @@
+/* webrarian -- theme-aware figures on the pkgdown site.
+ *
+ * The README uses <picture> with a (prefers-color-scheme: dark) source. That is
+ * the right mechanism on GitHub and for the README CRAN renders: both strip CSS,
+ * so a media query is all we have there.
+ *
+ * But <picture> resolves against the *operating system's* color scheme, while
+ * pkgdown's light switch sets [data-bs-theme] on the document. The two disagree
+ * whenever a reader's OS is dark and the site is toggled light (or the reverse),
+ * and the reader gets a dark figure sitting on a light page.
+ *
+ * Overriding `content` on the <img> wins over whichever <source> the browser
+ * picked, so the site's own theme decides. Paths are relative to this stylesheet,
+ * which pkgdown copies to the site root as extra.css.
+ */
+
+[data-bs-theme="light"] img.wr-hero {
+  content: url("reference/figures/hero-light.svg");
+}
+
+[data-bs-theme="dark"] img.wr-hero {
+  content: url("reference/figures/hero-dark.svg");
+}
+
+/* pkgdown's header logo is man/figures/logo.svg, the light animated hex logo.
+ * Swap in the dark animated one when the site is toggled dark. */
+[data-bs-theme="dark"] img.logo {
+  content: url("reference/figures/webrarian-logo-dark-animated.svg");
+}
+
+/* The hex logo sits in the README's heading, so it shows on the home page.
+ * pkgdown also puts man/figures/logo.* in the header of every other page;
+ * hide it there so articles and reference pages lead with their title. */
+.container:not(.template-home) .page-header > img.logo {
+  display: none;
+}
+
+/* pkgdown drops the README heading's logo only when it is a bare <img> in the
+ * link (h1 > a > img); the README wraps it in <picture> so GitHub can show the
+ * dark variant, so pkgdown keeps it beside its own header logo. Hide the
+ * README copy: the header logo above follows the site's theme toggle. */
+.page-header > h1 > a > picture {
+  display: none;
+}

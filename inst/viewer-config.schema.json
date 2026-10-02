@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "viewer-config",
+  "type": "object",
+  "required": ["schema-version", "engine", "engine-version", "project-name", "panels"],
+  "additionalProperties": false,
+  "properties": {
+    "schema-version": { "const": 1 },
+    "engine": { "enum": ["webr", "pyodide"] },
+    "engine-version": { "type": "string" },
+    "engine-base-url": { "type": "string" },
+    "offline": { "type": "boolean" },
+    "project-name": { "type": "string" },
+    "packages": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "install": { "type": "array", "items": { "type": "string" } },
+        "repos": { "type": "array", "items": { "type": "string" } },
+        "repo-url": { "type": "string" },
+        "library-images": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["name", "vfs-path", "fetch-path"],
+        "properties": {
+          "name": { "type": "string" }, "vfs-path": { "type": "string" },
+          "fetch-path": { "type": "string" }, "is-entry": { "type": "boolean" }
+        }
+      }
+    },
+    "mount-point": { "type": "string" },
+    "panels": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "editor": { "type": "boolean" }, "terminal": { "type": "boolean" },
+        "files": { "type": "boolean" }, "plot": { "type": "boolean" },
+        "environment": { "type": "boolean" }
+      }
+    },
+    "auto-open": { "type": "array", "items": { "type": "string" } },
+    "auto-run": { "type": "array", "items": { "type": "string" } },
+    "startup-script": { "type": ["string", "null"] },
+    "share-links": { "enum": ["open", "fixed", "off"] },
+    "persist-edits": { "type": "boolean" }
+  }
+}

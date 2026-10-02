@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="webrarian-vfs-files" viewBox="0 0 720 300" role="img" aria-labelledby="t d">
+  <title id="t">Each bundled file keeps its path from your collection to the browser</title>
+  <desc id="d">Three places hold the same two files, left to right. In your collection, a project folder, they are analysis.R and data/survey.csv. bind() copies each one into the site, drawn as a host's server, as vfs-files/analysis.R and vfs-files/data/survey.csv. When the page opens it fetches each file into the browser's file system, drawn as a browser window, as /home/web_user/analysis.R and /home/web_user/data/survey.csv, where R starts.</desc>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}</style>
+  <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#B84130"/></marker></defs>
+  <rect x="0.5" y="0.5" width="719" height="299" rx="14" fill="#FBF7EE" stroke="#E6DCC6"/>
+
+  <!-- 1. your collection: a project folder on your computer -->
+  <polygon points="60.6,116 150.6,168 150.6,174 60.6,122" fill="#A9BFD4"/>
+  <polygon points="150.6,168 206.1,136 206.1,142 150.6,174" fill="#8FA9C1"/>
+  <polygon points="116,84 206.1,136 150.6,168 60.6,116" fill="#D5E2EE"/>
+  <polygon points="114.3,55 174.9,90 174.9,134 114.3,99" fill="#E3B654"/>
+  <polygon points="174.9,90 178.4,88 178.4,132 174.9,134" fill="#B8862F"/>
+  <polygon points="117.7,53 178.4,88 174.9,90 114.3,55" fill="#F0D58C"/>
+  <polygon points="113.8,77.2 132.9,88.2 132.9,118.2 113.8,107.2" fill="#FBF8F1" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="132.9,88.2 135.1,87 135.1,117 132.9,118.2" fill="#E4DCCB" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="116,76 135.1,87 132.9,88.2 113.8,77.2" fill="#FFFFFF" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="113.8,77.2 132.9,88.2 132.9,93.2 113.8,82.2" fill="#B84130"/>
+  <line x1="116.4" y1="89.8" x2="130.3" y2="97.8" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="116.4" y1="95.8" x2="125.1" y2="100.8" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="116.4" y1="101.8" x2="130.3" y2="109.8" stroke="#CFC6B2" stroke-width="1.3"/>
+  <polygon points="138.1,91.2 157.1,102.2 157.1,132.2 138.1,121.2" fill="#FBF8F1" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="157.1,102.2 159.3,101 159.3,131 157.1,132.2" fill="#E4DCCB" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="140.2,90 159.3,101 157.1,102.2 138.1,91.2" fill="#FFFFFF" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="138.1,91.2 157.1,102.2 157.1,107.2 138.1,96.2" fill="#4A6B5A"/>
+  <line x1="140.7" y1="103.8" x2="154.5" y2="111.8" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="140.7" y1="109.8" x2="149.3" y2="114.8" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="140.7" y1="115.8" x2="154.5" y2="123.8" stroke="#CFC6B2" stroke-width="1.3"/>
+  <polygon points="95.2,80 155.8,115 155.8,145 95.2,110" fill="#D9A441"/>
+  <polygon points="155.8,115 159.3,113 159.3,143 155.8,145" fill="#B8862F"/>
+  <polygon points="98.7,78 159.3,113 155.8,115 95.2,80" fill="#F0D58C"/>
+  <polygon points="121.2,55 140.2,66 140.2,60 121.2,49" fill="#E3B654"/>
+
+  <!-- 2. the site: a host's server, with the files in vfs-files/ -->
+  <polygon points="309,107 383.4,150 383.4,165 309,122" fill="#6E3A2E"/>
+  <polygon points="383.4,150 428.5,124 428.5,139 383.4,165" fill="#4A1F17"/>
+  <polygon points="354,81 428.5,124 383.4,150 309,107" fill="#8C8373"/>
+  <polygon points="315.9,116 321.1,119 321.1,124 315.9,121" fill="#3A1812"/>
+  <polygon points="323.7,120.5 328.9,123.5 328.9,128.5 323.7,125.5" fill="#3A1812"/>
+  <polygon points="331.5,125 336.7,128 336.7,133 331.5,130" fill="#3A1812"/>
+  <polygon points="339.3,129.5 344.5,132.5 344.5,137.5 339.3,134.5" fill="#3A1812"/>
+  <polygon points="347.1,134 352.3,137 352.3,142 347.1,139" fill="#3A1812"/>
+  <circle cx="371.3" cy="150.5" r="1.8" fill="#E9C46A"/>
+  <polygon points="309,90 383.4,133 383.4,148 309,105" fill="#6E3A2E"/>
+  <polygon points="383.4,133 428.5,107 428.5,122 383.4,148" fill="#4A1F17"/>
+  <polygon points="354,64 428.5,107 383.4,133 309,90" fill="#8C8373"/>
+  <polygon points="315.9,99 321.1,102 321.1,107 315.9,104" fill="#3A1812"/>
+  <polygon points="323.7,103.5 328.9,106.5 328.9,111.5 323.7,108.5" fill="#3A1812"/>
+  <polygon points="331.5,108 336.7,111 336.7,116 331.5,113" fill="#3A1812"/>
+  <polygon points="339.3,112.5 344.5,115.5 344.5,120.5 339.3,117.5" fill="#3A1812"/>
+  <polygon points="347.1,117 352.3,120 352.3,125 347.1,122" fill="#3A1812"/>
+  <circle cx="371.3" cy="133.5" r="1.8" fill="#E9C46A"/>
+  <polygon points="309,73 383.4,116 383.4,131 309,88" fill="#62291F"/>
+  <polygon points="383.4,116 428.5,90 428.5,105 383.4,131" fill="#4A1F17"/>
+  <polygon points="354,47 428.5,90 383.4,116 309,73" fill="#8C8373"/>
+  <polygon points="315.9,82 321.1,85 321.1,90 315.9,87" fill="#3A1812"/>
+  <polygon points="323.7,86.5 328.9,89.5 328.9,94.5 323.7,91.5" fill="#3A1812"/>
+  <polygon points="331.5,91 336.7,94 336.7,99 331.5,96" fill="#3A1812"/>
+  <polygon points="339.3,95.5 344.5,98.5 344.5,103.5 339.3,100.5" fill="#3A1812"/>
+  <polygon points="347.1,100 352.3,103 352.3,108 347.1,105" fill="#3A1812"/>
+  <circle cx="371.3" cy="116.5" r="1.8" fill="#E9C46A"/>
+  <polygon points="350.1,34.2 367.3,44.2 367.3,71.2 350.1,61.2" fill="#FBF8F1" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="367.3,44.2 369.4,42.9 369.4,69.9 367.3,71.2" fill="#E4DCCB" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="352.3,33 369.4,42.9 367.3,44.2 350.1,34.2" fill="#FFFFFF" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="350.1,34.2 367.3,44.2 367.3,48.7 350.1,38.8" fill="#B84130"/>
+  <line x1="352.4" y1="45.5" x2="364.9" y2="52.7" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="352.4" y1="50.9" x2="360.2" y2="55.4" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="352.4" y1="56.3" x2="364.9" y2="63.5" stroke="#CFC6B2" stroke-width="1.3"/>
+  <polygon points="372.6,47.2 389.8,57.2 389.8,84.2 372.6,74.2" fill="#FBF8F1" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="389.8,57.2 391.9,55.9 391.9,82.9 389.8,84.2" fill="#E4DCCB" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="374.8,46 391.9,55.9 389.8,57.2 372.6,47.2" fill="#FFFFFF" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="372.6,47.2 389.8,57.2 389.8,61.7 372.6,51.8" fill="#4A6B5A"/>
+  <line x1="375.0" y1="58.5" x2="387.4" y2="65.7" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="375.0" y1="63.9" x2="382.8" y2="68.4" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="375.0" y1="69.3" x2="387.4" y2="76.5" stroke="#CFC6B2" stroke-width="1.3"/>
+
+  <!-- 3. the browser: a window, with the files inside -->
+  <polygon points="532.6,117 619.2,167 619.2,172 532.6,122" fill="#B2C8B9"/>
+  <polygon points="619.2,167 667.7,139 667.7,144 619.2,172" fill="#97B19F"/>
+  <polygon points="581.1,89 667.7,139 619.2,167 532.6,117" fill="#DCE8E0"/>
+  <polygon points="572.4,38 648.6,82 648.6,144 572.4,100" fill="#FFFFFF" stroke="#97B19F" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="648.6,82 652.1,80 652.1,142 648.6,144" fill="#C9D6CD" stroke="#97B19F" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="575.9,36 652.1,80 648.6,82 572.4,38" fill="#FFFFFF" stroke="#97B19F" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="572.4,38 648.6,82 648.6,92 572.4,48" fill="#B2C8B9"/>
+  <circle cx="577.6" cy="46" r="1.7" fill="#FFFFFF"/>
+  <circle cx="583.7" cy="49.5" r="1.7" fill="#FFFFFF"/>
+  <circle cx="589.7" cy="53" r="1.7" fill="#FFFFFF"/>
+  <polygon points="598.4,55.5 643.4,81.5 643.4,86.5 598.4,60.5" fill="#FFFFFF"/>
+  <polygon points="572,85.2 589.1,95.2 589.1,122.2 572,112.2" fill="#FBF8F1" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="589.1,95.2 591.3,93.9 591.3,120.9 589.1,122.2" fill="#E4DCCB" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="574.1,84 591.3,93.9 589.1,95.2 572,85.2" fill="#FFFFFF" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="572,85.2 589.1,95.2 589.1,99.7 572,89.8" fill="#B84130"/>
+  <line x1="574.3" y1="96.5" x2="586.8" y2="103.7" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="574.3" y1="101.9" x2="582.1" y2="106.4" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="574.3" y1="107.3" x2="586.8" y2="114.5" stroke="#CFC6B2" stroke-width="1.3"/>
+  <polygon points="596.2,99.2 613.4,109.2 613.4,136.2 596.2,126.2" fill="#FBF8F1" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="613.4,109.2 615.5,107.9 615.5,134.9 613.4,136.2" fill="#E4DCCB" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="598.4,98 615.5,107.9 613.4,109.2 596.2,99.2" fill="#FFFFFF" stroke="#CFC6B2" stroke-width="1" stroke-linejoin="round"/>
+  <polygon points="596.2,99.2 613.4,109.2 613.4,113.7 596.2,103.8" fill="#4A6B5A"/>
+  <line x1="598.6" y1="110.5" x2="611.0" y2="117.7" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="598.6" y1="115.9" x2="606.4" y2="120.4" stroke="#CFC6B2" stroke-width="1.3"/>
+  <line x1="598.6" y1="121.3" x2="611.0" y2="128.5" stroke="#CFC6B2" stroke-width="1.3"/>
+
+  <!-- what moves them -->
+  <path d="M220,118 H280" fill="none" stroke="#B84130" stroke-width="1.8" stroke-linecap="round" marker-end="url(#a)"/>
+  <circle cx="220" cy="118" r="2.6" fill="#B84130"/>
+  <text class="s" x="250" y="109" font-size="11.5" fill="#B84130" font-weight="600" text-anchor="middle">bind() copies</text>
+  <path d="M454,118 H514" fill="none" stroke="#B84130" stroke-width="1.8" stroke-linecap="round" marker-end="url(#a)"/>
+  <circle cx="454" cy="118" r="2.6" fill="#B84130"/>
+  <text class="s" x="484" y="109" font-size="11.5" fill="#B84130" font-weight="600" text-anchor="middle">the page fetches</text>
+
+  <!-- names and paths -->
+  <text class="s" x="24" y="208" font-size="14.5" fill="#2A2620" font-weight="700">Your collection</text>
+  <text class="s" x="24" y="227" font-size="12.5" fill="#6E6656">what files.include selects</text>
+  <text class="m" x="24" y="252" font-size="11.5" fill="#3E5C76" textLength="69">analysis.R</text>
+  <text class="m" x="24" y="270" font-size="11.5" fill="#3E5C76" textLength="103.5">data/survey.csv</text>
+  <text class="m" x="258" y="208" font-size="14.5" fill="#2A2620" font-weight="700" textLength="139.2">_site/vfs-files/</text>
+  <text class="s" x="258" y="227" font-size="12.5" fill="#6E6656">each file, at its own path</text>
+  <text class="m" x="258" y="252" font-size="11.5" fill="#62291F" textLength="138">vfs-files/analysis.R</text>
+  <text class="m" x="258" y="270" font-size="11.5" fill="#62291F" textLength="172.5">vfs-files/data/survey.csv</text>
+  <text class="s" x="492" y="208" font-size="14.5" fill="#2A2620" font-weight="700">The browser's file system</text>
+  <text class="s" x="492" y="227" font-size="12.5" fill="#6E6656">where R starts</text>
+  <text class="m" x="492" y="252" font-size="11.5" fill="#4A6B5A" textLength="172.5">/home/web_user/analysis.R</text>
+  <text class="m" x="492" y="270" font-size="11.5" fill="#4A6B5A" textLength="207">/home/web_user/data/survey.csv</text>
+</svg>

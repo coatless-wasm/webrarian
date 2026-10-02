@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="webrarian-mirror" viewBox="0 0 684 372" role="img" aria-labelledby="t d">
+  <title id="t">A mirror answers install.packages() from its own folder</title>
+  <desc id="d">Left, a visitor's console on the mirror runs install.packages for dplyr and then library(dplyr). Right, the mirror folder as a file tree: index.html and the exlibris-r files, the console page; webr/v0.6.0/, the webR engine; repo/bin/emscripten/contrib/4.6/ with the PACKAGES index and the package files, dplyr among them; LICENSES/, mirror-config.json and _headers. An arrow marked one runs from the install line to the index, and an arrow marked two from the index to the dplyr file. Nothing is fetched from outside the folder.</desc>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}</style>
+  <defs><marker id="a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C8503C"/></marker></defs>
+  <rect x="0.5" y="0.5" width="683" height="371" rx="14" fill="#FBF7EE" stroke="#E6DCC6"/>
+
+  <!-- a visitor's console, on the mirror -->
+  <text class="s" x="20" y="38" font-size="15" fill="#2A2620" font-weight="700">A visitor's console</text>
+  <text class="s" x="20" y="57" font-size="12.5" fill="#6E6656">on the mirror, with no internet</text>
+  <rect x="16" y="72" width="284" height="84" rx="8" fill="#FFFFFF" stroke="#DDDDDD" stroke-width="1"/>
+  <path d="M16,80 a8,8 0 0 1 8,-8 H292 a8,8 0 0 1 8,8 V94 H16 Z" fill="#F5F5F5"/>
+  <path d="M16,94 H300" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+  <text class="s" x="28" y="87.5" font-size="10.5" fill="#111111" font-weight="700">Terminal</text>
+  <text class="m" x="82" y="87.5" font-size="10.5" fill="#666666" textLength="63">~/web_user</text>
+  <text class="m" x="30" y="118" font-size="11" fill="#111111" textLength="178.2">&gt; install.packages("dplyr")</text>
+  <text class="m" x="30" y="138" font-size="11" fill="#111111" textLength="105.6">&gt; library(dplyr)</text>
+
+  <!-- the mirror folder -->
+  <rect x="336" y="16" width="332" height="340" rx="12" fill="#FFFFFF" stroke="#E6DCC6" stroke-width="1"/>
+  <text class="s" x="354" y="44" font-size="15" fill="#2A2620" font-weight="700">The mirror folder</text>
+  <text class="s" x="354" y="63" font-size="12" fill="#6E6656">the console, the engine and a package repository</text>
+  <path d="M356,95 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z" fill="#D9A441"/>
+  <text class="m" x="373.4" y="94" font-size="11" fill="#2A2620" textLength="79.2">webr-mirror/</text>
+  <path d="M371,117 v-10 h5 l3,3 v7 z M376,107 v3 h3" fill="none" stroke="#8B8371" stroke-width="1"/>
+  <text class="m" x="387.4" y="115.5" font-size="11" fill="#2A2620" textLength="66">index.html</text>
+  <path d="M371,138.5 v-10 h5 l3,3 v7 z M376,128.5 v3 h3" fill="none" stroke="#8B8371" stroke-width="1"/>
+  <text class="m" x="387.4" y="137" font-size="11" fill="#2A2620" textLength="132">exlibris-r.&lt;hash&gt;.js</text>
+  <path d="M370,159.5 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z" fill="#D9A441"/>
+  <text class="m" x="387.4" y="158.5" font-size="11" fill="#2A2620" textLength="79.2">webr/v0.6.0/</text>
+  <path d="M370,181 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z" fill="#D9A441"/>
+  <text class="m" x="387.4" y="180" font-size="11" fill="#2A2620" textLength="211.2">repo/bin/emscripten/contrib/4.6/</text>
+  <rect x="398.4" y="191.5" width="58.8" height="15.5" rx="3" fill="#DCE6EF"/>
+  <path d="M385,203 v-10 h5 l3,3 v7 z M390,193 v3 h3" fill="none" stroke="#8B8371" stroke-width="1"/>
+  <text class="m" x="401.4" y="201.5" font-size="11" fill="#2A2620" textLength="52.8">PACKAGES</text>
+  <rect x="398.4" y="213" width="131.4" height="15.5" rx="3" fill="#F4D9D2"/>
+  <path d="M385,224.5 v-10 h5 l3,3 v7 z M390,214.5 v3 h3" fill="none" stroke="#8B8371" stroke-width="1"/>
+  <text class="m" x="401.4" y="223" font-size="11" fill="#2A2620" textLength="125.4">dplyr_&lt;version&gt;.tgz</text>
+  <path d="M385,246 v-10 h5 l3,3 v7 z M390,236 v3 h3" fill="none" stroke="#8B8371" stroke-width="1"/>
+  <text class="m" x="401.4" y="244.5" font-size="11" fill="#2A2620" textLength="125.4">rlang_&lt;version&gt;.tgz</text>
+  <text class="m" x="384" y="263" font-size="11" fill="#8B8371">…</text>
+  <path d="M370,288.5 v-9.5 h4.7 l1.7,1.9 h5.9 v7.6 z" fill="#D9A441"/>
+  <text class="m" x="387.4" y="287.5" font-size="11" fill="#2A2620" textLength="59.4">LICENSES/</text>
+  <path d="M371,310.5 v-10 h5 l3,3 v7 z M376,300.5 v3 h3" fill="none" stroke="#8B8371" stroke-width="1"/>
+  <text class="m" x="387.4" y="309" font-size="11" fill="#2A2620" textLength="118.8">mirror-config.json</text>
+  <path d="M371,332 v-10 h5 l3,3 v7 z M376,322 v3 h3" fill="none" stroke="#8B8371" stroke-width="1"/>
+  <text class="m" x="387.4" y="330.5" font-size="11" fill="#2A2620" textLength="52.8">_headers</text>
+  <path d="M360.3,97 V326.8 M360.3,111.8 H367 M360.3,133.3 H367 M360.3,154.8 H367 M360.3,176.3 H367 M360.3,283.8 H367 M360.3,305.3 H367 M360.3,326.8 H367" fill="none" stroke="#C9BB9D" stroke-width="1.1"/>
+  <path d="M374.3,183 V262.3 M374.3,197.8 H381 M374.3,219.3 H381 M374.3,240.8 H381 M374.3,262.3 H381" fill="none" stroke="#C9BB9D" stroke-width="1.1"/>
+
+  <!-- 1: the install line reads the mirror's own index -->
+  <path d="M214.2,114 L311,114 Q318,114 318,121 L318,190.5 Q318,197.5 325,197.5 L379.4,197.5" fill="none" stroke="#C8503C" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#a)"/>
+  <circle cx="318" cy="178" r="9" fill="#B84130"/>
+  <text class="s" x="318" y="181.6" font-size="10" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+
+  <!-- 2: the index names the file next to it -->
+  <path d="M462.2,197.5 L601,197.5 Q608,197.5 608,204.5 L608,212 Q608,219 601,219 L535.8,219" fill="none" stroke="#C8503C" stroke-width="1.5" stroke-linejoin="round" marker-end="url(#a)"/>
+  <circle cx="608" cy="208.2" r="9" fill="#B84130"/>
+  <text class="s" x="608" y="211.8" font-size="10" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+
+  <!-- what the numbers mean -->
+  <circle cx="29" cy="198" r="9" fill="#B84130"/>
+  <text class="s" x="29" y="201.6" font-size="10" fill="#FFFFFF" font-weight="700" text-anchor="middle">1</text>
+  <text class="s" x="46" y="202" font-size="12" fill="#2A2620">install.packages() reads the mirror's index</text>
+  <circle cx="29" cy="226" r="9" fill="#B84130"/>
+  <text class="s" x="29" y="229.6" font-size="10" fill="#FFFFFF" font-weight="700" text-anchor="middle">2</text>
+  <text class="s" x="46" y="230" font-size="12" fill="#2A2620">and installs the package beside it</text>
+  <text class="s" x="20" y="272" font-size="12" fill="#6E6656">Dependencies come from the same folder.</text>
+  <text class="s" x="20" y="289" font-size="12" fill="#6E6656">Nothing is fetched from outside it.</text>
+</svg>
