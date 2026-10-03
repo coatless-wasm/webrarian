@@ -62,6 +62,8 @@ Other contributors:
   \item webR authors (webR JavaScript client bundled in inst/viewer; MIT) [copyright holder]
   \item Meta Platforms, Inc. (React, ReactDOM, scheduler and prop-types bundled in inst/viewer; MIT, (c) Facebook, Inc. and its affiliates) [copyright holder]
   \item Marijn Haverbeke (CodeMirror, Lezer, style-mod, w3c-keyname and find-cluster-break bundled in inst/viewer; MIT) [copyright holder]
+  \item Sebastian McKenzie (Babel runtime helpers bundled in inst/viewer; MIT) [copyright holder]
+  \item uiw (CodeMirror GitHub theme and theme helpers bundled in inst/viewer; MIT) [copyright holder]
   \item The xterm.js authors (xterm.js and addon-fit bundled in inst/viewer; MIT) [copyright holder]
   \item SourceLair Private Company (xterm.js bundled in inst/viewer; MIT) [copyright holder]
   \item Christopher Jeffrey (term.js code in xterm.js bundled in inst/viewer; MIT) [copyright holder]

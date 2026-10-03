@@ -1,20 +1,20 @@
 {
-  "exlibrisCommit": "0a57953010c900f50ec6eb27009c2019b026a157",
-  "exlibrisRef": "v0.1.0",
-  "exlibrisVersion": "0.1.0",
+  "exlibrisCommit": "c461ca94a70671f31d45f9f34c0b2d06bd741474",
+  "exlibrisRef": "v0.1.1",
+  "exlibrisVersion": "0.1.1",
   "exlibrisDirty": false,
   "webrClientVersion": "0.6.0",
-  "vendoredAt": "2026-09-29T02:39:11Z",
+  "vendoredAt": "2026-10-03T21:23:04Z",
   "files": {
-    "exlibris-r.js": "0bd4abebc166c509f5ba603009af332cdffe268be03ce339ae3336bad7a6ac5d",
-    "exlibris-r.css": "cf312925193dbe1321af34bf2c50cc659f0975baa80b6e8519fb2996826b1039",
+    "exlibris-r.js": "a975b55bcd1fe46a3ee100ef348034df06475bc8a673fd12834d39bf60213c30",
+    "exlibris-r.css": "1d421bca83e7fdd8ecbb45fe5a253bb5c2707c53481721fc1c454ac024179916",
     "EXCEPTION.md": "3bf6dbe216f3351b2faa0c6a6f2c1c41d25aba5a4fb2a20c86e0d9021b78bf3c",
-    "THIRD-PARTY.md": "33216cd95fce3d33fe59b3700cfb3663dfc9125538026b8488f53df016a9e840",
-    "LICENSE.webR.md": "e8f934550639dc66bdcaf3607e8639419afd8d8f1980fa2ee0a683e9ce1cd373",
+    "THIRD-PARTY.md": "c3d79318e8c6d4d1522d3348a0107352461c9514c80df8980e6fd741b11d1c2e",
+    "LICENSE.webR.md": "5172305e7e12f3c5044f36eacf95ccf71da4067ccf695384572580916836a702",
     "../viewer-config.schema.json": "83ea4c53eb027078f019157cba8d6053f921fcefd1c2912be09a2a22e39ceff3"
   },
   "sources": {
-    "THIRD-PARTY-r.md": "3701bf0b0d4c3e73455b94aa2c9c197ec3cc7095f2afe6ad79a37c2937f1367f",
+    "THIRD-PARTY-r.md": "77c6800bc6068ad0b62d3e85262e1d5f63c26a639355d708c68fc828c196f783",
     "EXCEPTION.md": "3bf6dbe216f3351b2faa0c6a6f2c1c41d25aba5a4fb2a20c86e0d9021b78bf3c"
   }
 }

@@ -13,17 +13,19 @@ are in inst/viewer/THIRD-PARTY.md. Each line is: package | holders credited
 with the "cph" role in DESCRIPTION | the notice as the package states it.
 
 BEGIN BUNDLED
+@babel/runtime | Sebastian McKenzie | Copyright (C) 2014-present Sebastian McKenzie and other contributors
 @codemirror/autocomplete | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
 @codemirror/commands | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
 @codemirror/language | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
 @codemirror/state | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
-@codemirror/theme-one-dark | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
 @codemirror/view | Marijn Haverbeke | Copyright (C) 2018-2021 Marijn Haverbeke and others
 @lezer/common | Marijn Haverbeke | Copyright (C) 2018 Marijn Haverbeke and others
 @lezer/highlight | Marijn Haverbeke | Copyright (C) 2018 Marijn Haverbeke and others
 @lezer/lr | Marijn Haverbeke | Copyright (C) 2018 Marijn Haverbeke and others
 @marijn/find-cluster-break | Marijn Haverbeke | Copyright (C) 2024 Marijn Haverbeke
 @msgpack/msgpack | The MessagePack Community | Copyright (C) 2019 The MessagePack Community
+@uiw/codemirror-theme-github | uiw | Copyright (C) 2021 uiw
+@uiw/codemirror-themes | uiw | Copyright (C) 2021 uiw
 @xterm/addon-fit | The xterm.js authors | Copyright (C) 2019 The xterm.js authors
 @xterm/xterm | The xterm.js authors; SourceLair Private Company; Christopher Jeffrey | Copyright (C) 2017-2019 The xterm.js authors; (C) 2014-2016 SourceLair Private Company; (C) 2012-2013 Christopher Jeffrey
 ansi-regex | Sindre Sorhus | Copyright (C) Sindre Sorhus

@@ -2,13 +2,13 @@
 
 `inst/viewer/exlibris-r.js` and `inst/viewer/exlibris-r.css` (named
 `exlibris-r.<hash>.js` and `exlibris-r.<hash>.css` in a generated site) are the
-prebuilt, minified build of the exlibris runtime at v0.1.0, commit
-`0a57953010c900f50ec6eb27009c2019b026a157` (exlibris 0.1.0), vendored by
+prebuilt, minified build of the exlibris runtime at v0.1.1, commit
+`c461ca94a70671f31d45f9f34c0b2d06bd741474` (exlibris 0.1.1), vendored by
 `tools/vendor-exlibris.sh`. Their source is
-<https://github.com/coatless-wasm/exlibris/tree/0a57953010c900f50ec6eb27009c2019b026a157>.
+<https://github.com/coatless-wasm/exlibris/tree/c461ca94a70671f31d45f9f34c0b2d06bd741474>.
 
-    exlibris-r.js   sha256 0bd4abebc166c509f5ba603009af332cdffe268be03ce339ae3336bad7a6ac5d
-    exlibris-r.css  sha256 cf312925193dbe1321af34bf2c50cc659f0975baa80b6e8519fb2996826b1039
+    exlibris-r.js   sha256 a975b55bcd1fe46a3ee100ef348034df06475bc8a673fd12834d39bf60213c30
+    exlibris-r.css  sha256 1d421bca83e7fdd8ecbb45fe5a253bb5c2707c53481721fc1c454ac024179916
 
 These are the digests `inst/viewer/PROVENANCE.json` records for that commit.
 exlibris is licensed AGPL-3.0-only with the exlibris runtime exception
@@ -18,7 +18,7 @@ the code nested inside bundled packages, which the metafile cannot see.
 
 # Third-party notices: exlibris-r
 
-`exlibris-r.js` and `exlibris-r.css` are built from exlibris 0.1.0, which is licensed under
+`exlibris-r.js` and `exlibris-r.css` are built from exlibris 0.1.1, which is licensed under
 AGPL-3.0-only with the exlibris runtime exception (see `LICENSE` and `EXCEPTION.md`).
 They also contain code from the npm packages below. `npm run build` generates this file from
 esbuild's metafile: every package that contributes bytes to either file is listed, followed by
@@ -26,36 +26,38 @@ the license files that package ships.
 
 | Package | Version | License | Bytes |
 |---|---|---|---|
+| `@babel/runtime` | 7.29.7 | MIT | 219 |
 | `@codemirror/autocomplete` | 6.20.3 | MIT | 26,950 |
 | `@codemirror/commands` | 6.10.4 | MIT | 21,595 |
-| `@codemirror/language` | 6.12.4 | MIT | 17,548 |
+| `@codemirror/language` | 6.12.4 | MIT | 17,513 |
 | `@codemirror/state` | 6.7.1 | MIT | 46,721 |
-| `@codemirror/theme-one-dark` | 6.1.3 | MIT | 2,448 |
 | `@codemirror/view` | 6.43.6 | MIT | 167,487 |
 | `@lezer/common` | 1.5.2 | MIT | 20,353 |
-| `@lezer/highlight` | 1.2.4 | MIT | 7,204 |
+| `@lezer/highlight` | 1.2.4 | MIT | 7,164 |
 | `@lezer/lr` | 1.4.10 | MIT | 26,247 |
 | `@marijn/find-cluster-break` | 1.0.3 | MIT | 2,328 |
 | `@msgpack/msgpack` | 3.1.3 | ISC | 21,293 |
+| `@uiw/codemirror-theme-github` | 4.25.12 | MIT | 2,202 |
+| `@uiw/codemirror-themes` | 4.25.12 | MIT | 1,262 |
 | `@xterm/addon-fit` | 0.10.0 | MIT | 1,442 |
-| `@xterm/xterm` | 5.5.0 | MIT | 290,944 |
+| `@xterm/xterm` | 5.5.0 | MIT | 291,014 |
 | `ansi-regex` | 5.0.1 | MIT | 309 |
 | `classnames` | 2.5.1 | MIT | 714 |
 | `clsx` | 2.1.1 | MIT | 372 |
 | `codemirror-lang-r` | 0.1.1 | MIT | 261 |
-| `dompurify` | 3.4.16 | (MPL-2.0 OR Apache-2.0) | 30,472 |
+| `dompurify` | 3.4.16 | (MPL-2.0 OR Apache-2.0) | 30,474 |
 | `emoji-regex` | 8.0.0 | MIT | 10,264 |
 | `is-fullwidth-code-point` | 3.0.0 | MIT | 416 |
-| `jszip` | 3.10.1 | (MIT OR GPL-3.0-or-later) | 97,650 |
-| `lezer-r` | 0.1.3 | MIT | 12,301 |
+| `jszip` | 3.10.1 | (MIT OR GPL-3.0-or-later) | 97,672 |
+| `lezer-r` | 0.1.3 | MIT | 12,279 |
 | `pako` | 2.2.0 | (MIT AND Zlib) | 47,533 |
 | `prop-types` | 15.8.1 | MIT | 826 |
 | `react` | 18.3.1 | MIT | 7,321 |
-| `react-accessible-treeview` | 2.11.2 | MIT | 29,449 |
-| `react-data-grid` | 7.0.0-beta.44 | MIT | 42,422 |
+| `react-accessible-treeview` | 2.11.2 | MIT | 29,466 |
+| `react-data-grid` | 7.0.0-beta.44 | MIT | 42,439 |
 | `react-dom` | 18.3.1 | MIT | 130,581 |
 | `react-icons` | 4.12.0 | MIT | 10,414 |
-| `react-resizable-panels` | 2.1.9 | MIT | 26,561 |
+| `react-resizable-panels` | 2.1.9 | MIT | 26,587 |
 | `scheduler` | 0.23.2 | MIT | 4,044 |
 | `string-width` | 4.2.3 | MIT | 334 |
 | `strip-ansi` | 6.0.1 | MIT | 101 |
@@ -64,10 +66,12 @@ the license files that package ships.
 | `webr` | 0.6.0 | SEE LICENSE IN LICENCE.md | 64,172 |
 | `xterm-readline` | 1.2.2 | MIT | 17,268 |
 
-Total: 37 packages, 1,190,063 bytes.
+Total: 39 packages, 1,191,355 bytes.
 
 ## Notes
 
+- **`@uiw/codemirror-theme-github`**: Its npm package ships no license file. The text below is the `LICENSE` of its repository, https://github.com/uiwjs/react-codemirror, kept in exlibris as `tools/licenses/uiw-react-codemirror.txt`.
+- **`@uiw/codemirror-themes`**: Its npm package ships no license file. The text below is the `LICENSE` of its repository, https://github.com/uiwjs/react-codemirror, kept in exlibris as `tools/licenses/uiw-react-codemirror.txt`.
 - **`dompurify`**: Dual-licensed `MPL-2.0 OR Apache-2.0`; exlibris uses it under Apache-2.0.
 - **`jszip`**: Dual-licensed `MIT OR GPL-3.0-or-later`; exlibris uses it under MIT.
 - **`pako`**: `MIT AND Zlib`: MIT covers pako's own code and the zlib license the parts ported from zlib; both apply.
@@ -75,6 +79,33 @@ Total: 37 packages, 1,190,063 bytes.
 - **`webr`**: Its package.json says `SEE LICENSE IN LICENCE.md`, but the file it ships is `LICENSE.md`, which puts the webR JavaScript client, the only part of webR in these bundles, under the MIT license; its GPL-3 text covers the webR WebAssembly distribution (R itself), which the bundles do not contain.
 
 ## License texts
+
+### `@babel/runtime` 7.29.7: `LICENSE`
+
+````text
+MIT License
+
+Copyright (c) 2014-present Sebastian McKenzie and other contributors
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+````
 
 ### `@codemirror/autocomplete` 6.20.3: `LICENSE`
 
@@ -155,32 +186,6 @@ THE SOFTWARE.
 ````
 
 ### `@codemirror/state` 6.7.1: `LICENSE`
-
-````text
-MIT License
-
-Copyright (C) 2018-2021 by Marijn Haverbeke <marijn@haverbeke.berlin> and others
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-````
-
-### `@codemirror/theme-one-dark` 6.1.3: `LICENSE`
 
 ````text
 MIT License
@@ -344,6 +349,58 @@ Copyright 2019 The MessagePack Community.
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 
 THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+````
+
+### `@uiw/codemirror-theme-github` 4.25.12: `LICENSE`
+
+````text
+MIT License
+
+Copyright (c) 2021 uiw
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+````
+
+### `@uiw/codemirror-themes` 4.25.12: `LICENSE`
+
+````text
+MIT License
+
+Copyright (c) 2021 uiw
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ````
 
 ### `@xterm/addon-fit` 0.10.0: `LICENSE`
