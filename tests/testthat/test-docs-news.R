@@ -12,7 +12,8 @@ test_that("NEWS.md opens with the version in DESCRIPTION, once", {
   news <- news_text()
   version <- read.dcf(repo_path("DESCRIPTION"), fields = "Version")[1, 1]
   expect_identical(news[[1]], paste("# webrarian", version))
-  expect_identical(sum(startsWith(news, "# webrarian ")), 1L)
+  headings <- news[startsWith(news, "# webrarian ")]
+  expect_identical(anyDuplicated(headings), 0L)
 })
 
 test_that("NEWS.md names the main functions and settings, and none of the removed ones", {

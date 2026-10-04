@@ -1,3 +1,12 @@
+# webrarian 0.1.1
+
+* **Editor**: with nothing selected, Run and Ctrl+Enter (Command+Enter on a
+  Mac) run the whole statement the cursor is in, from any of its lines, then
+  move the cursor to the next statement. They ran only the cursor's line
+  before, so a call split over several lines had to be selected first (#1).
+* **Editor**: code is colored with GitHub's syntax styles, light or dark with
+  the visitor's color scheme.
+
 # webrarian 0.1.0
 
 First public release. webrarian builds static websites where R runs in the

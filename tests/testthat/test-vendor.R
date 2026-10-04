@@ -294,7 +294,7 @@ test_that("the vendored third-party notices carry exlibris's nested-code section
 
 # --- the release pin ---
 #
-# webrarian 0.1.0 ships exlibris 0.1.2, pinned by its tag, so anyone can rebuild
+# webrarian 0.1.1 ships exlibris 0.1.2, pinned by its tag, so anyone can rebuild
 # the minified bundle from the public repository.
 
 test_that("the vendored viewer is exlibris 0.1.2 at its release tag", {
