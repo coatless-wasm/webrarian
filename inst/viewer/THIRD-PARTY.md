@@ -2,13 +2,13 @@
 
 `inst/viewer/exlibris-r.js` and `inst/viewer/exlibris-r.css` (named
 `exlibris-r.<hash>.js` and `exlibris-r.<hash>.css` in a generated site) are the
-prebuilt, minified build of the exlibris runtime at v0.1.1, commit
-`c461ca94a70671f31d45f9f34c0b2d06bd741474` (exlibris 0.1.1), vendored by
+prebuilt, minified build of the exlibris runtime at v0.1.2, commit
+`e4824c8cc923ef82e7ada0292952abbbecbd2367` (exlibris 0.1.2), vendored by
 `tools/vendor-exlibris.sh`. Their source is
-<https://github.com/coatless-wasm/exlibris/tree/c461ca94a70671f31d45f9f34c0b2d06bd741474>.
+<https://github.com/coatless-wasm/exlibris/tree/e4824c8cc923ef82e7ada0292952abbbecbd2367>.
 
-    exlibris-r.js   sha256 a975b55bcd1fe46a3ee100ef348034df06475bc8a673fd12834d39bf60213c30
-    exlibris-r.css  sha256 1d421bca83e7fdd8ecbb45fe5a253bb5c2707c53481721fc1c454ac024179916
+    exlibris-r.js   sha256 54515661e6b9f722e5b02ffe5bbc0e28d048b4279fb9b20f3b3da0a13e571167
+    exlibris-r.css  sha256 f6f286555dd1a89ddec173aa88b06634111ccbb561d24cff3169692583b29f93
 
 These are the digests `inst/viewer/PROVENANCE.json` records for that commit.
 exlibris is licensed AGPL-3.0-only with the exlibris runtime exception
@@ -18,7 +18,7 @@ the code nested inside bundled packages, which the metafile cannot see.
 
 # Third-party notices: exlibris-r
 
-`exlibris-r.js` and `exlibris-r.css` are built from exlibris 0.1.1, which is licensed under
+`exlibris-r.js` and `exlibris-r.css` are built from exlibris 0.1.2, which is licensed under
 AGPL-3.0-only with the exlibris runtime exception (see `LICENSE` and `EXCEPTION.md`).
 They also contain code from the npm packages below. `npm run build` generates this file from
 esbuild's metafile: every package that contributes bytes to either file is listed, followed by
@@ -29,7 +29,7 @@ the license files that package ships.
 | `@babel/runtime` | 7.29.7 | MIT | 219 |
 | `@codemirror/autocomplete` | 6.20.3 | MIT | 26,950 |
 | `@codemirror/commands` | 6.10.4 | MIT | 21,595 |
-| `@codemirror/language` | 6.12.4 | MIT | 17,513 |
+| `@codemirror/language` | 6.12.4 | MIT | 17,747 |
 | `@codemirror/state` | 6.7.1 | MIT | 46,721 |
 | `@codemirror/view` | 6.43.6 | MIT | 167,487 |
 | `@lezer/common` | 1.5.2 | MIT | 20,353 |
@@ -66,7 +66,7 @@ the license files that package ships.
 | `webr` | 0.6.0 | SEE LICENSE IN LICENCE.md | 64,172 |
 | `xterm-readline` | 1.2.2 | MIT | 17,268 |
 
-Total: 39 packages, 1,191,355 bytes.
+Total: 39 packages, 1,191,589 bytes.
 
 ## Notes
 

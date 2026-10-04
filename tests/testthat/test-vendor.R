@@ -294,17 +294,17 @@ test_that("the vendored third-party notices carry exlibris's nested-code section
 
 # --- the release pin ---
 #
-# webrarian 0.1.0 ships exlibris 0.1.1, pinned by its tag, so anyone can rebuild
+# webrarian 0.1.0 ships exlibris 0.1.2, pinned by its tag, so anyone can rebuild
 # the minified bundle from the public repository.
 
-test_that("the vendored viewer is exlibris 0.1.1 at its release tag", {
+test_that("the vendored viewer is exlibris 0.1.2 at its release tag", {
   prov <- jsonlite::fromJSON(provenance_path(), simplifyVector = TRUE)
-  expect_identical(prov$exlibrisRef, "v0.1.1")
-  expect_identical(prov$exlibrisVersion, "0.1.1")
+  expect_identical(prov$exlibrisRef, "v0.1.2")
+  expect_identical(prov$exlibrisVersion, "0.1.2")
   expect_false(prov$exlibrisDirty)
   expect_match(prov$exlibrisCommit, "^[0-9a-f]{40}$")
   js <- system.file("viewer", "exlibris-r.js", package = "webrarian")
-  expect_match(readChar(js, 200L, useBytes = TRUE), "exlibris 0.1.1", fixed = TRUE)
+  expect_match(readChar(js, 200L, useBytes = TRUE), "exlibris 0.1.2", fixed = TRUE)
 })
 
 # exlibris's generator appends the notices esbuild's metafile cannot see: the
