@@ -38,17 +38,17 @@
   <rect x="0" y="41.5" width="15" height="80.5" fill="#F5F5F5"/>
   <path d="M15,41 V122" fill="none" stroke="#DDDDDD" stroke-width="1"/>
   <text class="m" x="11" y="54" font-size="7" fill="#666666" text-anchor="end">1</text>
-  <text class="m" x="18" y="54" font-size="8" fill="#111111" textLength="67.2">library(dplyr)</text>
+  <text class="m" y="54" font-size="8" xml:space="preserve"><tspan x="18" textLength="33.6" fill="#116329">library</tspan><tspan x="51.6" textLength="33.6" fill="#111111">(dplyr)</tspan></text>
   <text class="m" x="11" y="64.5" font-size="7" fill="#666666" text-anchor="end">2</text>
-  <text class="m" x="18" y="64.5" font-size="8" fill="#111111" textLength="76.8">library(ggplot2)</text>
+  <text class="m" y="64.5" font-size="8" xml:space="preserve"><tspan x="18" textLength="33.6" fill="#116329">library</tspan><tspan x="51.6" textLength="43.2" fill="#111111">(ggplot2)</tspan></text>
   <text class="m" x="11" y="75" font-size="7" fill="#666666" text-anchor="end">3</text>
-  <text class="m" x="18" y="75" font-size="8" fill="#111111" textLength="168">sales &lt;- read.csv("data/sales.csv")</text>
+  <text class="m" y="75" font-size="8" xml:space="preserve"><tspan x="18" textLength="28.8" fill="#111111">sales </tspan><tspan x="46.8" textLength="9.6" fill="#005CC5">&lt;-</tspan><tspan x="56.4" fill="#111111"> </tspan><tspan x="61.2" textLength="38.4" fill="#116329">read.csv</tspan><tspan x="99.6" fill="#111111">(</tspan><tspan x="104.4" textLength="76.8" fill="#032F62">"data/sales.csv"</tspan><tspan x="181.2" fill="#111111">)</tspan></text>
   <text class="m" x="11" y="85.5" font-size="7" fill="#666666" text-anchor="end">4</text>
-  <text class="m" x="18" y="85.5" font-size="8" fill="#111111" textLength="120">sales |&gt; count(region) |&gt;</text>
+  <text class="m" y="85.5" font-size="8" xml:space="preserve"><tspan x="18" textLength="43.2" fill="#111111">sales |&gt; </tspan><tspan x="61.2" textLength="24" fill="#116329">count</tspan><tspan x="85.2" textLength="52.8" fill="#111111">(region) |&gt;</tspan></text>
   <text class="m" x="11" y="96" font-size="7" fill="#666666" text-anchor="end">5</text>
-  <text class="m" x="18" y="96" font-size="8" fill="#111111" textLength="124.8" xml:space="preserve">  ggplot(aes(n, region)) +</text>
+  <text class="m" y="96" font-size="8" xml:space="preserve"><tspan x="18" textLength="9.6" fill="#111111">  </tspan><tspan x="27.6" textLength="28.8" fill="#116329">ggplot</tspan><tspan x="56.4" fill="#111111">(</tspan><tspan x="61.2" textLength="14.4" fill="#116329">aes</tspan><tspan x="75.6" textLength="62.4" fill="#111111">(n, region)) </tspan><tspan x="138" fill="#005CC5">+</tspan></text>
   <text class="m" x="11" y="106.5" font-size="7" fill="#666666" text-anchor="end">6</text>
-  <text class="m" x="18" y="106.5" font-size="8" fill="#111111" textLength="134.4" xml:space="preserve">  geom_col(fill = "#B84130")</text>
+  <text class="m" y="106.5" font-size="8" xml:space="preserve"><tspan x="18" textLength="9.6" fill="#111111">  </tspan><tspan x="27.6" textLength="38.4" fill="#116329">geom_col</tspan><tspan x="66" fill="#111111">(</tspan><tspan x="70.8" textLength="28.8" fill="#116329">fill =</tspan><tspan x="99.6" fill="#111111"> </tspan><tspan x="104.4" textLength="43.2" fill="#032F62">"#B84130"</tspan><tspan x="147.6" fill="#111111">)</tspan></text>
   <path d="M0,122 H314" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
   <rect x="0" y="122.6" width="314" height="15" fill="#F5F5F5"/>
   <text class="s" x="7" y="133" font-size="7.5" fill="#111111" font-weight="700">Terminal</text>
@@ -89,6 +89,8 @@
   <text class="s" x="360.1" y="92" font-size="7.5" fill="#111111">sales.csv</text>
   <path d="M336,104.8 v-7.4 h3.7 l2.2,2.2 v5.1 z M339.7,97.5 v2.2 h2.2" fill="none" stroke="#666666" stroke-width="0.9"/>
   <text class="s" x="349.1" y="103.5" font-size="7.5" fill="#111111">analysis.R</text>
+  <path d="M327.1,72 V101 M327.1,78 H332 M327.1,101 H332" fill="none" stroke="#B0B0B0" stroke-width="0.9"/>
+  <path d="M338.1,83.5 V89.5 M338.1,89.5 H343" fill="none" stroke="#B0B0B0" stroke-width="0.9"/>
   <path d="M314,122 H505.9" fill="none" stroke="#DDDDDD" stroke-width="1.2"/>
   <rect x="314.6" y="122.6" width="191.3" height="15" fill="#F5F5F5"/>
   <text class="s" x="333.6" y="133.1" font-size="7" fill="#666666" text-anchor="middle">Output</text>

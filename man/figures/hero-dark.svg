@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 350" role="img" aria-labelledby="t d">
   <title id="t">Bundle an R project into a static site that runs R in the browser</title>
   <desc id="d">You write a folder with R files, data and a list of packages. bind() builds it into _site/, one static folder with the page, the workspace, the webR engine, the packages and your files. Readers open it from any static host and get a live R workspace in their browser, with an editor, a console, your files and plots, and nothing to install.</desc>
-  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}.card{fill:#23211D}.ink{fill:#E8E3D8}.muted{fill:#9A9382}.faint{fill:#7E7768}.code{fill:#2E2B25}.key{fill:#E3A08F}.str{fill:#8FBFA3}.com{fill:#9A9382}.accent{fill:#E0735D}.p3{fill:#F3ECDC}.p3ink{fill:#2A2620}.p3muted{fill:#6E6656}.folder{fill:#D9A441}.win{fill:#FFFFFF}.tool{fill:#E4DAC5}.addr{fill:#FFFFFF}.hdr{fill:#F5F5F5}.tabon{fill:#FFFFFF}.tabline{fill:#0066CC}.wink{fill:#111111}.wmut{fill:#666666}.wfolder{fill:#E8A87C}.bar{fill:#B84130}.dot{fill:#C8BA9C}.gpanel{fill:#EBEBEB}.edge-s{stroke:#3A362F;fill:none}.rail-s{stroke:#5A544A;fill:none}.file-s{stroke:#9A9382;fill:none}.onaccent-s{stroke:#17150F;fill:none}.winedge-s{stroke:#CFC4AE;fill:none}.addredge-s{stroke:#D8CEB8;fill:none}.wline-s{stroke:#DDDDDD;fill:none}.btn-s{stroke:#DDDDDD;fill:none}.wfile-s{stroke:#666666;fill:none}.wglyph-s{stroke:#111111;fill:none}.ggrid-s{stroke:#FFFFFF;fill:none}.gtick-s{stroke:#333333;fill:none}</style>
+  <style>.s{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}.card{fill:#23211D}.ink{fill:#E8E3D8}.muted{fill:#9A9382}.faint{fill:#7E7768}.code{fill:#2E2B25}.key{fill:#E3A08F}.str{fill:#8FBFA3}.com{fill:#9A9382}.accent{fill:#E0735D}.p3{fill:#F3ECDC}.p3ink{fill:#2A2620}.p3muted{fill:#6E6656}.folder{fill:#D9A441}.win{fill:#FFFFFF}.tool{fill:#E4DAC5}.addr{fill:#FFFFFF}.hdr{fill:#F5F5F5}.tabon{fill:#FFFFFF}.tabline{fill:#0066CC}.wink{fill:#111111}.wmut{fill:#666666}.wfolder{fill:#E8A87C}.bar{fill:#B84130}.dot{fill:#C8BA9C}.gpanel{fill:#EBEBEB}.tfn{fill:#116329}.topr{fill:#005CC5}.tstr{fill:#032F62}.edge-s{stroke:#3A362F;fill:none}.rail-s{stroke:#5A544A;fill:none}.file-s{stroke:#9A9382;fill:none}.onaccent-s{stroke:#17150F;fill:none}.winedge-s{stroke:#CFC4AE;fill:none}.addredge-s{stroke:#D8CEB8;fill:none}.wline-s{stroke:#DDDDDD;fill:none}.btn-s{stroke:#DDDDDD;fill:none}.wfile-s{stroke:#666666;fill:none}.wglyph-s{stroke:#111111;fill:none}.ggrid-s{stroke:#FFFFFF;fill:none}.gtick-s{stroke:#333333;fill:none}.wrail-s{stroke:#B0B0B0;fill:none}</style>
 
   <!-- 1. the folder you write -->
   <rect class="card" x="16" y="16" width="200" height="318" rx="14"/>
@@ -111,17 +111,17 @@
   <rect class="hdr" x="564" y="125.5" width="15" height="70.5"/>
   <path class="wline-s" d="M579,125 V196" stroke-width="1"/>
   <text class="m wmut" x="575" y="138" font-size="7" text-anchor="end">1</text>
-  <text class="m wink" x="582" y="138" font-size="8">library(dplyr)</text>
+  <text class="m" x="582" y="138" font-size="8" xml:space="preserve"><tspan class="tfn">library</tspan><tspan class="wink">(dplyr)</tspan></text>
   <text class="m wmut" x="575" y="148.5" font-size="7" text-anchor="end">2</text>
-  <text class="m wink" x="582" y="148.5" font-size="8">library(ggplot2)</text>
+  <text class="m" x="582" y="148.5" font-size="8" xml:space="preserve"><tspan class="tfn">library</tspan><tspan class="wink">(ggplot2)</tspan></text>
   <text class="m wmut" x="575" y="159" font-size="7" text-anchor="end">3</text>
-  <text class="m wink" x="582" y="159" font-size="8">sales &lt;- read.csv("data/sales.csv")</text>
+  <text class="m" x="582" y="159" font-size="8" xml:space="preserve"><tspan class="wink">sales </tspan><tspan class="topr">&lt;-</tspan><tspan class="wink"> </tspan><tspan class="tfn">read.csv</tspan><tspan class="wink">(</tspan><tspan class="tstr">"data/sales.csv"</tspan><tspan class="wink">)</tspan></text>
   <text class="m wmut" x="575" y="169.5" font-size="7" text-anchor="end">4</text>
-  <text class="m wink" x="582" y="169.5" font-size="8">sales |&gt; count(region) |&gt;</text>
+  <text class="m" x="582" y="169.5" font-size="8" xml:space="preserve"><tspan class="wink">sales |&gt; </tspan><tspan class="tfn">count</tspan><tspan class="wink">(region) |&gt;</tspan></text>
   <text class="m wmut" x="575" y="180" font-size="7" text-anchor="end">5</text>
-  <text class="m wink" x="582" y="180" font-size="8" xml:space="preserve">  ggplot(aes(n, region)) +</text>
+  <text class="m" x="582" y="180" font-size="8" xml:space="preserve"><tspan class="wink">  </tspan><tspan class="tfn">ggplot</tspan><tspan class="wink">(</tspan><tspan class="tfn">aes</tspan><tspan class="wink">(n, region)) </tspan><tspan class="topr">+</tspan></text>
   <text class="m wmut" x="575" y="190.5" font-size="7" text-anchor="end">6</text>
-  <text class="m wink" x="582" y="190.5" font-size="8" xml:space="preserve">  geom_col(fill = "#B84130")</text>
+  <text class="m" x="582" y="190.5" font-size="8" xml:space="preserve"><tspan class="wink">  </tspan><tspan class="tfn">geom_col</tspan><tspan class="wink">(</tspan><tspan class="tfn">fill =</tspan><tspan class="wink"> </tspan><tspan class="tstr">"#B84130"</tspan><tspan class="wink">)</tspan></text>
 
   <!-- console: Terminal, ~/web_user, Restart R -->
   <path class="wline-s" d="M564,196 H768" stroke-width="1.2"/>
@@ -155,6 +155,8 @@
   <text class="s wink" x="814.1" y="161" font-size="7.5">sales.csv</text>
   <path class="wfile-s" d="M790,173.8 v-7.4 h3.7 l2.2,2.2 v5.1 z M793.7,166.4 v2.2 h2.2" stroke-width="0.9"/>
   <text class="s wink" x="803.1" y="172.5" font-size="7.5">analysis.R</text>
+  <path class="wrail-s" d="M781.1,140.9 V169.9 M781.1,146.9 H786 M781.1,169.9 H786" stroke-width="0.9"/>
+  <path class="wrail-s" d="M792.1,152.4 V158.4 M792.1,158.4 H797" stroke-width="0.9"/>
 
   <!-- Output, Plots, Help -->
   <path class="wline-s" d="M768,180.4 H928" stroke-width="1.2"/>
