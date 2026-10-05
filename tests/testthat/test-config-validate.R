@@ -48,6 +48,7 @@ test_that("a key from before 0.1.0 gets the ordinary unknown-key warning", {
 test_that("a value of the wrong type is an error naming the key and the type", {
   expect_error(collection_settings(write_config(c("webr:", "  version: 0.6"))), "quoted version")
   expect_error(collection_settings(write_config(c("repl:", "  share-links: yes"))), "one of")
+  expect_error(collection_settings(write_config(c("ui:", "  theme: purple"))), "one of")
   # The same two values as pyodidarian's enum.
   expect_error(
     collection_settings(write_config(c("ui:", "  meta:", "    twitter-card: large"))),
@@ -186,4 +187,14 @@ test_that("repl.persist-edits is a flag that defaults to TRUE", {
     collection_settings(write_config(c("repl:", "  persist-edits: sometimes"))),
     "persist-edits"
   )
+})
+
+test_that("ui.theme is auto unless the collection says light or dark", {
+  expect_identical(collection_settings(write_config("project:\n  name: demo"))$ui$theme, "auto")
+  for (scheme in c("auto", "light", "dark")) {
+    expect_identical(
+      collection_settings(write_config(c("ui:", paste0("  theme: ", scheme))))$ui$theme,
+      scheme
+    )
+  }
 })

@@ -1,6 +1,6 @@
 # The webR JavaScript client in the viewer bundle
 
-`inst/viewer/exlibris-r.js` (exlibris v0.1.2, commit `e4824c8cc923ef82e7ada0292952abbbecbd2367`)
+`inst/viewer/exlibris-r.js` (exlibris v0.1.3, commit `04767100e2f642f14ddd5e5a84064e7edef3cc6d`)
 contains the webR JavaScript client, `webr` 0.6.0 from
 [r-wasm/webr](https://github.com/r-wasm/webr). webR's `LICENSE.md` puts the
 JavaScript client under the MIT license, reproduced below; its GNU GPL v3 text

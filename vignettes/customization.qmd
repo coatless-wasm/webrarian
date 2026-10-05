@@ -71,17 +71,40 @@ The table shows where each field appears.
 |-----------------|----------------|
 | `meta.name` | the page title and link previews, unless `ui.meta.title` is set |
 | `logo.small` | the browser tab icon |
-| `logo.medium` (else `logo.large`) | the loading screen |
+| `logo.medium` (else `logo.large`) | the loading screen; a logo with `light` and `dark` variants shows each in its scheme |
 | `color.primary` | the accent color and the loading spinner |
 | `color.background` | the background, with panel headers and borders in shades of it |
 | `color.foreground` | text |
 | `typography.base`, `typography.monospace` | the interface font, and the editor and console font |
 | `typography.fonts` | fonts to load (Google fonts by link, local files copied in) |
 
-Other fields are ignored. The viewer follows the visitor's light or dark
-setting, and `color.primary` and the fonts apply in both modes. The background and
-foreground apply in light mode only, unless both are set and the background
-is dark, in which case the whole palette applies in both modes.
+Other fields are ignored. `color.primary` and the fonts apply in both light
+and dark mode. The background and foreground apply in light mode only, unless
+both are set and the background is dark, in which case the whole palette
+applies in both modes.
+
+## Light and dark
+
+A site follows each visitor's system setting until they choose otherwise. The
+Settings gear at the right end of the footer offers Auto, Light and Dark. The
+choice is kept in the visitor's browser, for that site only, and the loading
+screen, the editor, the console and R's help pages all follow it.
+
+To make a site light or dark for everyone, pin it. A pinned site has no gear.
+
+```yaml
+# _webrarian.yml
+ui:
+  theme: dark
+```
+
+`ui.theme` is `auto` (the default), `light` or `dark`. A brand whose palette
+is dark pins its site to dark, since that one palette is all the site has;
+`ui.theme: light` is then ignored with a warning.
+
+Two things keep following the visitor's system whatever is chosen: the
+scroll bars and pop-up lists the browser draws itself, and HTML output other
+than help pages, such as an interactive chart.
 
 ## The loading screen
 
@@ -98,6 +121,12 @@ ui:
 The message is plain text. For your own markup, set `custom-html` to HTML that
 replaces the loading screen's contents. The screen and its status line, where
 a load failure and the Reload button appear, stay.
+
+The loading screen follows the color scheme too: dark for a visitor whose
+workspace will be dark, with the brand's dark logo when it has one. A brand
+with one logo shows it in both schemes. A loading screen with `custom-html`
+keeps its light colors in every scheme, since what you wrote for it was made
+for them.
 
 ## Page metadata
 
@@ -141,9 +170,24 @@ The stable way to restyle the viewer is through its CSS variables.
 }
 ```
 
-brand.yml sets the same variables, so set each in one place only. Wrap rules
-in `@media (prefers-color-scheme: dark) { ... }` to target one mode. The
-loading screen uses `#webrarian-loading` and `.webrarian-spinner`. Other class
+A palette written this way is the site's one palette, for light and dark
+alike. When it is dark, as this one is, pin the site with `ui.theme: dark`, so
+that the editor's syntax colors stay the ones made for a dark background and
+no visitor is offered Light.
+
+brand.yml sets the same variables, so set each in one place only. To target
+one mode, write a rule for each way a page comes to be in it: by the
+visitor's system, and by a choice from the Settings gear or a pinned site,
+which the page carries as `data-theme` on `<html>`.
+
+```css
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --accent-color: #7fd1c1; }
+}
+:root[data-theme="dark"] { --accent-color: #7fd1c1; }
+```
+
+The loading screen uses `#webrarian-loading` and `.webrarian-spinner`. Other class
 names can change between releases, so build on them at your own risk.
 
 ## Panels
@@ -210,6 +254,17 @@ on their next visit. If you have since published a new version of an edited
 file, yours stays in place and theirs opens as `<name>-restored.R`. Pages
 opened from a share link keep nothing. **Reset files** at the foot of the page
 forgets the stored edits.
+
+In the Files tab a visitor opens a file with a double-click and finds Open,
+Rename, Download and Delete in a menu on the file: a right-click, the button
+at the end of its row, or Shift+F10. Several files can be selected with Shift
+or Ctrl (Command on a Mac), then downloaded as one zip, deleted after one question
+or opened together.
+
+Only what a visitor types in the editor is kept. What they do in the Files
+tab is not: on their next visit a file they deleted or renamed is back as you
+published it, and a renamed or new file returns only if it was open in the
+editor.
 
 The edits are stored under your site's address, where any code that runs there
 can read them. That includes code in a share link and, on GitHub Pages, every

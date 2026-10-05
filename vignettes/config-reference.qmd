@@ -88,6 +88,7 @@ These rules apply to the whole file.
 
 | Key | Type | Default | What it does |
 |-----|------|---------|--------------|
+| `ui.theme` | one of `"auto"`, `"light"`, `"dark"` | `"auto"` | The color scheme. auto shows a Settings gear and follows each visitor's choice, then their system. light or dark pins the site to that scheme and hides the gear. |
 | `ui.loading.message` | text | `"Loading webR..."` | Text on the loading screen. |
 | `ui.loading.custom-html` | text or null | unset | HTML that replaces the loading screen's contents. The screen and its status line, where a load failure and the Reload button appear, stay. |
 | `ui.custom-css` | text or null | unset | A CSS file, relative to the collection, to include in the page. |
@@ -197,6 +198,10 @@ repl:
     environment: true
 
 ui:
+  # The color scheme. auto shows a Settings gear and follows each visitor's
+  # choice, then their system. light or dark pins the site to that scheme and
+  # hides the gear.
+  theme: "auto"
   loading:
     # Text on the loading screen.
     message: "Loading webR..."

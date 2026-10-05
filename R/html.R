@@ -5,15 +5,52 @@
 
 #' Generate loading screen styles
 #'
+#' The colors in `theme` are the light scheme's, as a brand's are in the
+#' viewer. In the dark scheme the screen takes exlibris's dark surface and
+#' text colors and keeps the spinner's own color. The scheme in force is the
+#' system's unless the page forces one with data-theme on <html>, so the dark
+#' rules are written twice, as in the viewer's stylesheet. Their `:where()`
+#' keeps them at the weight of the light rules they follow, so a rule in an
+#' author's custom CSS that restyles the screen holds in both schemes.
+#'
 #' @param theme List with optional `background_color`, `text_color`, `spinner_color`
+#' @param dark_variant FALSE when the screen has one look for both schemes: a
+#'   brand whose one palette is dark, and a screen whose contents the author
+#'   wrote (custom-html), which were made for the light colors.
+#' @param logo_variants TRUE when the screen holds the brand's light logo
+#'   (`.webrarian-logo-light`) and its dark one (`.webrarian-logo-dark`): the
+#'   one for the scheme in force shows.
 #' @return CSS styles as a string
 #' @noRd
-generate_loading_styles <- function(theme = list()) {
+generate_loading_styles <- function(theme = list(), dark_variant = TRUE, logo_variants = FALSE) {
   bg_color <- css_color(theme$background_color, "brand.color.background") %||% "#ffffff"
   text_color <- css_color(theme$text_color, "brand.color.foreground") %||% "#666666"
   spinner_color <- css_color(theme$spinner_color, "brand.color.primary") %||% "#2196F3"
 
-  sprintf(
+  dark_rules <- function(root) {
+    paste(
+      sprintf("%s #webrarian-loading { background: #1e1e1e; }", root),
+      sprintf(
+        "%s .webrarian-spinner { border-color: #444444; border-top-color: %s; }",
+        root,
+        spinner_color
+      ),
+      sprintf("%s #webrarian-title { color: #aaaaaa; }", root),
+      sprintf("%s #webrarian-subtitle { color: #aaaaaa; }", root),
+      sprintf("%s #webrarian-status { color: #aaaaaa; }", root)
+    )
+  }
+  dark <- if (isTRUE(dark_variant)) {
+    sprintf(
+      "\n    @media (prefers-color-scheme: dark) { %s }\n    %s\n  ",
+      dark_rules(":where(:root:not([data-theme=\"light\"]))"),
+      dark_rules(":where(:root[data-theme=\"dark\"])")
+    )
+  } else {
+    ""
+  }
+
+  light <- sprintf(
     '
     #webrarian-loading {
       position: fixed;
@@ -45,6 +82,46 @@ generate_loading_styles <- function(theme = list()) {
     text_color,
     text_color,
     text_color
+  )
+  logos <- if (isTRUE(logo_variants)) {
+    dark_logo <- function(root) {
+      paste(
+        sprintf("%s .webrarian-logo-light { display: none; }", root),
+        sprintf("%s .webrarian-logo-dark { display: block; }", root)
+      )
+    }
+    sprintf(
+      "\n    .webrarian-logo-dark { display: none; }\n    @media (prefers-color-scheme: dark) { %s }\n    %s\n  ",
+      dark_logo(":where(:root:not([data-theme=\"light\"]))"),
+      dark_logo(":where(:root[data-theme=\"dark\"])")
+    )
+  } else {
+    ""
+  }
+  paste0(light, dark, logos)
+}
+
+#' The inline script that applies a visitor's stored color scheme
+#'
+#' The viewer keeps a visitor's Light or Dark choice in localStorage and marks
+#' the page with data-theme on <html> (exlibris, ARCHITECTURE.md, "Theming
+#' contract"). The loading screen is drawn before the viewer's code runs, so
+#' the page reads the choice itself, first thing. A page that already has the
+#' attribute (a pinned site) is left alone, and storage that is refused, as in
+#' a frame without same-origin access, leaves the page following the system.
+#' A function of its own, as the dismiss script is, so its names stay off
+#' `window` (where `root` is the viewer's mount point).
+#'
+#' @return HTML `<script>` string
+#' @noRd
+generate_theme_init_script <- function() {
+  paste0(
+    "<script>(function () { try { var root = document.documentElement; ",
+    "if (!root.hasAttribute(\"data-theme\")) { ",
+    "var stored = localStorage.getItem(\"exlibris-theme:\" + location.origin + ",
+    "location.pathname.replace(/\\/index\\.html$/, \"/\")); ",
+    "if (stored === \"light\" || stored === \"dark\") root.setAttribute(\"data-theme\", stored); ",
+    "} } catch (e) {} })();</script>"
   )
 }
 

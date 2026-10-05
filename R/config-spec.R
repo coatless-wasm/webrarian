@@ -107,6 +107,13 @@ config_spec <- function() {
     spec_entry("repl.panels.files", "flag", TRUE, "Show the file browser."),
     spec_entry("repl.panels.plot", "flag", TRUE, "Show the plot panel."),
     spec_entry("repl.panels.environment", "flag", TRUE, "Show the environment panel."),
+    spec_entry(
+      "ui.theme",
+      "choice",
+      "auto",
+      "The color scheme. auto shows a Settings gear and follows each visitor's choice, then their system. light or dark pins the site to that scheme and hides the gear.",
+      values = c("auto", "light", "dark")
+    ),
     spec_entry("ui.loading.message", "string", "Loading webR...", "Text on the loading screen."),
     spec_entry(
       "ui.loading.custom_html",

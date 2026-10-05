@@ -224,7 +224,8 @@ watch_step <- function(
 #'
 #' Rewrites vfs-files/ from the current selection (so deleted files go too)
 #' and replaces the page's inline config with a fresh file list and repl
-#' entries, keeping the engine, package sources and offline flag bind() wrote.
+#' entries, keeping the engine, package sources, offline flag and color scheme
+#' bind() wrote.
 #' The new page and the new vfs-files/ are prepared beside the live ones and
 #' swapped in only when both are complete, so a rebuild that fails part-way
 #' (a file deleted mid-copy, a permission error) leaves the last good site
@@ -264,6 +265,9 @@ rebuild_files_only <- function(path) {
     repl_files = repl_files,
     offline = isTRUE(wire$offline)
   )
+  # The color scheme is bind()'s too: it reads the brand, which a dark palette
+  # pins the site with, and wrote the same scheme on the page's <html>.
+  fresh$theme <- wire$theme
 
   # Nothing the preview serves changes until the new page and the new files
   # are both complete: on an error, on.exit() removes what was prepared and

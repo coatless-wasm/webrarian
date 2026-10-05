@@ -288,10 +288,38 @@ build_viewer_config <- function(
     # The viewer keeps visitors' editor files in their browser unless this is false.
     `persist-edits` = !isFALSE(config$repl$persist_edits)
   )
+  # Absent, the viewer leaves the color scheme to each visitor and shows its
+  # Settings gear; light or dark pins the site and hides the gear.
+  theme <- site_theme(config)
+  if (!identical(theme, "auto")) {
+    wire$theme <- theme
+  }
   if (isTRUE(offline)) {
     wire$offline <- TRUE
   }
   wire
+}
+
+#' The scheme a site is pinned to, or "auto"
+#'
+#' `ui.theme` says whether each visitor chooses (auto) or the site is light or
+#' dark for everyone. A brand whose palette is dark carries one palette for
+#' both schemes (see brand_root_rule()), so its site is dark whatever the
+#' visitor's system: it is pinned to dark, and `ui.theme: light` cannot hold.
+#' @param config Settings, with the brand in `.brand` when there is one.
+#' @return "auto", "light" or "dark".
+#' @noRd
+site_theme <- function(config) {
+  theme <- config$ui$theme %||% "auto"
+  if (is_dark_palette(brand_variables(config$.brand))) {
+    if (identical(theme, "light")) {
+      cli::cli_warn(
+        "{.field ui.theme: light} is ignored: the brand's palette is dark, so the site is pinned to dark."
+      )
+    }
+    return("dark")
+  }
+  theme
 }
 
 #' The wire config as JSON that is safe inside an inline <script>

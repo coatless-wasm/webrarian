@@ -211,3 +211,49 @@ test_that("bind() writes the collection's repl settings into the page", {
   html <- paste(readLines(fs::path(root, "_site", "index.html")), collapse = "\n")
   expect_false(grepl("__VIEWER_ALLOW_URL_OVERRIDE__", html, fixed = TRUE))
 })
+
+# --- ui.theme: who chooses the color scheme ---
+#
+# auto (the default) leaves the scheme to each visitor: the viewer shows its
+# Settings gear and no `theme` is written. light or dark pins the site.
+
+dark_brand <- function() {
+  normalize_brand(list(color = list(background = "#101820", foreground = "#f2f2f2")))
+}
+
+test_that("a site that leaves the scheme to visitors writes no theme", {
+  expect_null(wire_for()$theme)
+  expect_null(wire_for(viewer_test_config(ui = list(theme = "auto")))$theme)
+})
+
+test_that("ui.theme: light or dark pins the site", {
+  for (scheme in c("light", "dark")) {
+    expect_equal(wire_for(viewer_test_config(ui = list(theme = scheme)))$theme, scheme)
+  }
+})
+
+test_that("a brand whose palette is dark pins the site to dark", {
+  config <- viewer_test_config()
+  config$.brand <- dark_brand()
+  expect_equal(site_theme(config), "dark")
+  expect_equal(wire_for(config)$theme, "dark")
+})
+
+test_that("a brand whose palette is light leaves the scheme to visitors", {
+  config <- viewer_test_config()
+  config$.brand <- normalize_brand(list(
+    color = list(background = "#F8F1E0", foreground = "#62291F")
+  ))
+  expect_equal(site_theme(config), "auto")
+  expect_null(wire_for(config)$theme)
+})
+
+test_that("ui.theme: light with a dark brand warns and stays dark", {
+  config <- viewer_test_config(ui = list(theme = "light"))
+  config$.brand <- dark_brand()
+  expect_warning(
+    theme <- site_theme(config),
+    "the brand's palette is dark, so the site is pinned to dark"
+  )
+  expect_equal(theme, "dark")
+})

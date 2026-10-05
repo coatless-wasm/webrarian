@@ -385,9 +385,13 @@ test_that("a light palette is scoped to light mode; the accent applies in both",
     )),
     paste0(
       "<style>:root { --accent-color: #B84130; --accent-hover: #9c3729; } ",
-      "@media (prefers-color-scheme: light) { :root { --bg-primary: #F8F1E0; ",
+      "@media (prefers-color-scheme: light) { :root:not([data-theme=\"dark\"]) { ",
+      "--bg-primary: #F8F1E0; ",
       "--text-primary: #62291F; --bg-secondary: #ece1d1; --bg-tertiary: #e0d1c1; ",
-      "--border-color: #ceb9aa; --text-secondary: #8f6559; } }</style>"
+      "--border-color: #ceb9aa; --text-secondary: #8f6559; } } ",
+      ":root[data-theme=\"light\"] { --bg-primary: #F8F1E0; ",
+      "--text-primary: #62291F; --bg-secondary: #ece1d1; --bg-tertiary: #e0d1c1; ",
+      "--border-color: #ceb9aa; --text-secondary: #8f6559; }</style>"
     )
   )
 })
@@ -400,7 +404,7 @@ test_that("a background without a foreground is scoped to light mode, light or d
       startsWith(
         rule,
         paste0(
-          "<style>@media (prefers-color-scheme: light) { :root { ",
+          "<style>@media (prefers-color-scheme: light) { :root:not([data-theme=\"dark\"]) { ",
           "--bg-primary: ",
           background,
           "; --bg-secondary: color-mix("
@@ -408,7 +412,10 @@ test_that("a background without a foreground is scoped to light mode, light or d
       ),
       info = background
     )
-    expect_equal(lengths(regmatches(rule, gregexpr(":root", rule, fixed = TRUE))), 1L)
+    # Nothing on a bare :root, which would apply in the dark scheme too: only
+    # the rule for a light system and the rule for a page forced light.
+    expect_equal(lengths(regmatches(rule, gregexpr(":root {", rule, fixed = TRUE))), 0L)
+    expect_equal(lengths(regmatches(rule, gregexpr(":root", rule, fixed = TRUE))), 2L)
   }
 })
 
@@ -429,7 +436,7 @@ test_that("a dark palette applies in both schemes; a background that is not hex 
   light <- rule_for(list(background = "navy", foreground = "white"))
   expect_match(
     light,
-    "@media (prefers-color-scheme: light) { :root { --bg-primary: navy;",
+    "@media (prefers-color-scheme: light) { :root:not([data-theme=\"dark\"]) { --bg-primary: navy;",
     fixed = TRUE
   )
   expect_equal(relative_luminance(c(255L, 255L, 255L)), 1)
@@ -459,4 +466,81 @@ test_that("an offline build links no web fonts, and says so", {
 
   suppressMessages(bind(root))
   expect_match(page_of(root), "https://fonts.googleapis.com/css2?family=Inter", fixed = TRUE)
+})
+
+# A visitor can force a scheme from the viewer's Settings gear, which the page
+# carries as data-theme on <html>. A brand's light surfaces are for the scheme in
+# force: not for a page forced dark on a light system, and for a page forced
+# light on a dark one.
+test_that("a light palette follows the scheme in force, not only the system's", {
+  rule <- rule_for(list(background = "#F8F1E0", foreground = "#62291F"))
+  surfaces <- "--bg-primary: #F8F1E0; --text-primary: #62291F;"
+  expect_match(
+    rule,
+    paste0("@media (prefers-color-scheme: light) { :root:not([data-theme=\"dark\"]) { ", surfaces),
+    fixed = TRUE
+  )
+  expect_match(rule, paste0(":root[data-theme=\"light\"] { ", surfaces), fixed = TRUE)
+  # The same declarations in both.
+  declared <- regmatches(rule, gregexpr("\\{ --bg-primary[^}]*\\}", rule))[[1]]
+  expect_length(declared, 2L)
+  expect_identical(declared[[1]], declared[[2]])
+})
+
+test_that("a dark palette and an accent-only brand are written as before", {
+  dark <- rule_for(list(background = "#101820", foreground = "#f2f2f2"))
+  expect_no_match(dark, "data-theme", fixed = TRUE)
+  expect_no_match(dark, "@media", fixed = TRUE)
+  accent <- rule_for(list(primary = "#B84130"))
+  expect_identical(
+    accent,
+    "<style>:root { --accent-color: #B84130; --accent-hover: #9c3729; }</style>"
+  )
+})
+
+# --- a logo for each scheme (brand.yml's light and dark variants) ---
+#
+# The maintainer's rule, 2026-10-05: a light logo shows in light mode, a dark
+# logo in dark mode, and a brand with one logo uses it in both.
+
+test_that("a logo with light and dark variants resolves each", {
+  logo <- list(
+    images = list(day = "day.png", night = list(path = "night.png", alt = "Night")),
+    medium = list(light = "day", dark = "night")
+  )
+  expect_identical(resolve_brand_logo_relative(logo, "medium"), "day.png")
+  expect_identical(resolve_brand_logo_relative(logo, "medium", variant = "light"), "day.png")
+  expect_identical(resolve_brand_logo_relative(logo, "medium", variant = "dark"), "night.png")
+  expect_identical(
+    as.character(resolve_brand_logo(logo, "medium", "/b", variant = "dark")),
+    as.character(fs::path("/b", "night.png"))
+  )
+})
+
+test_that("a logo given for one scheme only is used in both", {
+  only_dark <- list(medium = list(dark = "night.png"))
+  expect_identical(resolve_brand_logo_relative(only_dark, "medium", variant = "light"), "night.png")
+  expect_identical(resolve_brand_logo_relative(only_dark, "medium", variant = "dark"), "night.png")
+  only_light <- list(medium = list(light = "day.png"))
+  expect_identical(resolve_brand_logo_relative(only_light, "medium", variant = "dark"), "day.png")
+  plain <- list(medium = "logo.png")
+  expect_identical(resolve_brand_logo_relative(plain, "medium", variant = "dark"), "logo.png")
+})
+
+test_that("the settings carry a dark logo only when it is another file", {
+  both <- apply_brand_to_ui(list(
+    logo = list(medium = list(light = "day.png", dark = "night.png")),
+    .path = "/b"
+  ))
+  expect_identical(both$.logo, "day.png")
+  expect_identical(both$.logo_dark, "night.png")
+  expect_identical(as.character(both$.brand_logo_dark), as.character(fs::path("/b", "night.png")))
+  one <- apply_brand_to_ui(list(logo = list(medium = "logo.png"), .path = "/b"))
+  expect_identical(one$.logo, "logo.png")
+  expect_null(one$.logo_dark)
+  same <- apply_brand_to_ui(list(
+    logo = list(medium = list(light = "logo.png", dark = "logo.png")),
+    .path = "/b"
+  ))
+  expect_null(same$.logo_dark)
 })

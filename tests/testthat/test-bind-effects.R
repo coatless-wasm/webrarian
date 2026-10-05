@@ -131,6 +131,14 @@ effects <- list(
   repl.panels.files = panel_off("files"),
   repl.panels.plot = panel_off("plot"),
   repl.panels.environment = panel_off("environment"),
+  ui.theme = function() {
+    auto <- effect_site()
+    expect_null(auto$wire$theme)
+    expect_no_match(auto$html, "<html[^>]*data-theme", perl = TRUE)
+    s <- effect_site(list("ui.theme" = "dark"))
+    expect_identical(s$wire$theme, "dark")
+    expect_match(s$html, "<html lang=\"en\" data-theme=\"dark\">", fixed = TRUE)
+  },
   ui.loading.message = function() {
     s <- effect_site(list("ui.loading.message" = "Warming up the shelves"))
     expect_match(s$html, "Warming up the shelves", fixed = TRUE)

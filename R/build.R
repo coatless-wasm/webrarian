@@ -997,6 +997,20 @@ emit_viewer <- function(config, output_dir, root = ".", site) {
   index_path <- fs::path(output_dir, "index.html")
   html_content <- paste(readLines(index_path, warn = FALSE), collapse = "\n")
 
+  # The color scheme. Resolved once, so that a dark brand's warning is said
+  # once; the config that goes to the viewer below then agrees with the page.
+  config$ui$theme <- site_theme(config)
+  if (!identical(config$ui$theme, "auto")) {
+    # A pinned site says so in the page itself: its loading screen is drawn
+    # in that scheme before any script runs.
+    html_content <- sub(
+      "<html lang=\"en\">",
+      sprintf("<html lang=\"en\" data-theme=\"%s\">", config$ui$theme),
+      html_content,
+      fixed = TRUE
+    )
+  }
+
   page_title <- config$ui$meta$title %||% config$project$name
   html_content <- gsub(
     "<title>webrarian</title>",
@@ -1012,7 +1026,30 @@ emit_viewer <- function(config, output_dir, root = ".", site) {
     html_content <- sub("</head>", sprintf("  %s\n</head>", ui_head), html_content, fixed = TRUE)
   }
 
-  loading_styles <- generate_loading_styles(config$ui$loading %||% list())
+  # In <head>, so a visitor's stored scheme is on <html> before <body>, and
+  # with it the loading screen, is drawn.
+  html_content <- sub(
+    "</head>",
+    sprintf("  %s\n</head>", generate_theme_init_script()),
+    html_content,
+    fixed = TRUE
+  )
+
+  # The loading screen follows the scheme in force, with the brand's logo for
+  # that scheme when it has one for each. A screen whose contents the author
+  # wrote (custom-html, made for the light screen) keeps its light colors,
+  # and a brand whose one palette is dark has no other colors to change to.
+  authored_loading <- !is.null(config$ui$loading$custom_html)
+  # A dark logo whose file is not there leaves the brand with one logo, which
+  # then shows in both schemes (copy_ui_assets() has said the file is missing).
+  logo_variants <- !authored_loading &&
+    !is.null(config$ui$.logo) &&
+    !is.null(dark_logo_source(config$ui, root))
+  loading_styles <- generate_loading_styles(
+    config$ui$loading %||% list(),
+    dark_variant = !authored_loading && !is_dark_palette(brand_variables(config$.brand)),
+    logo_variants = logo_variants
+  )
   html_content <- sub(
     "</head>",
     sprintf("  <style>%s</style>\n</head>", loading_styles),
@@ -1022,15 +1059,27 @@ emit_viewer <- function(config, output_dir, root = ".", site) {
 
   logo_html <- ""
   if (!is.null(config$ui$.logo)) {
-    ext <- fs::path_ext(config$ui$.logo)
     width <- css_number(config$ui$.logo_width, "brand.logo.width") %||% 100
     height <- css_number(config$ui$.logo_height, "brand.logo.height") %||% 100
-    logo_html <- sprintf(
-      '<img src="assets/custom/logo.%s" alt="Logo" style="width: %spx; height: %spx; margin-bottom: 20px;" />',
-      html_escape(ext),
-      css_number_string(width),
-      css_number_string(height)
-    )
+    logo_img <- function(source, file, class = "") {
+      sprintf(
+        '<img %ssrc="assets/custom/%s.%s" alt="Logo" style="width: %spx; height: %spx; margin-bottom: 20px;" />',
+        class,
+        file,
+        html_escape(fs::path_ext(source)),
+        css_number_string(width),
+        css_number_string(height)
+      )
+    }
+    logo_html <- if (logo_variants) {
+      # One for each scheme; the loading styles show the one in force.
+      paste0(
+        logo_img(config$ui$.logo, "logo", 'class="webrarian-logo-light" '),
+        logo_img(config$ui$.logo_dark, "logo-dark", 'class="webrarian-logo-dark" ')
+      )
+    } else {
+      logo_img(config$ui$.logo, "logo")
+    }
   }
   loading_html <- generate_loading_html(
     loading_title = "Opening Webrarian Project",
@@ -1614,6 +1663,19 @@ copy_ui_assets <- function(config, root, output_dir) {
     }
   }
 
+  # The brand's logo for the dark scheme, when it has another one
+  if (!is.null(ui$.logo_dark)) {
+    src <- dark_logo_source(ui, root)
+    if (!is.null(src)) {
+      ensure_dir(assets_dir)
+      ext <- fs::path_ext(src)
+      fs::file_copy(src, fs::path(assets_dir, paste0("logo-dark.", ext)), overwrite = TRUE)
+      copied <- TRUE
+    } else {
+      cli::cli_alert_warning("Logo not found: {.path {ui$.logo_dark}}")
+    }
+  }
+
   # Copy custom CSS
   if (!is.null(ui$custom_css)) {
     src <- fs::path(root, ui$custom_css)
@@ -1763,6 +1825,23 @@ generate_ui_head <- function(config, root = ".") {
   )
 
   paste(tags, collapse = "\n  ")
+}
+
+#' The file of the brand's logo for the dark scheme, or NULL
+#'
+#' The brand's own path first, then the path relative to the collection, as
+#' the light logo is looked for. NULL when the brand has no second logo, or
+#' its file is not there: the site then has one logo, for both schemes.
+#' @param ui Settings with the brand applied (`.logo_dark`, `.brand_logo_dark`).
+#' @param root The collection's directory.
+#' @noRd
+dark_logo_source <- function(ui, root) {
+  if (is.null(ui$.logo_dark)) {
+    return(NULL)
+  }
+  candidates <- c(ui$.brand_logo_dark, fs::path(root, ui$.logo_dark))
+  found <- candidates[fs::file_exists(candidates)]
+  if (length(found) == 0L) NULL else found[[1]]
 }
 
 # Note: generate_loading_styles() and generate_loading_html() are now in R/html.R

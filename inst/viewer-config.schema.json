@@ -44,6 +44,7 @@
     "auto-run": { "type": "array", "items": { "type": "string" } },
     "startup-script": { "type": ["string", "null"] },
     "share-links": { "enum": ["open", "fixed", "off"] },
-    "persist-edits": { "type": "boolean" }
+    "persist-edits": { "type": "boolean" },
+    "theme": { "enum": ["auto", "light", "dark"] }
   }
 }

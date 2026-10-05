@@ -1,20 +1,20 @@
 {
-  "exlibrisCommit": "e4824c8cc923ef82e7ada0292952abbbecbd2367",
-  "exlibrisRef": "v0.1.2",
-  "exlibrisVersion": "0.1.2",
+  "exlibrisCommit": "04767100e2f642f14ddd5e5a84064e7edef3cc6d",
+  "exlibrisRef": "v0.1.3",
+  "exlibrisVersion": "0.1.3",
   "exlibrisDirty": false,
   "webrClientVersion": "0.6.0",
-  "vendoredAt": "2026-10-04T19:37:56Z",
+  "vendoredAt": "2026-10-05T21:04:49Z",
   "files": {
-    "exlibris-r.js": "54515661e6b9f722e5b02ffe5bbc0e28d048b4279fb9b20f3b3da0a13e571167",
-    "exlibris-r.css": "f6f286555dd1a89ddec173aa88b06634111ccbb561d24cff3169692583b29f93",
+    "exlibris-r.js": "3b8bf5477cf56f158c97ffb04ad576abbfcdc1b99ff6198224ebf042bf870cfc",
+    "exlibris-r.css": "22ae9ccc0062abd0f9682547c54fbbaa4798c3beb836f0454f56945eea5f2b70",
     "EXCEPTION.md": "3bf6dbe216f3351b2faa0c6a6f2c1c41d25aba5a4fb2a20c86e0d9021b78bf3c",
-    "THIRD-PARTY.md": "bebc83e2dc63eecaa64a4f6d73504826405d2f9e667cf686eeeb96858798c825",
-    "LICENSE.webR.md": "d354d0c5299e3587e7e2988e9f456533d15cd29cbcc86a21917b5b6c77c4d033",
-    "../viewer-config.schema.json": "83ea4c53eb027078f019157cba8d6053f921fcefd1c2912be09a2a22e39ceff3"
+    "THIRD-PARTY.md": "f3e75beae3aec70bd1e802807ba73846b7bd3381b01e00c643d4c3dff883c3da",
+    "LICENSE.webR.md": "7c88f4b19d0b1532052d78989fb8c5bf3b9eda4c4863e51549e2f08bde1e6269",
+    "../viewer-config.schema.json": "6d3d8ad82c230b546f45b0c779dfb0083e1130653bd1cb618a6d7e98050718dd"
   },
   "sources": {
-    "THIRD-PARTY-r.md": "6ca87d9c8ccc180c7fca63faaa4b82c97628aa03105ecb61df378c8042087ea3",
+    "THIRD-PARTY-r.md": "8fa66a66a0437bcee8ed5d3de5640d8427392c369fef99f2c85214ab53796f0f",
     "EXCEPTION.md": "3bf6dbe216f3351b2faa0c6a6f2c1c41d25aba5a4fb2a20c86e0d9021b78bf3c"
   }
 }

@@ -2,13 +2,13 @@
 
 `inst/viewer/exlibris-r.js` and `inst/viewer/exlibris-r.css` (named
 `exlibris-r.<hash>.js` and `exlibris-r.<hash>.css` in a generated site) are the
-prebuilt, minified build of the exlibris runtime at v0.1.2, commit
-`e4824c8cc923ef82e7ada0292952abbbecbd2367` (exlibris 0.1.2), vendored by
+prebuilt, minified build of the exlibris runtime at v0.1.3, commit
+`04767100e2f642f14ddd5e5a84064e7edef3cc6d` (exlibris 0.1.3), vendored by
 `tools/vendor-exlibris.sh`. Their source is
-<https://github.com/coatless-wasm/exlibris/tree/e4824c8cc923ef82e7ada0292952abbbecbd2367>.
+<https://github.com/coatless-wasm/exlibris/tree/04767100e2f642f14ddd5e5a84064e7edef3cc6d>.
 
-    exlibris-r.js   sha256 54515661e6b9f722e5b02ffe5bbc0e28d048b4279fb9b20f3b3da0a13e571167
-    exlibris-r.css  sha256 f6f286555dd1a89ddec173aa88b06634111ccbb561d24cff3169692583b29f93
+    exlibris-r.js   sha256 3b8bf5477cf56f158c97ffb04ad576abbfcdc1b99ff6198224ebf042bf870cfc
+    exlibris-r.css  sha256 22ae9ccc0062abd0f9682547c54fbbaa4798c3beb836f0454f56945eea5f2b70
 
 These are the digests `inst/viewer/PROVENANCE.json` records for that commit.
 exlibris is licensed AGPL-3.0-only with the exlibris runtime exception
@@ -18,7 +18,7 @@ the code nested inside bundled packages, which the metafile cannot see.
 
 # Third-party notices: exlibris-r
 
-`exlibris-r.js` and `exlibris-r.css` are built from exlibris 0.1.2, which is licensed under
+`exlibris-r.js` and `exlibris-r.css` are built from exlibris 0.1.3, which is licensed under
 AGPL-3.0-only with the exlibris runtime exception (see `LICENSE` and `EXCEPTION.md`).
 They also contain code from the npm packages below. `npm run build` generates this file from
 esbuild's metafile: every package that contributes bytes to either file is listed, followed by
@@ -29,35 +29,35 @@ the license files that package ships.
 | `@babel/runtime` | 7.29.7 | MIT | 219 |
 | `@codemirror/autocomplete` | 6.20.3 | MIT | 26,950 |
 | `@codemirror/commands` | 6.10.4 | MIT | 21,595 |
-| `@codemirror/language` | 6.12.4 | MIT | 17,747 |
+| `@codemirror/language` | 6.12.4 | MIT | 17,782 |
 | `@codemirror/state` | 6.7.1 | MIT | 46,721 |
 | `@codemirror/view` | 6.43.6 | MIT | 167,487 |
 | `@lezer/common` | 1.5.2 | MIT | 20,353 |
-| `@lezer/highlight` | 1.2.4 | MIT | 7,164 |
+| `@lezer/highlight` | 1.2.4 | MIT | 7,204 |
 | `@lezer/lr` | 1.4.10 | MIT | 26,247 |
 | `@marijn/find-cluster-break` | 1.0.3 | MIT | 2,328 |
 | `@msgpack/msgpack` | 3.1.3 | ISC | 21,293 |
-| `@uiw/codemirror-theme-github` | 4.25.12 | MIT | 2,202 |
+| `@uiw/codemirror-theme-github` | 4.25.12 | MIT | 2,268 |
 | `@uiw/codemirror-themes` | 4.25.12 | MIT | 1,262 |
 | `@xterm/addon-fit` | 0.10.0 | MIT | 1,442 |
-| `@xterm/xterm` | 5.5.0 | MIT | 291,014 |
+| `@xterm/xterm` | 5.5.0 | MIT | 290,949 |
 | `ansi-regex` | 5.0.1 | MIT | 309 |
 | `classnames` | 2.5.1 | MIT | 714 |
 | `clsx` | 2.1.1 | MIT | 372 |
 | `codemirror-lang-r` | 0.1.1 | MIT | 261 |
-| `dompurify` | 3.4.16 | (MPL-2.0 OR Apache-2.0) | 30,474 |
+| `dompurify` | 3.4.16 | (MPL-2.0 OR Apache-2.0) | 30,472 |
 | `emoji-regex` | 8.0.0 | MIT | 10,264 |
 | `is-fullwidth-code-point` | 3.0.0 | MIT | 416 |
-| `jszip` | 3.10.1 | (MIT OR GPL-3.0-or-later) | 97,672 |
-| `lezer-r` | 0.1.3 | MIT | 12,279 |
+| `jszip` | 3.10.1 | (MIT OR GPL-3.0-or-later) | 97,800 |
+| `lezer-r` | 0.1.3 | MIT | 12,301 |
 | `pako` | 2.2.0 | (MIT AND Zlib) | 47,533 |
 | `prop-types` | 15.8.1 | MIT | 826 |
 | `react` | 18.3.1 | MIT | 7,321 |
-| `react-accessible-treeview` | 2.11.2 | MIT | 29,466 |
-| `react-data-grid` | 7.0.0-beta.44 | MIT | 42,439 |
+| `react-accessible-treeview` | 2.11.2 | MIT | 29,454 |
+| `react-data-grid` | 7.0.0-beta.44 | MIT | 42,421 |
 | `react-dom` | 18.3.1 | MIT | 130,581 |
-| `react-icons` | 4.12.0 | MIT | 10,414 |
-| `react-resizable-panels` | 2.1.9 | MIT | 26,587 |
+| `react-icons` | 4.12.0 | MIT | 9,719 |
+| `react-resizable-panels` | 2.1.9 | MIT | 26,563 |
 | `scheduler` | 0.23.2 | MIT | 4,044 |
 | `string-width` | 4.2.3 | MIT | 334 |
 | `strip-ansi` | 6.0.1 | MIT | 101 |
@@ -66,7 +66,7 @@ the license files that package ships.
 | `webr` | 0.6.0 | SEE LICENSE IN LICENCE.md | 64,172 |
 | `xterm-readline` | 1.2.2 | MIT | 17,268 |
 
-Total: 39 packages, 1,191,589 bytes.
+Total: 39 packages, 1,191,064 bytes.
 
 ## Notes
 

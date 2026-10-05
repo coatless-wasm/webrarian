@@ -172,6 +172,17 @@ apply_brand_to_ui <- function(brand, ui = list()) {
         resolve_brand_logo(logo, "large", brand_path)
     }
 
+    # The logo for the dark scheme, when the brand gives another file for it.
+    dark_logo_rel <- resolve_brand_logo_relative(logo, "medium", "dark") %||%
+      resolve_brand_logo_relative(logo, "large", "dark")
+    if (
+      !is.null(main_logo_rel) && !is.null(dark_logo_rel) && !identical(dark_logo_rel, main_logo_rel)
+    ) {
+      ui$.logo_dark <- dark_logo_rel
+      ui$.brand_logo_dark <- resolve_brand_logo(logo, "medium", brand_path, "dark") %||%
+        resolve_brand_logo(logo, "large", brand_path, "dark")
+    }
+
     # Logo dimensions (default 100x100)
     ui$.logo_width <- css_number(brand$logo$width, "brand.logo.width") %||% 100
     ui$.logo_height <- css_number(brand$logo$height, "brand.logo.height") %||% 100
@@ -237,9 +248,22 @@ apply_brand_to_ui <- function(brand, ui = list()) {
   ui
 }
 
+#' The logo a brand gives for a color scheme
+#'
+#' brand.yml lets a logo be one image or a `light` and a `dark` one. A light
+#' logo shows in the light scheme and a dark logo in the dark scheme; a brand
+#' that gives only one of the two uses it in both.
+#' @param value A logo size's value when it is a list of variants.
+#' @param variant "light" or "dark".
+#' @noRd
+brand_logo_variant <- function(value, variant) {
+  other <- if (identical(variant, "dark")) "light" else "dark"
+  value[[variant]] %||% value[[other]]
+}
+
 #' Resolve a brand logo reference to relative path (for config)
 #' @noRd
-resolve_brand_logo_relative <- function(logo, size) {
+resolve_brand_logo_relative <- function(logo, size, variant = "light") {
   if (is.null(logo)) {
     return(NULL)
   }
@@ -263,8 +287,9 @@ resolve_brand_logo_relative <- function(logo, size) {
 
   # If it's a list with variants
   if (is.list(value)) {
-    if (!is.null(value$light)) {
-      return(resolve_brand_logo_relative(list(images = logo$images, temp = value$light), "temp"))
+    chosen <- brand_logo_variant(value, variant)
+    if (!is.null(chosen)) {
+      return(resolve_brand_logo_relative(list(images = logo$images, temp = chosen), "temp"))
     }
     if (!is.null(value$path)) return(value$path)
   }
@@ -274,7 +299,7 @@ resolve_brand_logo_relative <- function(logo, size) {
 
 #' Resolve a brand logo reference to absolute path
 #' @noRd
-resolve_brand_logo <- function(logo, size, brand_path) {
+resolve_brand_logo <- function(logo, size, brand_path, variant = "light") {
   if (is.null(logo)) {
     return(NULL)
   }
@@ -300,10 +325,11 @@ resolve_brand_logo <- function(logo, size, brand_path) {
     return(fs::path(brand_path, value))
   }
 
-  # If it's a list with light/dark variants, use light
+  # If it's a list with light/dark variants, use the one asked for
   if (is.list(value)) {
-    if (!is.null(value$light)) {
-      return(resolve_brand_logo(list(images = logo$images, temp = value$light), "temp", brand_path))
+    chosen <- brand_logo_variant(value, variant)
+    if (!is.null(chosen)) {
+      return(resolve_brand_logo(list(images = logo$images, temp = chosen), "temp", brand_path))
     }
     if (!is.null(value$path)) {
       return(fs::path(brand_path, value$path))
@@ -734,12 +760,16 @@ is_surface_variable <- function(name) {
 #' exlibris styles its shell from CSS custom properties on :root (the theming
 #' contract documented in exlibris). Its defaults sit in :where(:root), which
 #' has zero specificity, so a plain :root rule wins wherever it is placed; it
-#' goes after the viewer's stylesheet all the same. In dark mode exlibris
+#' goes after the viewer's stylesheet all the same. In the dark scheme exlibris
 #' switches every default a producer leaves unset to its dark palette and
 #' keeps oneDark's syntax colors, so the accent and the fonts go on :root for
-#' both schemes while the surface and text colors go inside
-#' `@media (prefers-color-scheme: light)`, unless the palette is dark: then all
-#' of them apply in both schemes, in one :root rule.
+#' both schemes while the surface and text colors are the brand's light scheme.
+#' The scheme in force is the system's unless the page forces one, which it
+#' carries as data-theme on <html> (a visitor's choice from the viewer's
+#' Settings gear, or a pinned site), so the light colors are written twice:
+#' for a light system unless the page is forced dark, and for a page forced
+#' light. Unless the palette is dark: then all of them apply in both schemes,
+#' in one :root rule, and the site is pinned to dark (site_theme()).
 #' @param vars brand_variables()'s result.
 #' @noRd
 brand_root_rule <- function(vars) {
@@ -758,7 +788,14 @@ brand_root_rule <- function(vars) {
   rules <- c(
     if (length(both) > 0L) sprintf(":root { %s }", declarations(both)),
     if (length(light) > 0L) {
-      sprintf("@media (prefers-color-scheme: light) { :root { %s } }", declarations(light))
+      sprintf(
+        paste(
+          "@media (prefers-color-scheme: light) { :root:not([data-theme=\"dark\"]) { %s } }",
+          ":root[data-theme=\"light\"] { %s }"
+        ),
+        declarations(light),
+        declarations(light)
+      )
     }
   )
   sprintf("<style>%s</style>", paste(rules, collapse = " "))

@@ -70,6 +70,38 @@ test_that("the article's dark-mode rule for brand palettes is the one branding w
   expect_false(grepl("prefers-color-scheme", dark, fixed = TRUE))
 })
 
+# The Settings gear lets a visitor force a scheme, so advice written for the
+# system's scheme alone is no longer whole. The article and the NEWS say what
+# an author must now do, and what the choice does not reach.
+test_that("the docs say how custom CSS and the loading screen meet the Settings gear", {
+  skip_if_no_source_tree()
+  squash <- function(...) {
+    gsub(
+      "\\s+",
+      " ",
+      paste(readLines(repo_path(...), warn = FALSE, encoding = "UTF-8"), collapse = " ")
+    )
+  }
+  article <- squash("vignettes", "customization.qmd")
+  # A dark palette written in custom CSS is one palette: the site must be pinned.
+  expect_match(article, "pin the site with `ui.theme: dark`", fixed = TRUE)
+  # When the loading screen follows the scheme, and when it stays as drawn.
+  expect_match(article, "A loading screen with `custom-html` keeps its light colors", fixed = TRUE)
+  expect_match(
+    article,
+    "a logo with `light` and `dark` variants shows each in its scheme",
+    fixed = TRUE
+  )
+  news <- squash("NEWS.md")
+  expect_match(news, "keep following the visitor's system", fixed = TRUE)
+  expect_match(
+    news,
+    "A brand logo with `light` and `dark` variants shows each in its scheme",
+    fixed = TRUE
+  )
+  expect_match(news, "`@media (prefers-color-scheme: dark)`", fixed = TRUE)
+})
+
 # ui.loading.custom-html replaces the splash's contents, not the splash: the
 # container and its status line stay, as in pyodidarian. The article says it in the words of
 # config_spec(), which the key reference prints, and pyodidarian uses the same.

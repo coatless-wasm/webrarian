@@ -30,15 +30,15 @@ Vendored browser bundle in inst/viewer/
 
 inst/viewer/exlibris-r.js and inst/viewer/exlibris-r.css are the prebuilt,
 minified build output of the exlibris runtime
-(https://github.com/coatless-wasm/exlibris) at v0.1.2, commit
-e4824c8cc923ef82e7ada0292952abbbecbd2367 (exlibris 0.1.2). Their source is that commit:
-https://github.com/coatless-wasm/exlibris/tree/e4824c8cc923ef82e7ada0292952abbbecbd2367
+(https://github.com/coatless-wasm/exlibris) at v0.1.3, commit
+04767100e2f642f14ddd5e5a84064e7edef3cc6d (exlibris 0.1.3). Their source is that commit:
+https://github.com/coatless-wasm/exlibris/tree/04767100e2f642f14ddd5e5a84064e7edef3cc6d
 exlibris is licensed AGPL-3.0-only with the exlibris runtime exception
 (inst/viewer/EXCEPTION.md), which lets generated sites carry the unmodified
 bundles under terms of their author's choice.
 
-    exlibris-r.js   sha256 54515661e6b9f722e5b02ffe5bbc0e28d048b4279fb9b20f3b3da0a13e571167
-    exlibris-r.css  sha256 f6f286555dd1a89ddec173aa88b06634111ccbb561d24cff3169692583b29f93
+    exlibris-r.js   sha256 3b8bf5477cf56f158c97ffb04ad576abbfcdc1b99ff6198224ebf042bf870cfc
+    exlibris-r.css  sha256 22ae9ccc0062abd0f9682547c54fbbaa4798c3beb836f0454f56945eea5f2b70
 
 inst/viewer/PROVENANCE.json records the same commit and digests.
 tools/vendor-exlibris.sh writes this file, inst/viewer/THIRD-PARTY.md and

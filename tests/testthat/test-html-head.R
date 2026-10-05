@@ -138,3 +138,167 @@ test_that("an uppercase favicon extension is copied and linked lowercase", {
   expect_true("favicon.ico" %in% copied)
   expect_match(generate_ui_head(cfg, root), 'href="assets/custom/favicon.ico"', fixed = TRUE)
 })
+
+# --- the color scheme ---
+
+test_that("the page reads a stored scheme before the loading screen's styles", {
+  root <- local_collection()
+  suppressMessages(bind(root))
+  head <- head_of(root)
+  init <- regexpr("exlibris-theme:", head, fixed = TRUE)
+  styles <- regexpr("#webrarian-loading {", head, fixed = TRUE)
+  expect_gt(init, 0L)
+  expect_gt(styles, init)
+  expect_no_match(head, "<html[^>]*data-theme", perl = TRUE)
+})
+
+test_that("a pinned site says so on <html>, and in its config", {
+  root <- local_collection()
+  suppressMessages(settings_set(root, "ui.theme" = "dark"))
+  suppressMessages(bind(root))
+  expect_match(head_of(root), "<html lang=\"en\" data-theme=\"dark\">", fixed = TRUE)
+  expect_identical(read_site_config(fs::path(root, "_site"))$theme, "dark")
+})
+
+test_that("a dark brand pins the page to dark, and ui.theme: light is refused once", {
+  root <- local_collection()
+  writeLines(
+    c("color:", "  background: '#101820'", "  foreground: '#f2f2f2'"),
+    fs::path(root, "_brand.yml")
+  )
+  suppressMessages(settings_set(root, "ui.theme" = "light"))
+  warnings <- capture_warnings(suppressMessages(bind(root)))
+  expect_length(grep("the site is pinned to dark", warnings, fixed = TRUE), 1L)
+  head <- head_of(root)
+  expect_match(head, "<html lang=\"en\" data-theme=\"dark\">", fixed = TRUE)
+  expect_identical(read_site_config(fs::path(root, "_site"))$theme, "dark")
+  # One palette for both schemes, so the loading screen has no dark variant.
+  expect_no_match(head, "prefers-color-scheme: dark", fixed = TRUE)
+})
+
+# The loading screen follows the scheme in force, with the brand's logo for
+# that scheme when it has one for each. One whose contents the author wrote
+# (ui.loading.custom-html) keeps its light design, as before the switcher.
+test_that("a plain site's loading screen has the dark variant", {
+  root <- local_collection()
+  suppressMessages(bind(root))
+  expect_match(head_of(root), "@media (prefers-color-scheme: dark) { :where(:root", fixed = TRUE)
+})
+
+test_that("a loading screen with the author's own HTML keeps its light design", {
+  root <- local_collection()
+  suppressMessages(settings_set(
+    root,
+    "ui.loading.custom-html" = "<h1 style=\"color: #222222\">Hello</h1>"
+  ))
+  suppressMessages(bind(root))
+  head <- head_of(root)
+  expect_match(head, "#webrarian-loading {", fixed = TRUE)
+  expect_no_match(head, "prefers-color-scheme: dark", fixed = TRUE)
+})
+
+body_of <- function(root) {
+  html <- paste(readLines(fs::path(root, "_site", "index.html"), warn = FALSE), collapse = "\n")
+  sub("^.*</head>", "", html)
+}
+
+test_that("a loading screen with one logo follows the scheme and shows that logo in both", {
+  root <- local_collection()
+  writeLines(
+    c(
+      "logo:",
+      "  medium: logo.png",
+      "color:",
+      "  background: '#F8F1E0'",
+      "  foreground: '#62291F'"
+    ),
+    fs::path(root, "_brand.yml")
+  )
+  writeLines("png", fs::path(root, "logo.png"))
+  suppressMessages(bind(root))
+  head <- head_of(root)
+  expect_match(head, "background: #F8F1E0;", fixed = TRUE)
+  expect_match(head, "@media (prefers-color-scheme: dark) { :where(:root", fixed = TRUE)
+  body <- body_of(root)
+  expect_equal(lengths(regmatches(body, gregexpr("<img [^>]*alt=\"Logo\"", body))), 1L)
+  expect_match(body, 'src="assets/custom/logo.png"', fixed = TRUE)
+  expect_no_match(paste(head, body), "webrarian-logo-dark", fixed = TRUE)
+  expect_false(fs::file_exists(fs::path(root, "_site", "assets", "custom", "logo-dark.png")))
+})
+
+test_that("a brand with a light and a dark logo shows each in its scheme", {
+  root <- local_collection()
+  writeLines(
+    c("logo:", "  medium:", "    light: day.png", "    dark: night.png"),
+    fs::path(root, "_brand.yml")
+  )
+  writeLines("day", fs::path(root, "day.png"))
+  writeLines("night", fs::path(root, "night.png"))
+  suppressMessages(bind(root))
+  site <- fs::path(root, "_site")
+  expect_identical(readLines(fs::path(site, "assets", "custom", "logo.png")), "day")
+  expect_identical(readLines(fs::path(site, "assets", "custom", "logo-dark.png")), "night")
+  body <- body_of(root)
+  expect_match(body, '<img class="webrarian-logo-light" src="assets/custom/logo.png"', fixed = TRUE)
+  expect_match(
+    body,
+    '<img class="webrarian-logo-dark" src="assets/custom/logo-dark.png"',
+    fixed = TRUE
+  )
+  head <- head_of(root)
+  # Light until the scheme in force is dark: the system's, unless light is
+  # forced, or a forced dark.
+  expect_match(head, ".webrarian-logo-dark { display: none; }", fixed = TRUE)
+  for (dark in c(
+    ":where(:root:not([data-theme=\"light\"]))",
+    ":where(:root[data-theme=\"dark\"])"
+  )) {
+    expect_match(head, paste0(dark, " .webrarian-logo-light { display: none; }"), fixed = TRUE)
+    expect_match(head, paste0(dark, " .webrarian-logo-dark { display: block; }"), fixed = TRUE)
+  }
+})
+
+test_that("a dark brand with two logos shows its dark one", {
+  root <- local_collection()
+  writeLines(
+    c(
+      "logo:",
+      "  medium:",
+      "    light: day.png",
+      "    dark: night.png",
+      "color:",
+      "  background: '#101820'",
+      "  foreground: '#f2f2f2'"
+    ),
+    fs::path(root, "_brand.yml")
+  )
+  writeLines("day", fs::path(root, "day.png"))
+  writeLines("night", fs::path(root, "night.png"))
+  suppressMessages(bind(root))
+  head <- head_of(root)
+  # Pinned to dark; one palette, so the screen's colors have no dark variant,
+  # but the logos are still told apart by the scheme the page is marked with.
+  expect_match(head, "<html lang=\"en\" data-theme=\"dark\">", fixed = TRUE)
+  expect_no_match(head, "#webrarian-loading { background: #1e1e1e; }", fixed = TRUE)
+  expect_match(
+    head,
+    ":where(:root[data-theme=\"dark\"]) .webrarian-logo-dark { display: block; }",
+    fixed = TRUE
+  )
+})
+
+# The maintainer's rule again: a brand with one usable logo shows it in both
+# schemes. A dark logo whose file is not there leaves the brand with one.
+test_that("a dark logo whose file is missing falls back to the one logo, with a warning", {
+  root <- local_collection()
+  writeLines(
+    c("logo:", "  medium:", "    light: day.png", "    dark: night.png"),
+    fs::path(root, "_brand.yml")
+  )
+  writeLines("day", fs::path(root, "day.png"))
+  expect_message(suppressWarnings(bind(root)), "Logo not found")
+  body <- body_of(root)
+  expect_equal(lengths(regmatches(body, gregexpr("<img [^>]*alt=\"Logo\"", body))), 1L)
+  expect_match(body, 'src="assets/custom/logo.png"', fixed = TRUE)
+  expect_no_match(paste(head_of(root), body), "webrarian-logo-dark", fixed = TRUE)
+})

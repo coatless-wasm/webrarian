@@ -417,3 +417,34 @@ test_that("an edit saved while bind() copies the files is not recorded as built"
   expect_equal(readLines(fs::path(root, "_site", "vfs-files", "a.R")), "a <- 2")
   expect_true(detect_changes(collection_settings(root), root)$any_changed)
 })
+
+# The pin comes from bind(), which reads the brand; a files-only rebuild does
+# not, and must not lose it (the viewer would offer its Settings gear on a
+# site whose one palette is dark).
+test_that("a files-only rebuild keeps the site's pinned color scheme", {
+  root <- local_collection()
+  writeLines("a <- 1", fs::path(root, "a.R"))
+  writeLines(
+    c("color:", "  background: '#101820'", "  foreground: '#f2f2f2'"),
+    fs::path(root, "_brand.yml")
+  )
+  suppressMessages(settings_set(root, "files.include" = list("*.R")))
+  suppressMessages(bind(root))
+  expect_identical(read_site_config(fs::path(root, "_site"))$theme, "dark")
+
+  writeLines("b <- 2", fs::path(root, "b.R"))
+  suppressMessages(rebuild_files_only(root))
+  after <- read_site_config(fs::path(root, "_site"))
+  expect_true("b.R" %in% vapply(after$files, function(f) f$name, character(1)))
+  expect_identical(after$theme, "dark")
+})
+
+test_that("a files-only rebuild of a site that leaves the scheme to visitors writes no theme", {
+  root <- local_collection()
+  writeLines("a <- 1", fs::path(root, "a.R"))
+  suppressMessages(settings_set(root, "files.include" = list("*.R")))
+  suppressMessages(bind(root))
+  writeLines("b <- 2", fs::path(root, "b.R"))
+  suppressMessages(rebuild_files_only(root))
+  expect_null(read_site_config(fs::path(root, "_site"))$theme)
+})

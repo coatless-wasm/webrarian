@@ -74,6 +74,10 @@ repl:
     environment: true
 
 ui:
+  # The color scheme. auto shows a Settings gear and follows each visitor's
+  # choice, then their system. light or dark pins the site to that scheme and
+  # hides the gear.
+  theme: "auto"
   loading:
     # Text on the loading screen.
     message: "Loading webR..."
