@@ -208,6 +208,10 @@ Each of these traces to the host or the upload.
   headers, which GitHub Pages never does (see
   [Deployment](deployment.html#cross-origin-isolation)). **Restart R** stops a
   runaway loop, keeping packages and files but losing the session's objects.
+- **A curl or httr2 request ends in `Timeout was reached`.** The same headers
+  are missing ([HTTP requests](deployment.html#http-requests)).
+  `download.file()` still reaches servers that allow requests from other
+  sites.
 - **Files return 404.** Upload the whole `_site/`, dot files included.
 - **The page shows an old version.** Reload. With the service worker on, an
   open page keeps the old version until then
@@ -219,7 +223,8 @@ Every site has these limits, and they are easier to read than to discover.
 
 - Without cross-origin isolation (GitHub Pages, or a GitLab Pages instance
   whose administrator has not added the headers), Ctrl+C cannot
-  interrupt R, and `readline()`, `menu()` and `browser()` do not work.
+  interrupt R, `readline()`, `menu()` and `browser()` do not work, and curl
+  and httr2 cannot make HTTP requests.
 - Packages whose system dependencies have no WebAssembly build cannot be used.
 - Shiny apps do not run in the workspace, so use
   [shinylive](https://posit-dev.github.io/r-shinylive/).

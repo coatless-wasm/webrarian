@@ -1,6 +1,6 @@
 ## Submission
 
-This is a new submission of webrarian 0.1.1.
+This is a new submission of webrarian 0.1.2.
 
 webrarian builds static websites where R runs in the visitor's browser through
 'webR' (the WebAssembly build of R), with chosen R packages and files already

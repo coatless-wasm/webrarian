@@ -1,3 +1,10 @@
+# webrarian 0.1.2
+
+* **Documentation**: `vignette("deployment")` says where HTTP requests work.
+  curl and httr2 need a page served with the cross-origin isolation headers,
+  so their requests time out on GitHub Pages. `download.file()` works on every
+  host, for servers that allow requests from other sites (#2).
+
 # webrarian 0.1.1
 
 * **Editor**: with nothing selected, Run and Ctrl+Enter (Command+Enter on a

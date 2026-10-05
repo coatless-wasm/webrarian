@@ -34,7 +34,8 @@ Without them webR still works, on a slower channel where Ctrl+C cannot
 interrupt R, and `readline()`, `menu()` and `browser()` do not work. The
 console says so and points at the **Restart R** button, which restarts R with
 the site's packages, files and startup script. The editor's files survive a
-restart, and the session's objects do not.
+restart, and the session's objects do not. Requests made with curl or httr2
+need the headers too ([HTTP requests](#http-requests)).
 
 Hosts differ in whether they send the headers.
 
@@ -46,6 +47,30 @@ Hosts differ in whether they send the headers.
 | GitHub Pages | no | GitHub Pages cannot set response headers |
 | GitLab Pages | only if the instance's administrator adds them | the instance's configuration |
 | `reading_room()` | yes | always |
+
+### HTTP requests
+
+A browser gives WebAssembly no network sockets, so R reaches other servers in
+two ways.
+
+- `download.file()` and functions that read a URL, such as `readLines()` and
+  `read.csv()`, work on every host. They only fetch (a `GET` request), and
+  only from servers that allow requests from other sites (CORS), as GitHub's
+  API and `raw.githubusercontent.com` do.
+- curl and httr2 send any request to any server, from a page served with the
+  isolation headers. curl 7.1.0 and later pass the connection through a public
+  WebSocket proxy, `ws.r-universe.dev`, with nothing to set up. The proxy sees
+  which server a request goes to, and an HTTPS request stays encrypted between
+  R and that server.
+
+Without the headers a curl or httr2 request waits ten seconds and fails.
+
+```text
+Failed to perform HTTP request.
+Caused by error in `curl::curl_fetch_memory()`:
+! Timeout was reached [api.github.com]:
+Connection timed out after 10000 milliseconds
+```
 
 ## GitHub Pages
 
@@ -70,8 +95,9 @@ publishing. Three steps turn it on.
 in **Settings > Pages > Custom domain** (a `CNAME` file is ignored).
 
 GitHub Pages sends neither the isolation headers nor caching headers, so sites
-there run without Ctrl+C. The [service worker](#the-service-worker) helps with
-repeat visits.
+there run without Ctrl+C and without curl or httr2 requests
+([HTTP requests](#http-requests)). The [service worker](#the-service-worker)
+helps with repeat visits.
 
 ## Netlify
 

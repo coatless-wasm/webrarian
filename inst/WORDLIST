@@ -5,6 +5,7 @@ CDN
 CLI
 CMD
 CNAME
+CORS
 CRAN's
 CloudFront
 Cloudflare
@@ -47,6 +48,7 @@ Vercel
 WCAG
 WEBR
 WebAssembly
+WebSocket
 Zlib
 addon
 ansi
@@ -70,6 +72,7 @@ ggplot
 gitignore
 httpuv
 httpuv's
+httr
 ico
 javascript
 js
