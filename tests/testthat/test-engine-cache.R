@@ -22,13 +22,52 @@ complete_engine <- function(version, used = Sys.time()) {
 
 days_ago <- function(n) Sys.time() - n * 24 * 3600
 
+# One tar entry: a ustar header, then `body` padded to whole blocks.
+tar_entry <- function(name, type, body) {
+  header <- raw(512L)
+  header[seq_len(nchar(name, "bytes"))] <- charToRaw(name)
+  header[101:108] <- c(charToRaw("0000644"), as.raw(0L))
+  header[125:136] <- c(charToRaw(sprintf("%011o", length(body))), as.raw(0L))
+  header[157] <- charToRaw(type)
+  header[258:265] <- c(charToRaw("ustar"), as.raw(0L), charToRaw("00"))
+  header[149:156] <- charToRaw(strrep(" ", 8L))
+  header[149:156] <- c(charToRaw(sprintf("%06o", sum(as.integer(header)))), as.raw(c(0L, 0x20)))
+  c(header, body, raw(-length(body) %% 512L))
+}
+
+# A pax record, "<length> <key>=<value>\n", its length counting its own digits.
+pax_record <- function(key, value) {
+  n <- nchar(key, "bytes") + length(value) + 3L
+  len <- n + nchar(n + nchar(n))
+  c(charToRaw(paste0(len, " ", key, "=")), value, charToRaw("\n"))
+}
+
+# A gzipped tar of `files` (name = contents) laid out the way macOS's tar
+# writes webR's release: a pax header before each entry with a binary
+# com.apple.provenance xattr.
+write_mac_tarball <- function(path, files) {
+  provenance <- as.raw(c(0x01, 0x00, 0x03, 0x65, 0xc5, 0x4d, 0x75, 0xa3, 0xc8, 0xb9, 0xd9))
+  con <- gzfile(path, "wb")
+  on.exit(close(con))
+  for (name in names(files)) {
+    xattr <- pax_record("SCHILY.xattr.com.apple.provenance", provenance)
+    writeBin(tar_entry("PaxHeader", "x", xattr), con)
+    writeBin(tar_entry(name, "0", charToRaw(files[[name]])), con)
+  }
+  writeBin(raw(1024L), con)
+}
+
 # A release tarball, served through a mocked httr2; fail = TRUE drops the
-# connection mid-download.
-local_fake_release <- function(version = "0.6.0", fail = FALSE, env = parent.frame()) {
+# connection mid-download, and mac = TRUE tars it the way macOS's tar does.
+local_fake_release <- function(
+  version = "0.6.0",
+  fail = FALSE,
+  mac = FALSE,
+  env = parent.frame()
+) {
   base <- withr::local_tempdir(.local_envir = env)
-  release <- fs::path(base, paste0("webr-", version))
-  fs::dir_create(fs::path(release, "vfs"))
-  for (f in c(
+  release <- paste0("webr-", version)
+  files <- c(
     "R.wasm",
     "R.js",
     "webr-worker.js",
@@ -36,14 +75,21 @@ local_fake_release <- function(version = "0.6.0", fail = FALSE, env = parent.fra
     "libRblas.so",
     "vfs/usr.data",
     "repl.js"
-  )) {
-    writeLines(paste(version, f), fs::path(release, f))
-  }
-  tarball <- fs::path(base, "webr.tar.gz")
-  withr::with_dir(
-    base,
-    utils::tar(tarball, basename(release), compression = "gzip", tar = "internal")
   )
+  tarball <- fs::path(base, "webr.tar.gz")
+  if (mac) {
+    contents <- paste0(version, " ", files, "\n")
+    write_mac_tarball(tarball, stats::setNames(contents, file.path(release, files)))
+  } else {
+    fs::dir_create(fs::path(base, release, "vfs"))
+    for (f in files) {
+      writeLines(paste(version, f), fs::path(base, release, f))
+    }
+    withr::with_dir(
+      base,
+      utils::tar(tarball, release, compression = "gzip", tar = "internal")
+    )
+  }
   testthat::local_mocked_bindings(
     req_perform = function(req, path = NULL, ...) {
       if (fail) {
@@ -80,6 +126,18 @@ test_that("a verified download is swapped in whole, engine files only", {
   expect_false(fs::file_exists(fs::path(dir, "repl.js")))
   expect_identical(webr_assets_list(), "0.6.0")
   expect_length(staging_dirs(cache), 0L)
+})
+
+test_that("a release tarred on a Mac unpacks, binary file attributes and all", {
+  # TAR=internal makes untar() read the way it does on Windows without
+  # tar.exe, so going back to untar() fails here.
+  local_engine_cache()
+  withr::local_envvar(TAR = "internal")
+  local_pinned_checksums(local_fake_release(mac = TRUE))
+  expect_no_warning(dir <- suppressMessages(webr_assets_download("0.6.0")))
+  expect_identical(readLines(fs::path(dir, "R.wasm")), "0.6.0 R.wasm")
+  expect_identical(readLines(fs::path(dir, "vfs", "usr.data")), "0.6.0 vfs/usr.data")
+  expect_false(fs::file_exists(fs::path(dir, "repl.js")))
 })
 
 test_that("a download that does not match its pinned checksum caches nothing", {

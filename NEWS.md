@@ -1,3 +1,9 @@
+# webrarian 0.1.3
+
+* `bind()` unpacks the webR release with the archive package. On Windows
+  without `tar.exe`, R's own tar reader stopped at the macOS file attributes
+  in webR 0.6.0's tarball with "embedded nul in string" (#10).
+
 # webrarian 0.1.2
 
 ## New features

@@ -487,7 +487,7 @@ webr_assets_download <- function(version = webr_assets_version()) {
   verify_webr_tarball(temp_tar, webr_release_checksums(version), version)
 
   fs::dir_create(temp_extract)
-  utils::untar(temp_tar, exdir = temp_extract)
+  archive::archive_extract(temp_tar, dir = temp_extract)
   extracted_dir <- fs::path(temp_extract, paste0("webr-", version))
   if (!fs::dir_exists(extracted_dir)) {
     dirs <- fs::dir_ls(temp_extract, type = "directory")
